@@ -44,9 +44,10 @@ Implement a robust state management system to handle:
 
 ## Submission Guidelines:
 
-- Fork this [repository](https://github.com/lendstack/lendstack-wordle) and create a new branch for your work.
+- Fork this [repository](https://github.com/lendstack/lendstack-wordle) and create a new branch named `wordle-[YOUR NAME]`.
 - Provide clear instructions on how to run the application locally.
 - Include a README file explaining your approach, decisions made, and any additional features implemented.
+- Open a PR.
 
 ## Evaluation Criteria:
 
