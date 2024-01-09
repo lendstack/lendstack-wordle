@@ -1,58 +1,28 @@
-# lendstack-wordle
+# Create T3 App
 
-## Requirements:
-Your task is to create a web-based Wordle game using React that adheres to the following specifications:
+This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
 
-### User Interface (UI):
+## What's next? How do I make an app with this?
 
-Design a clean and intuitive UI for the game that includes:
+We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
 
-- Input field for guessing words.
-- Submit button to submit the guess.
-- Display area for previous guesses.
-= Indication of correct letters in correct positions (right letter, right position).
-- Indication of correct letters in the wrong position.
-- Display remaining attempts.
-- End game state UI (upon winning or losing).
+If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
 
-### State Management:
+- [Next.js](https://nextjs.org)
+- [NextAuth.js](https://next-auth.js.org)
+- [Prisma](https://prisma.io)
+- [Tailwind CSS](https://tailwindcss.com)
+- [tRPC](https://trpc.io)
 
-Implement a robust state management system to handle:
+## Learn More
 
-- Target word selection (randomly generate a word at the start of the game).
-- Storing user guesses and their results.
-- Tracking remaining attempts.
+To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
 
-### User Interaction:
+- [Documentation](https://create.t3.gg/)
+- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
 
-- Capture user input for word guesses.
-- Validate input (alphabetic characters, word length, etc.).
-- Handle the submission of guesses and update the game state accordingly.
+You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
 
+## How do I deploy this?
 
-### Game Logic:
-
-- Compare the user's guessed word against the target word.
-- Provide feedback to the user about the correctness of the guessed word.
-- End the game when the correct word is guessed or when the attempts reach zero.
-
-## Code Quality:
-
-- Write clean, readable, and maintainable code.
-- Implement best practices for React development.
-- Ensure error handling for edge cases (invalid input, unexpected behavior).
-
-## Submission Guidelines:
-
-- Fork this [repository](https://github.com/lendstack/lendstack-wordle) and create a new branch named `wordle-[YOUR NAME]`.
-- Provide clear instructions on how to run the application locally.
-- Include a README file explaining your approach, decisions made, and any additional features implemented.
-- Open a PR.
-
-## Evaluation Criteria:
-
-- UI/UX design and functionality.
-- Code quality, structure, and maintainability.
-- State management and logic implementation.
-- Handling of edge cases and error scenarios.
-- Bonus points for additional features or optimizations.
+Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
