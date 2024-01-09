@@ -1,5 +1,6 @@
 import logo from "../assets/logo.png";
 import AlertTutorial from "../components/alert-tuto";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
@@ -11,9 +12,13 @@ const Home = () => {
       </p>
       <div className="flex gap-6">
         <AlertTutorial />
-        <button className="w-[8rem] py-1  bg-black text-white rounded-2xl ">
+
+        <Link
+          to="/game"
+          className="w-[8rem] py-1  bg-black text-white rounded-2xl text-center"
+        >
           Play
-        </button>
+        </Link>
       </div>
     </div>
   );
