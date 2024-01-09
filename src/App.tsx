@@ -1,7 +1,9 @@
+import HomePage from "./components/HomePage";
+
 function App() {
   return (
-    <div className="flex justify-center items-center w-screen h-screen bg-black text-white">
-      hello
+    <div className="w-screen h-screen dark">
+      <HomePage></HomePage>
     </div>
   );
 }
