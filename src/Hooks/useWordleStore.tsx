@@ -11,6 +11,10 @@ interface WordleStore {
     setGuesses: (newGuesses: any[]) => void;
     previousGuesses: string[];
     setPreviousGuesses: (newPreviousGuesses: string[]) => void;
+    letters: any[];
+    setLetters: (newLetters: any[]) => void;
+    // usedKeys: any[];
+    // setUsedKeys: (newUsedKeys: any[]) => void;
 }
 
 const useWordleStore = create<WordleStore>((set) => ({
@@ -24,7 +28,14 @@ const useWordleStore = create<WordleStore>((set) => ({
     setGuesses: (newGuesses) => set({ guesses: newGuesses }),
     previousGuesses: [],
     setPreviousGuesses: (newPreviousGuesses) =>
-        set({ previousGuesses: newPreviousGuesses })
+        set({ previousGuesses: newPreviousGuesses }),
+    setLetters: (newLetters) => set({ letters: newLetters }),
+    // letters: Array(26).fill(undefined),
+    letters: Array.from({ length: 28 }, (_, index : number) => ({
+        key: index === 26 ? 'Enter' : index === 27 ? 'Backspace' : String.fromCharCode(65 + index),
+        // if (index === 27) return { key: 'Backspace' };
+        // key: String.fromCharCode(65 + index)
+    }))
 }));
 
 export default useWordleStore;

@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import useWordleStore from './useWordleStore';
 
 const useWordle = (word: string) => {
@@ -13,6 +14,7 @@ const useWordle = (word: string) => {
         previousGuesses,
         setPreviousGuesses
     } = useWordleStore();
+    const [usedKeys, setUsedKeys] = useState({});
 
     const checkGuess = () => {
         let formatted: { key: string; color: string }[] = [];
@@ -46,6 +48,29 @@ const useWordle = (word: string) => {
         setGuesses(newGuesses);
         setPreviousGuesses([...previousGuesses, currentGuess]);
         setRound(round + 1);
+        setUsedKeys((prev) => {
+            let newKeys: any = { ...prev };
+            formatted.forEach((letter) => {
+                const currentColor = newKeys[letter.key];
+                if (letter.color === 'orange') {
+                    newKeys[letter.key] = 'orange';
+                    return;
+                }
+                if (letter.color === 'black' && currentColor !== 'orange') {
+                    newKeys[letter.key] = 'black';
+                    return;
+                }
+                if (
+                    letter.color === 'grey' &&
+                    currentColor !== 'orange' &&
+                    currentColor !== 'black'
+                ) {
+                    newKeys[letter.key] = 'grey';
+                    return;
+                }
+            });
+            return newKeys;
+        });
         setCurrentGuess('');
     };
 
@@ -63,6 +88,6 @@ const useWordle = (word: string) => {
         if (key === 'Backspace')
             setCurrentGuess(currentGuess.slice(0, currentGuess.length - 1));
     };
-    return { currentGuess, HandleKeys, isCorrect, round, guesses };
+    return { currentGuess, HandleKeys, isCorrect, round, guesses, usedKeys };
 };
 export default useWordle;

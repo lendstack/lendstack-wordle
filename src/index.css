@@ -21,6 +21,46 @@ code {
     monospace;
 }
 
+.keypad {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+  margin-top: 5em;
+}
+
+.keypad-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  /* border: 1px solid #ccc; */
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.keypad > div.orange {
+  background-color: #E3651D;
+  border-color: #E3651D;
+  color: #fff;
+}
+
+.keypad > div.grey {
+  background-color: #A9A9A9;
+  border-color: #A9A9A9;
+  color: #fff;
+}
+.keypad > div.black {
+  background-color: #000000;
+  border-color: #000000;
+  color: #fff;
+}
+
+
+.keypad-button:hover {
+  background-color: #ddd;
+}
+
+
 .row {
   text-align: center;
   display: flex;
