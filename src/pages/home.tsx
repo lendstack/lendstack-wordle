@@ -1,6 +1,6 @@
 import logo from "../assets/logo.png";
-import AlertTutorial from "../components/alert-tuto";
 import { Link } from "react-router-dom";
+import AlertTutorial from "../components/alert-tuto";
 
 const Home = () => {
   return (
