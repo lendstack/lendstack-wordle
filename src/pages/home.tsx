@@ -1,8 +1,20 @@
+import logo from "../assets/logo.png";
+import AlertTutorial from "../components/alert-tuto";
+
 const Home = () => {
   return (
     <div className="flex flex-col items-center  justify-center  h-screen">
-      <h1>Welcome to Lendstack-Wordle</h1>
-      <p>Get ready to test your vocabulary!</p>
+      <img src={logo} alt="logo" className="h-[8rem]" />
+      <h1 className="text-[26px] font-bold">Lendstack-Wordle</h1>
+      <p className="text-[26px] my-4">
+        Get 6 chances to guess a 5-letter word.
+      </p>
+      <div className="flex gap-6">
+        <AlertTutorial />
+        <button className="w-[8rem] py-1  bg-black text-white rounded-2xl ">
+          Play
+        </button>
+      </div>
     </div>
   );
 };
