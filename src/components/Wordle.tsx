@@ -9,15 +9,22 @@ const Wordle = ({ word }: any) => {
         useWordle(word);
     useEffect(() => {
         window.addEventListener('keyup', HandleKeys);
+        if (isCorrect) {
+            console.log('Correct!');
+            window.removeEventListener('keyup', HandleKeys);
+        }
+        if (round > 5) {
+            console.log('You are out of guesses');
+            window.removeEventListener('keyup', HandleKeys);
+        }
         return () => {
             window.removeEventListener('keyup', HandleKeys);
         };
-    }, [HandleKeys]);
-    useEffect(() => {
-        // console.log('isCorrect:', isCorrect);
-        // console.log('guesses:', guesses);
-        // console.log('round:', round);
-    }, [isCorrect, guesses, round]);
+    }, [HandleKeys, isCorrect, round]);
+    // useEffect(() => {
+    //     console.log('round:', round);
+    //     console.log('isCorrect:', isCorrect);
+    // }, [round, isCorrect]);
     return (
         <>
             {/* <h2>Guess: {currentGuess}</h2> */}
@@ -29,7 +36,7 @@ const Wordle = ({ word }: any) => {
                     guesses={guesses}
                     round={round}
                 />
-                <KeyPad usedKeys={usedKeys}/>
+                <KeyPad usedKeys={usedKeys} />
             </Flex>
         </>
     );

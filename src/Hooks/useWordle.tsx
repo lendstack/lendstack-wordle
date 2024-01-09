@@ -77,7 +77,7 @@ const useWordle = (word: string) => {
     const HandleKeys = ({ key }: any) => {
         //need to check if the word exists in the dictionary
         if (key === 'Enter') {
-            if (round < 5 && currentGuess.length === 5) {
+            if (round < 6 && currentGuess.length === 5) {
                 // setRound((round) => round + 1);
                 addNewGuess();
             }
