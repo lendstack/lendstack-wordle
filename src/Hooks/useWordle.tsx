@@ -39,6 +39,7 @@ const useWordle = (word: string) => {
     };
     const addNewGuess = () => {
         // console.log('addNewGuess');
+        if (currentGuess === word) setIsCorrect(true);
         const formatted = checkGuess();
         let newGuesses = [...guesses];
         newGuesses[round] = formatted;
@@ -51,8 +52,6 @@ const useWordle = (word: string) => {
     const HandleKeys = ({ key }: any) => {
         //need to check if the word exists in the dictionary
         if (key === 'Enter') {
-            if (currentGuess === word) setIsCorrect(true);
-            else setIsCorrect(false);
             if (round < 5 && currentGuess.length === 5) {
                 // setRound((round) => round + 1);
                 addNewGuess();

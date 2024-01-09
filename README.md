@@ -2,6 +2,8 @@
 
 ## Game logic
 
-## My approach
+## Approach
 
-## How to run the app locally
+## Usage
+
+## Demo

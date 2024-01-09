@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import useWordle from '../Hooks/useWordle';
+import { WordleGrid } from './WordleGrid';
 
 const Wordle = ({ word }: any) => {
     const { currentGuess, HandleKeys, guesses, isCorrect, round } =
@@ -17,9 +18,14 @@ const Wordle = ({ word }: any) => {
     }, [isCorrect, guesses, round]);
     return (
         <>
-            <p className="text-2xl font-bold text-center">
-                Write word: {currentGuess}
-            </p>
+            {/* <h2>Guess: {currentGuess}</h2> */}
+            <label htmlFor="current">Guess: </label>
+            <input type="text" value={currentGuess}/>
+            <WordleGrid
+                currentGuess={currentGuess}
+                guesses={guesses}
+                round={round}
+            />
         </>
     );
 };

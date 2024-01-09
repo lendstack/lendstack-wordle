@@ -5,7 +5,7 @@ const CheckIfWordExist = async (word : string) => {
         const response = await axios.get(
             `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`
         );
-        console.log('is Exist:', response.status);
+        // console.log('is Exist:', response.status);
         if (response.status === 404) return false;
         return true;
     } catch (error) {

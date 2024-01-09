@@ -20,7 +20,7 @@ const useWordleStore = create<WordleStore>((set) => ({
     setIsCorrect: (correct) => set({ isCorrect: correct }),
     round: 0,
     setRound: (round) => set({ round }),
-    guesses: Array(6),
+    guesses: Array(6).fill(''),
     setGuesses: (newGuesses) => set({ guesses: newGuesses }),
     previousGuesses: [],
     setPreviousGuesses: (newPreviousGuesses) =>
