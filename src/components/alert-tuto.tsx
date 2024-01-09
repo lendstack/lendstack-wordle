@@ -13,8 +13,7 @@ export default function AlertTutorial() {
         onClick={() => {
           setOpen(true);
         }}
-        className="w-[8rem] py-1 rounded-2xl border-[1px] border-black"
-      >
+        className="w-[8rem] py-1 rounded-2xl border-[1px] border-black" >
         How to play
       </button>
       <Dialog
