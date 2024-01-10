@@ -1,58 +1,21 @@
-# lendstack-wordle
+# Wordle Project
 
-## Requirements:
-Your task is to create a web-based Wordle game using React that adheres to the following specifications:
+## Important
 
-### User Interface (UI):
+I don't know if this is how Wordle should be played, but I've tried to implement what I saw in the
+video below and what is mentioned in the project guidelines.
 
-Design a clean and intuitive UI for the game that includes:
+**How to Play Wordle [Video](https://www.youtube.com/watch?v=WnWPXZ6vQB8) (2 minutes)**
 
-- Input field for guessing words.
-- Submit button to submit the guess.
-- Display area for previous guesses.
-= Indication of correct letters in correct positions (right letter, right position).
-- Indication of correct letters in the wrong position.
-- Display remaining attempts.
-- End game state UI (upon winning or losing).
+## How to Run
 
-### State Management:
+This project uses the Node Package Manager (**npm**). Make sure you have that installed, clone the repo, and start the project by running: `npm run dev`. A local URL will appear on your terminal; use it to access the app and have fun.
 
-Implement a robust state management system to handle:
+## Approach
 
-- Target word selection (randomly generate a word at the start of the game).
-- Storing user guesses and their results.
-- Tracking remaining attempts.
+I've decided to use the Chakra UI library as it will make my job easier by not having to implement things like modals and styled input fields from scratch. I've used React Context to manage the game state. The game consists of four main components:
 
-### User Interaction:
-
-- Capture user input for word guesses.
-- Validate input (alphabetic characters, word length, etc.).
-- Handle the submission of guesses and update the game state accordingly.
-
-
-### Game Logic:
-
-- Compare the user's guessed word against the target word.
-- Provide feedback to the user about the correctness of the guessed word.
-- End the game when the correct word is guessed or when the attempts reach zero.
-
-## Code Quality:
-
-- Write clean, readable, and maintainable code.
-- Implement best practices for React development.
-- Ensure error handling for edge cases (invalid input, unexpected behavior).
-
-## Submission Guidelines:
-
-- Fork this [repository](https://github.com/lendstack/lendstack-wordle) and create a new branch named `wordle-[YOUR NAME]`.
-- Provide clear instructions on how to run the application locally.
-- Include a README file explaining your approach, decisions made, and any additional features implemented.
-- Open a PR.
-
-## Evaluation Criteria:
-
-- UI/UX design and functionality.
-- Code quality, structure, and maintainability.
-- State management and logic implementation.
-- Handling of edge cases and error scenarios.
-- Bonus points for additional features or optimizations.
+- WordInput: responsible for adding guesses and checking them
+- Keyboard: responsible for assisting the user in the next guesses
+- History: meant to display the previous guesses of the player
+- GameResult: displays whether the player has won the game or not
