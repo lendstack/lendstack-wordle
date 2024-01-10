@@ -50,18 +50,23 @@ export default function Wordle() {
     <div>
       <h1>Wordle Quest</h1>
       {gameOver === true ? (
-      <>
-        <p>{targetWord === guessedWord ? "Congratulations! You won!" : "Game Over! You lost!"}</p>
-        <button onClick={resetGame}>Play Again</button>
-      </>)
+        <div className="game-over-container">
+          <p className="game-over-message">
+            {targetWord === guessedWord ? "Congratulations! You won!" : "Game Over! You lost!"}
+          </p>
+          <button className="play-again-button" onClick={resetGame}>
+            Play Again
+          </button>
+        </div>
+      )
       : (
       <>
-      <div>
+      <div className='input-button-container'>
         <input placeholder="Enter a word" value={guessedWord} onChange={handleOnChange}/>
         <button onClick={handleOnClick}>Submit</button>
-        {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-        <p>Remaining attempts: {attempts}</p>
       </div>
+        {errorMessage && <p className="error-label" style={{ color: 'red' }}>{errorMessage}</p>}
+        <p className='attempts'>Remaining attempts: {attempts}</p>
       <div className='list-container'>
           {wordList.map((word) => <WordsList guessedWord= {word} targetWord = {targetWord}/>)}
       </div></>

@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { isEnglishWord } from '../services/dictionary-service';
+import { isEnglishWord } from '../services/dictionary.service';
 
 export const EnglishWordSchema = z.string().superRefine(
   async (word, ctx) => {
