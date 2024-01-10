@@ -12,3 +12,5 @@ export const LOST_MESSAGE =
 export const WORD_LENGTH = 5;
 export const ATTEMPT_NUMBER = 5;
 export const GAME_MESSAGE = ['None of the letters!', 'Only one correct letter!', 'Only two correct letters!',  'Close!', 'So close!', 'Got it! 🏆' ]
+export const ONLY_LETTERS_ALLOWED_MSG = "Only letters are allowed!";
+export const LETTERS_REQUIRED_MSG = "Word is required to have 5 letters!";

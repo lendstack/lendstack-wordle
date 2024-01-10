@@ -33,7 +33,6 @@ const GameResult = ({onRestartGame}: GameResultProps) => {
     })
   }
 
-  console.log(gameResult);
   return (
     <Box>
       <Modal isOpen={!ongoing} onClose={() => {}}>
