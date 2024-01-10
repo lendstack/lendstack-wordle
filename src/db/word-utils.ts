@@ -7,6 +7,12 @@ export enum LetterState {
   Default = "Default", // Letter default
 }
 
+export interface WordData {
+  userGuessList: string[];
+  userGuessStats: LetterState[][];
+  randomWord: string;
+}
+
 /**
  * for get a random word
  * console command for scrap word-db

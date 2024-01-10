@@ -4,7 +4,7 @@ export function Word(props: { letter: string; state: LetterState }) {
   // console.log(props.state);
 
   function getStyle() {
-    console.log("LetterState ", props.state);
+    // console.log("LetterState ", props.state);
     if (props.state === LetterState.Default) {
       return `${
         props.letter !== " " ? "bg-white text-black" : "bg-[#18191E]"
