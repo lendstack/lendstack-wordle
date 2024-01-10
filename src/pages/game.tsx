@@ -12,22 +12,22 @@ const Game = () => {
   const { data, setData } = useGlobalContext();
   const [guess, setGeuss] = useState<string>("");
 
-  const onSubmit = async () => {
-    const tmpGuess = guess.trim();
-    if (tmpGuess !== "") {
-      if (tmpGuess.length === 5) {
+  const onSubmit = async (e: any) => {
+    e.preventDefault();
+    if (guess !== "") {
+      if (guess.length === data.word.length) {
         const isValid: boolean = true; //await WordValidator(tmpGuess);
         if (isValid) {
           setData((preData) => {
             let newData = preData;
-            newData.geusses[preData.nmbAttempt] = tmpGuess.toUpperCase();
-            newData.nmbAttempt = preData.nmbAttempt + 1;
+            newData.guesses[preData.numAttempts] = guess;
+            newData.numAttempts = preData.numAttempts + 1;
             localStorage.setItem("myGameData", JSON.stringify(newData));
             return newData;
           });
           setGeuss("");
         } else {
-          toast.info(`${tmpGuess} not a word`);
+          toast.info(`${guess} not a word`);
         }
       } else {
         toast.info("wold must be exactly 5 characters long!");
@@ -40,15 +40,18 @@ const Game = () => {
       <h1 className="text-[26px] font-bold my-2 w-full text-center border-b-[1px] border-gray-700">
         Lendstack-Wordle
       </h1>
-      <div className=" h-full flex flex-col justify-center items-center w-[25rem]">
-        <WordDisplay data={data} />
-        <p>{data.world}</p>
-        {data.nmbAttempt < data.geusses.length && (
-          <WordInput guess={guess} setGuess={setGeuss} />
-        )}
+      <div className="h-full flex flex-col justify-center items-center w-[25rem]">
+        <p>{data.word}</p>
 
-        {data.nmbAttempt < data.geusses.length && (
-          <SubmitButton guess={guess} onSubmit={onSubmit} />
+        <WordDisplay data={data} guess={guess} />
+        {data.numAttempts < data.guesses.length && (
+          <form
+            onSubmit={onSubmit}
+            className="flex flex-col justify-center items-center"
+          >
+            <WordInput guess={guess} setGuess={setGeuss} />
+            <SubmitButton guess={guess} />
+          </form>
         )}
       </div>
       <ToastContainer />

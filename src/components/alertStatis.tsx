@@ -11,17 +11,23 @@ export default function AlertStatics() {
   const [isWin, setIsWin] = useState(false);
 
   useEffect(() => {
-    if (data.nmbAttempt === 5) {
-      setOpen(true);
+    const tmpIsWin: boolean =
+      data.numAttempts > 0 && data.word === data.guesses[data.numAttempts - 1];
+    const isGameOver = data.numAttempts === data.guesses.length || tmpIsWin;
+    setIsWin(tmpIsWin);
+    if (isGameOver) setOpen(true);
+    if (isGameOver && !data.isGameOver) {
+      const newData = {
+        ...data,
+        isGameOver: true,
+        played: data.played + 1,
+        numWins: tmpIsWin ? data.numWins + 1 : data.numWins,
+      };
+      localStorage.setItem("myGameData", JSON.stringify(newData));
+      setData(newData);
+      setIsWin(tmpIsWin);
     }
-    if (
-      data.nmbAttempt > 0 &&
-      data.world === data.geusses[data.nmbAttempt - 1]
-    ) {
-      setOpen(true);
-      setIsWin(true);
-    }
-  }, [data.nmbAttempt]);
+  }, [data.numAttempts]);
 
   return (
     <div>
@@ -33,22 +39,34 @@ export default function AlertStatics() {
           },
         }}
         open={open}
-        onClose={() => setOpen(false)}
-        className=""
+        // onClose={() => setOpen(false)}
       >
         <div className="bg-[#010611be] w-[25rem] rounded-xl border-[1px] border-white flex flex-col">
           <DialogContent>
             <div className="flex flex-col text-white ">
-              <div className="text-[42px] flex justify-center items-start ">
+              <div className="text-[27px]">STATISTICS :</div>
+              <div className="flex justify-around">
+                <div className="flex flex-col items-center">
+                  <p className="text-[20px] font-serif">{data.played}</p>
+                  <p className="text-[18px] font-extralight">Played</p>
+                </div>
+                <div className="flex flex-col items-center">
+                  <p className="text-[20px] font-serif">
+                    {((data.numWins / data.played) * 100).toFixed()}
+                  </p>
+                  <p className="text-[18px] font-extralight">Win %</p>
+                </div>
+              </div>
+              <div className="text-[20px] flex justify-center items-start ">
                 {isWin ? "You Win" : "You Lose"}
               </div>
-              <h1 className="text-[27px]">Guess Distribution</h1>
-              {data.geusses.map((attempt, index) => {
+              <h1 className="text-[17px]">Guess Distribution</h1>
+              {data.guesses.map((attempt, index) => {
                 let geussStatis: { rate: number; color: string } =
-                  GetGeussStatistic(attempt, data.world);
-                if (attempt === "*****") return <></>;
+                  GetGeussStatistic(attempt, data.word);
+                if (attempt === "*****") return <div key={index}></div>;
                 return (
-                  <div className="flex items-center gap-2">
+                  <div key={index} className="flex items-center gap-2">
                     <p className="w-[10px]">{index + 1}</p>
                     <div
                       className={`h-[20px] w-[320px] text-[14px] text-black flex items-center pl-1 ${geussStatis.color}`}
@@ -68,12 +86,15 @@ export default function AlertStatics() {
                 const tmp = await WordGenerator();
                 if (tmp) {
                   setData((preData) => {
-                    let newData = { ...preData };
-                    newData.world = tmp.toUpperCase();
-                    newData.nmbAttempt = 0;
-                    newData.geusses = newData.geusses.map((geuss, index) => {
-                      return "*".repeat(geuss.length);
-                    });
+                    const newData = {
+                      ...preData,
+                      word: tmp.toUpperCase(),
+                      numAttempts: 0,
+                      isGameOver: false,
+                      guesses: preData.guesses.map((guess) =>
+                        "*".repeat(guess.length)
+                      ),
+                    };
                     localStorage.setItem("myGameData", JSON.stringify(newData));
                     return newData;
                   });
@@ -88,11 +109,14 @@ export default function AlertStatics() {
                 onClick={() => {
                   setOpen(false);
                   setData((preData) => {
-                    let newData = { ...preData };
-                    newData.nmbAttempt = 0;
-                    newData.geusses = newData.geusses.map((geuss, index) => {
-                      return "*".repeat(geuss.length);
-                    });
+                    const newData = {
+                      ...preData,
+                      numAttempts: 0,
+                      isGameOver: false,
+                      guesses: preData.guesses.map((guess) =>
+                        "*".repeat(guess.length)
+                      ),
+                    };
                     localStorage.setItem("myGameData", JSON.stringify(newData));
                     return newData;
                   });

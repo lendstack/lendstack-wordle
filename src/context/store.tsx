@@ -17,7 +17,14 @@ interface ContextProps {
 }
 
 const GlobalContext = createContext<ContextProps>({
-  data: { world: "", geusses: [], nmbAttempt: 0 },
+  data: {
+    isGameOver: false,
+    word: "",
+    guesses: [],
+    numAttempts: 0,
+    played: 0,
+    numWins: 0,
+  },
   setData: () => {},
 });
 
@@ -27,9 +34,13 @@ export const GlobalContextProvider = ({
   children: React.ReactNode;
 }) => {
   const [data, setData] = useState<DataDTO>({
-    world: "",
-    geusses: ["*****", "*****", "*****", "*****", "*****"],
-    nmbAttempt: 0,
+    isGameOver: false,
+    word: "",
+    guesses: ["*****", "*****", "*****", "*****", "*****"],
+    numAttempts: 0,
+
+    played: 0,
+    numWins: 0,
   });
 
   useEffect(() => {
@@ -45,9 +56,8 @@ export const GlobalContextProvider = ({
         const tmp = await WordGenerator();
         if (tmp) {
           setData((preValue) => {
-            let newData = preValue;
-            newData.world = tmp.toUpperCase();
-            // newData.world = "FIFAL";
+            let newData = { ...preValue };
+            newData.word = tmp.toUpperCase();
             localStorage.setItem("myGameData", JSON.stringify(newData));
             return newData;
           });

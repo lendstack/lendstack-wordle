@@ -1,5 +1,10 @@
 export interface DataDTO {
-  world: string;
-  geusses: string[];
-  nmbAttempt: number;
+  isGameOver: boolean;
+
+  word: string;
+  guesses: string[];
+  numAttempts: number;
+
+  played: number;
+  numWins: number;
 }

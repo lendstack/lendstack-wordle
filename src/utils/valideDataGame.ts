@@ -8,38 +8,54 @@ const validateGameData = async (
   const newData: DataDTO = { ...preValue };
 
   if (
-    typeof tmpData.world === "string" &&
-    tmpData.world.length === preValue.geusses[0].length
+    typeof tmpData.word === "string" &&
+    tmpData.word.length === preValue.guesses[0].length
   )
-    newData.world = tmpData.world;
+    newData.word = tmpData.word;
   else return null;
   if (
-    typeof tmpData.nmbAttempt === "number" &&
-    tmpData.nmbAttempt <= preValue.geusses[0].length &&
-    tmpData.nmbAttempt >= 0
+    typeof tmpData.numAttempts === "number" &&
+    tmpData.numAttempts <= preValue.guesses[0].length &&
+    tmpData.numAttempts >= 0
   )
-    newData.nmbAttempt = tmpData.nmbAttempt;
+    newData.numAttempts = tmpData.numAttempts;
   else return null;
+
+  if (typeof tmpData.played === "number" && tmpData.played >= 0)
+    newData.played = tmpData.played;
+  else return null;
+  if (typeof tmpData.isGameOver === "boolean")
+    newData.isGameOver = tmpData.isGameOver;
+  else return null;
+
   if (
-    typeof tmpData.geusses === "object" &&
-    tmpData.geusses.length === preValue.geusses.length
+    typeof tmpData.numWins === "number" &&
+    tmpData.numWins >= 0 &&
+    tmpData.numWins <= tmpData.played
+  )
+    newData.numWins = tmpData.numWins;
+  else return null;
+
+  if (
+    typeof tmpData.guesses === "object" &&
+    tmpData.guesses.length === preValue.guesses.length
   ) {
-    newData.geusses = newData.geusses.map((wrd, index) => {
-      if (index <= newData.nmbAttempt) {
+    newData.guesses = newData.guesses.map((wrd, index) => {
+      if (index <= newData.numAttempts) {
         if (
-          typeof tmpData.geusses[index] === "string" &&
-          tmpData.geusses[index].length === wrd.length
+          typeof tmpData.guesses[index] === "string" &&
+          tmpData.guesses[index].length === wrd.length
         )
-          return tmpData.geusses[index];
+          return tmpData.guesses[index];
         else return "-----";
       }
       return wrd;
     });
   } else return null;
 
-  // for (let i = 0; i < newData.geusses.length; i++) {
-  //     if (i < newData.nmbAttempt) {
-  //         const isValidWord = await WordValidator(newData.geusses[i]);
+  // for (let i = 0; i < newData.guesses.length; i++) {
+  //     if (i < newData.numAttempts) {
+  //         const isValidWord = await WordValidator(newData.guesses[i]);
   //         if (!isValidWord) {
   //             return null;
   //         }

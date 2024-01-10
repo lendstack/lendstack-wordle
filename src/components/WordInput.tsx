@@ -1,10 +1,14 @@
-export default function WorldInput({
+import { toast } from "react-toastify";
+import { useGlobalContext } from "../context/store";
+
+export default function wordInput({
   guess,
   setGuess,
 }: {
   guess: string;
   setGuess: (guess: string) => void;
 }) {
+  const { data } = useGlobalContext();
   return (
     <div className="flex gap-2 mt-2 w-[25rem] justify-center">
       <div className="flex bg-[#F6F7FA] mt-0  border rounded-[10px]  w-[10rem] md:w-[15rem]">
@@ -14,7 +18,18 @@ export default function WorldInput({
           type="text"
           placeholder="Enter guess"
           value={guess}
-          onChange={(e) => setGuess(e.target.value)}
+          onChange={(e) => {
+            const value = e.target.value.toUpperCase();
+            if (/^[A-Za-z]*$/.test(value)) {
+              if (value.length <= data.word.length) {
+                setGuess(value);
+              } else {
+                toast.info("wold must be exactly 5 characters long!");
+              }
+            } else {
+              toast.info("Only alphabetical characters are allowed");
+            }
+          }}
         ></input>
       </div>
     </div>
