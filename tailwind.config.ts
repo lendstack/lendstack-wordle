@@ -13,8 +13,23 @@ const config: Config = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+      keyframes: {
+        flip: {
+          'from': { transform: 'scale(1) rotateX(-180deg)', opacity: '1' },
+          '50%': { transform: 'scale(1.1) rotateX(-90deg)', opacity: '.8' },
+          'to': { transform: 'scale(1) rotateX(0)', opacity: '1' },
+        },
+        grow: {
+          '0%, 100%': { transform: 'scale(1)' },
+          '50%': { transform: 'scale(1.05)' },
+        },
+      },
+      animation: {
+        'flip-card': 'flip 1s ease forwards',
+        'grow': 'grow .4s ease',
+      },
     },
   },
   plugins: [],
 }
-export default config
+export default config;
