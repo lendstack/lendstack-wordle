@@ -4,6 +4,7 @@ export enum LetterState {
   Miss = "Miss", // Letter doesn't exist at all
   Present = "Present", // Letter exists but wrong location
   Match = "Match", // Letter exists and is in the right location
+  Default = "Default", // Letter default
 }
 
 /**
@@ -62,8 +63,8 @@ export function getGuessStates(
   }
 
   let result: LetterState[] = [];
-  const answer = answerString.split("");
-  const guessAsArray = guess.split("");
+  const answer = answerString.toLocaleLowerCase().split("");
+  const guessAsArray = guess.toLocaleLowerCase().split("");
   const answerLetterCount: Record<string, number> = {};
 
   guessAsArray.forEach((letter, index) => {
