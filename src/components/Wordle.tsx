@@ -1,6 +1,8 @@
 import React, { ChangeEvent } from 'react'
 import { EnglishWordSchema } from '../utils/validation';
 import { ZodError } from 'zod';
+import WordsList from './WordsList';
+import "../App.css";
 
 export default function Wordle() {
     const [wordList, setWordList] = React.useState<string[]>([]);
@@ -34,10 +36,8 @@ export default function Wordle() {
         {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
         <p>Remaining attempts: {attempts}</p>
       </div>
-      <div>
-        <ul>
-          {wordList.map((word, index) => <li key={index}>{word}</li>)}
-        </ul>
+      <div className='list-container'>
+          {wordList.map((word) => <WordsList word= {word}/>)}
       </div>
     </div>
   )
