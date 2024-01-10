@@ -3,15 +3,42 @@ import { FaDeleteLeft } from "react-icons/fa6";
 import { IconButton } from "@chakra-ui/react";
 import { PinInput, PinInputField, useStyleConfig } from "@chakra-ui/react";
 import { useState } from "react";
+import { useBoard } from "../hooks/useBoard";
+import { checkResult } from "../utils/checkResult";
+import { ATTEMPT_NUMBER, WORD_LENGTH } from "../utils/constants";
 
 interface WordInputProps {
-  onAddWord: (word: string) => void;
+  onWordInsert: (word: string) => void;
+  guesses: string[];
 }
 
-const WordInput = ({ onAddWord }: WordInputProps) => {
+const WordInput = ({ onWordInsert, guesses }: WordInputProps) => {
+  const { board, setBoard } = useBoard();
   const [value, setValue] = useState("");
   const [error, setError] = useState("");
   const styles = useStyleConfig("PinInputField", { variant: "secondary" });
+
+  // ! Should change remaining retries from static to dynamic (constant file)
+  const insertWord = () => {
+    if (guesses.length < ATTEMPT_NUMBER) {
+      // validation
+      if (/[0-9]/.test(value)) return setError("Word can only contain letters");
+      else if (value.length != WORD_LENGTH) return setError("Word is required to have 5 letters");
+      else {
+        setError("");
+        setValue("");
+        onWordInsert(value);
+        // prettier-ignore
+        if (guesses.length === (ATTEMPT_NUMBER - 1) || checkResult([...guesses, value], board.word).length === board.word.length)
+          setBoard({
+            word: board.word,
+            guesses: [...guesses, value],
+            ongoing: false,
+            gameResult: checkResult([...guesses, value], board.word),
+          });
+      }
+    }
+  };
 
   return (
     <Box marginTop={5}>
@@ -50,6 +77,7 @@ const WordInput = ({ onAddWord }: WordInputProps) => {
           colorScheme="teal"
           size="lg"
           fontSize={26}
+          onClick={() => insertWord()}
         >
           Submit
         </Button>
