@@ -22,6 +22,7 @@ const Game = () => {
             let newData = preData;
             newData.geusses[preData.nmbAttempt] = tmpGuess.toUpperCase();
             newData.nmbAttempt = preData.nmbAttempt + 1;
+            localStorage.setItem("myGameData", JSON.stringify(newData));
             return newData;
           });
           setGeuss("");
@@ -41,7 +42,7 @@ const Game = () => {
       </h1>
       <div className=" h-full flex flex-col justify-center items-center w-[25rem]">
         <WordDisplay data={data} />
-
+        <p>{data.world}</p>
         {data.nmbAttempt < data.geusses.length && (
           <WordInput guess={guess} setGuess={setGeuss} />
         )}

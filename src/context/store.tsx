@@ -18,7 +18,7 @@ interface ContextProps {
 
 const GlobalContext = createContext<ContextProps>({
   data: { world: "", geusses: [], nmbAttempt: 0 },
-  setData: () => { },
+  setData: () => {},
 });
 
 export const GlobalContextProvider = ({
@@ -34,25 +34,26 @@ export const GlobalContextProvider = ({
 
   useEffect(() => {
     const getWold = async () => {
-
-      // const storedGameData = localStorage.getItem('myGameData');
-      // if (storedGameData) {
-      //   const tmpData = JSON.parse(storedGameData);
-      //   const isValide: DataDTO | null = await ValideDataGame(data, tmpData);
-      //   console.log("isVlaide--->", isValide);
-
-      // }
-
-      const tmp = await WordGenerator();
-      if (true) {
-        setData((preValue) => {
-          let newData = preValue;
-          // newData.world = tmp.toUpperCase();
-          newData.world = "FIFAL";
-          console.log("newData.world=", newData);
-          localStorage.setItem('myGameData', JSON.stringify(newData));
-          return newData;
-        });
+      const storedGameData = localStorage.getItem("myGameData");
+      let isValide: DataDTO | null = null;
+      if (storedGameData) {
+        const tmpData = JSON.parse(storedGameData);
+        isValide = await ValideDataGame(data, tmpData);
+        console.log("isVlaide--->", isValide);
+      }
+      if (isValide === null) {
+        const tmp = await WordGenerator();
+        if (tmp) {
+          setData((preValue) => {
+            let newData = preValue;
+            newData.world = tmp.toUpperCase();
+            // newData.world = "FIFAL";
+            localStorage.setItem("myGameData", JSON.stringify(newData));
+            return newData;
+          });
+        }
+      } else {
+        setData(isValide);
       }
     };
     getWold();
