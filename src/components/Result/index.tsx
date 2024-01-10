@@ -1,27 +1,34 @@
 import CloseIcon from "@mui/icons-material/Close";
+import { Dispatch, SetStateAction } from "react";
 
-export default function Result(props: any) {
-    const result = props.state == "win" ? "You won! 🏆" : "You lost! 😔";
+type result = {
+    state: string;
+    correct: string;
+    result: Dispatch<SetStateAction<string>>
+}
+
+export default function Result(props: result) {
+    const resultGame = props.state == "win" ? "You won! 🏆" : "You lost! 😔";
     const handleNewGame = () => {
         window.location.reload();
     }
 
     return (
-        <div className="absolute w-full h-full grid place-cente">
+        <div className="absolute w-full h-full grid place-cente ">
             <div
-                className="z-10 flex place-self-center flex-col rounded-xl bg-white pb-10 drop-shadow-3xl dark:bg-zinc-800 dark:text-white"
-                style={{ width: "min(600px, 90vw)", height: "min(300px, 70vh)" }}
+                className="z-10 shadow flex place-self-center flex-col rounded-xl bg-white pb-10 drop-shadow-3xl dark:bg-zinc-800 dark:text-white"
+                style={{ width: "min(600px, 90vw)", height: "min(300px, 70vh)"}}
             >
                 <div className="flex justify-between items-center pb-5 bg-gray-400 dark:bg-gray-400 rounded-t-xl">
                     <hr />
-                    <h2 className="font-black text-2xl pt-4">{result}</h2>
+                    <h2 className="font-black text-2xl pt-4">{resultGame}</h2>
                     <CloseIcon
                         onClick={() => {
-                        props.result(false);
+                        props.result("");
                         }}
                     />
                 </div>
-                <div className="flex flex-col modal overscroll-contain overflow-y-scroll sm:px-7 items-center">
+                <div className="flex flex-col sm:px-7 items-center dark:bg-zinc-800">
                     <p className="text-center text-sm sm:text-base py-5 font-regular opacity-75 mr-1">
                         The answer was:
                     </p>

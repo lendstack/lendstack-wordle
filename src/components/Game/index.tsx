@@ -1,13 +1,21 @@
-import { useState, useEffect } from "react";
-import Board from "../Tables";
+import { useState, useEffect, Dispatch, SetStateAction } from "react";
+import Table from "../Tables";
 
-export default function Game(props: any) {
+type game = {
+    error: Dispatch<SetStateAction<string>>;
+    result: Dispatch<SetStateAction<string>>;
+    correct: Dispatch<SetStateAction<string>>;
+}
+
+export default function Game(props: game) {
     const [letter, setLetter] = useState<string>();
-    const [changed, setChanged] = useState(false);
-    const [letters, setLetters] = useState({});
-    const [clicked, setClicked] = useState(0);
+    const [changed, setChanged] = useState<boolean>(false);
+    const [, setLetters] = useState({});
+    const [clicked, setClicked] = useState<number>(0);
+    const [remain, setRemain] = useState<number>(6);
+    const [remaining, setRemaining] = useState<string>("You have " + remain + " remaining chances! 😊");
 
-    const onClickDown = (event: any) => {
+    const onClickDown = (event: any): void => {
         if (event.key == "Enter") {
         setLetter("ENTER");
         setClicked(clicked + 1);
@@ -26,26 +34,44 @@ export default function Game(props: any) {
         return () => window.removeEventListener("keydown", onClickDown);
     });
 
-    const keyHandler = (letterValue: any) => {
-        setLetter(letterValue);
+    useEffect(() => {
+        setTimeout(() => {
+            if (remain != 0) {
+                if (remain >= 3)
+                setRemaining("You have " + remain + " remaining chances! 😊");
+                else {
+                    setRemaining("You have " + remain + " remaining chances! 🤔");
+                } 
+            } else {
+                setRemaining("No remaining chances! 😟");
+            }
+        }, 750);
+    }, [remain])
+
+    const handleClickSubmit = () => {
+        setLetter("ENTER");
         setClicked(clicked + 1);
-    };
+    }
+
     const LettersHandler = (lettersValue: any) => {
         setLetters(lettersValue);
         setChanged(!changed);
     };
 
     return (
-        <>
-            <Board
+        <div className="justify-between items-center pt-5 py-3 justify-items-center dark:text-slate-200">
+            <Table
             letter={letter}
             clicks={clicked}
             letters={LettersHandler}
             error={props.error}
             result={props.result}
             correct={props.correct}
+            remain={setRemain}
             />
-        </>
+            <p className="font-bold dark:text-slate-200 py-2">{remaining}</p>
+            <button className="text-slate-100 bg-green-600 dark:text-black hover:bg-blue-400" onClick={handleClickSubmit}>Submit</button>
+        </div>
 
     );
 }

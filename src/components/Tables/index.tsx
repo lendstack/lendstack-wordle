@@ -1,13 +1,12 @@
-import { useEffect, useState } from "react";
-import Box from "../Square";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import Square from "../Square";
 import words from "../../words";
 
-const correct =
-  words[Math.floor(Math.random() * words.length - 1)].toUpperCase();
-let defaulBoard: any = [];
-let defaultLetters: any = [];
+const correctWord = words[Math.floor(Math.random() * words.length - 1)].toUpperCase();
+let defaulBoard: Array<Array<Array<string>>> = new Array<Array<Array<string>>>();
+let defaultLetters: any = {};
 
-"abcdefghijklmnopqrstuvwxyz".split("").forEach((i) => {
+"abcdefghijklmnopqrstuvwxyz".split("").forEach((i: string) => {
   defaultLetters[i] = "";
 });
 
@@ -18,16 +17,88 @@ for (let i = 0; i < 6; i++) {
   }
 }
 
-export default function Board(props: any) {
+type table = {
+  error: Dispatch<SetStateAction<string>>;
+  result: Dispatch<SetStateAction<string>>;
+  correct: Dispatch<SetStateAction<string>>;
+  letter? : string;
+  letters?: Dispatch<SetStateAction<object>>;
+  clicks? : number;
+  remain?: Dispatch<SetStateAction<number>>
+}
+
+export default function Table(props: table) {
   const [letters, setLetters] = useState(defaultLetters);
-  const [board, setBoard] = useState(defaulBoard);
   const [changed, setChanged] = useState(false);
-  const [row, setRow] = useState(0);
+  const [board, setBoard] = useState(defaulBoard);
   const [col, setCol] = useState(0);
+  const [row, setRow] = useState(0);
   const [win, setWin] = useState(false);
   const [lost, setLost] = useState(false);
-  const [message, setMessage] = useState("");
 
+  const modifyBoard = (revBoard: any) => {
+    if (col < 5) {
+      if (props.letter !== "ENTER") {
+        revBoard[row][col][0] = props.letter;
+        setCol(col + 1);
+      } else {
+        props.error("Words are 5 letters long!");
+        setTimeout(() => {
+          props.error("");
+        }, 1000);
+      }
+    } else {
+      if (props.letter === "ENTER") {
+        let correctLetters = 0;
+        let word = "";
+        for (let i = 0; i < 5; i++) {
+          word += revBoard[row][i][0];
+        }
+        if (words.includes(word.toLowerCase())) {
+          for (let i = 0; i < 5; i++) {
+            if (correctWord[i] === revBoard[row][i][0]) {
+              revBoard[row][i][1] = "C";
+              correctLetters++;
+            } else if (correctWord.includes(revBoard[row][i][0]))
+              revBoard[row][i][1] = "E";
+            else revBoard[row][i][1] = "W";
+            setRow(row + 1);
+            if (props.remain)
+              props.remain(5 - row);
+            if (row === 5) {
+              setLost(true);
+              setTimeout(() => {
+                props.result("lose");
+                props.correct(correctWord);
+              }, 750);
+            }
+
+            setCol(0);
+            setLetters((prev: any) => {
+              prev[board[row][i][0]] = board[row][i][1];
+              return prev;
+            });
+          }
+          setChanged(!changed);
+
+          if (correctLetters === 5) {
+            setWin(true);
+            setTimeout(() => {
+              props.result("win");
+              props.correct(correctWord);
+            }, 750);
+          }
+          return revBoard;
+        } else {
+          props.error("Word not in dictionary");
+          setTimeout(() => {
+            props.error("");
+          }, 1000);
+        }
+      }
+    }
+    return revBoard;
+  }
 
   useEffect(() => {
     if (win || lost) {
@@ -36,81 +107,20 @@ export default function Board(props: any) {
       if (props.clicks !== 0) {
         if (props.letter === "REMOVE") {
           setCol(col === 0 ? 0 : col - 1);
-          setBoard((prevBoard: any) => {
-            prevBoard[row][col === 0 ? 0 : col - 1][0] = "";
-            return prevBoard;
+          setBoard((revBoard: any) => {
+            revBoard[row][col === 0 ? 0 : col - 1][0] = "";
+            return revBoard;
           });
         } else {
-          setBoard((prevBoard: any) => {
-            if (col < 5) {
-              if (props.letter !== "ENTER") {
-                prevBoard[row][col][0] = props.letter;
-                setCol(col + 1);
-              } else {
-                props.error("Words are 5 letters long!");
-                setTimeout(() => {
-                  props.error("");
-                }, 1000);
-              }
-            } else {
-              if (props.letter === "ENTER") {
-                let correctLetters = 0;
-                let word = "";
-                for (let i = 0; i < 5; i++) {
-                  word += prevBoard[row][i][0];
-                }
-                if (words.includes(word.toLowerCase())) {
-                  for (let i = 0; i < 5; i++) {
-                    if (correct[i] === prevBoard[row][i][0]) {
-                      prevBoard[row][i][1] = "C";
-                      correctLetters++;
-                    } else if (correct.includes(prevBoard[row][i][0]))
-                      prevBoard[row][i][1] = "E";
-                    else prevBoard[row][i][1] = "W";
-                    setRow(row + 1);
-                    if (row === 5) {
-                      setLost(true);
-                      setTimeout(() => {
-                        setMessage(`It was ${correct}`);
-                        props.result("lose");
-                        props.correct(correct);
-                      }, 750);
-                    }
-
-                    setCol(0);
-                    setLetters((prev: any) => {
-                      prev[board[row][i][0]] = board[row][i][1];
-                      return prev;
-                    });
-                  }
-                  setChanged(!changed);
-
-                  if (correctLetters === 5) {
-                    setWin(true);
-                    setTimeout(() => {
-                      setMessage("You WIN");
-                      props.result("win");
-                      props.correct(correct);
-                    }, 750);
-                  }
-                  return prevBoard;
-                } else {
-                  props.error("Word not in dictionary");
-                  setTimeout(() => {
-                    props.error("");
-                  }, 1000);
-                }
-              }
-            }
-            return prevBoard;
-          });
+          setBoard(modifyBoard);
         }
       }
     }
   }, [props.clicks]);
 
   useEffect(() => {
-    props.letters(letters);
+    if (props.letters)
+      props.letters(letters);
   }, [changed]);
 
   return (
@@ -119,7 +129,7 @@ export default function Board(props: any) {
         return (
           <div key={key} className="flex gap-1 w-fit">
             {row.map((value: any, key: any) => (
-              <Box key={key} value={value[0]} state={value[1]} pos={key} />
+              <Square key={key} value={value[0]} state={value[1]} pos={key} />
             ))}
           </div>
         );

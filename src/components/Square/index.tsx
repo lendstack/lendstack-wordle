@@ -1,17 +1,17 @@
-import BackspaceIcon from "@mui/icons-material/Backspace";
 import { useEffect, useState } from "react";
+import BackspaceIcon from "@mui/icons-material/Backspace";
 
 export default function Square(props: any) {
-    const [cases, setCases] = useState("text-black border-2 border-black dark:bg-slate-200 dark:text-black rounded-lg");
+    const [cases, setCases] = useState("text-black dark:text-black border-2 border-black dark:bg-slate-200 rounded-lg");
     
     useEffect(() => {
         setTimeout(() => {
           if (props.state === "C")
-            setCases("bg-correct bg-green-600 text-black");
+            setCases("bg-correct bg-green-600 dark:text-slate-800");
           if (props.state === "E")
-            setCases("bg-exist bg-yellow-400 text-black");
+            setCases("bg-exist bg-yellow-400 dark:text-slate-800");
           if (props.state === "W")
-            setCases("bg-wrong bg-gray-500 text-black dark:bg-gray-400");
+            setCases("bg-wrong bg-gray-300 dark:bg-gray-400 dark:text-slate-800");
         }, 125 * props.pos);
       }, [props.state]);
     return (

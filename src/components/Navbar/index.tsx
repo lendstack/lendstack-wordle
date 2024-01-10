@@ -2,12 +2,18 @@ import Menu from "@mui/material/Menu";
 import SettingsIcon from "@mui/icons-material/Settings";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { Switch } from "@mui/material";
 
-export default function Navbar(props: any) {
+type navbar = {
+    help: Dispatch<SetStateAction<boolean>>
+    dark: boolean;
+    darkness: Dispatch<SetStateAction<boolean>>;
+}
 
-    const [menuOpen, setMenuOpen] = useState(null);
+export default function Navbar(props: navbar) {
+
+    const [menuOpen, setMenuOpen] = useState<any>(null);
 
     const SwitcherMode: boolean = props.dark == true;
 
@@ -25,13 +31,13 @@ export default function Navbar(props: any) {
 
     return (
         <>
-            <div className="flex w-100 justify-between items-center pt-5 py-3 justify-items-center dark:text-slate-200">
+            <div className="flex w-100 justify-between items-center pt-5 py-2 justify-items-center dark:text-slate-200">
                 <HelpOutlineIcon
                     onClick={() => {
                     props.help(true);
                     }}
                 />
-                <h1 className='italic text-2xl px-20 text-black dark:text-slate-200'>Welcome to the world of Wordle! </h1>
+                <h1 className="italic text-2xl px-10 sm:px-5 text-black dark:text-slate-200">Welcome to the world of Wordle! </h1>
                 <SettingsIcon
                     onClick={handleClick}
                     className="text-black dark:text-white my-1"
