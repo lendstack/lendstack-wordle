@@ -1,13 +1,27 @@
-import React, { useContext } from 'react'
+import React, { useContext } from 'react';
+import { AppContext } from '../_app';
 
 function key({ keyVal, bigKey }) {
-    const { board, setBoard } = useContext(AppContext);
+  const { board, setBoard, currAttempt, setCurrAttempt} = useContext(AppContext);
 
     const selectLetter = () => {
-        const currBoard = [...board]
-        currBoard[0][0] = keyVal
-        setBoard(newBoard)
-    }
+      if (keyVal === "ENTER"){
+        if (currAttempt.letterPos !== 5) return ;
+        setCurrAttempt({attempt: currAttempt.attempt + 1, letterPos: 0})
+      }else if(keyVal === "DELETE"){
+        if(currAttempt.letterPos === 0) return ;
+        const newBoard = [...board]
+        newBoard[currAttempt.attempt][currAttempt.letterPos -1] = "";
+        setBoard(newBoard);
+        setCurrAttempt({...currAttempt, letterPos: currAttempt.letterPos - 1});
+      } else{
+      if (currAttempt.letterPos > 4) return ;
+        const newBoard = [...board]
+        newBoard[currAttempt.attempt][currAttempt.letterPos] = keyVal;
+        setBoard(newBoard);
+        setCurrAttempt({...currAttempt, letterPos: currAttempt.letterPos + 1});
+      }
+    };
   return (
     <div className='key' id={bigKey && "big"} onClick={selectLetter}>
         {keyVal}
