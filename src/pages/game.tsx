@@ -1,35 +1,38 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import SubmitButton from "../components/SubmitButton";
 import WordDisplay from "../components/WordDisplay";
 import WordInput from "../components/WordInput";
-import WordGenerator from "../utils/wordGenerator";
-import env from "react-dotenv";
 import WordValidator from "../utils/wordValidator";
+import { useGlobalContext } from "../context/store";
+import AlertStatics from "../components/alertStatis";
 
 const Game = () => {
-  const [word, setWord] = useState("");
+  const { data, setData } = useGlobalContext();
   const [guess, setGeuss] = useState<string>("");
-  const [nbrAttempt, setnbrAttempt] = useState(0);
-  const [attempts, setAttempt] = useState<string[]>([
-    "*****",
-    "*****",
-    "*****",
-    "*****",
-    "*****",
-  ]);
 
-  useEffect(() => {
-    const getWold = async () => {
-      const tmp = await WordGenerator();
-      if (tmp) {
-        setWord(tmp.toUpperCase());
-        console.log(tmp);
+  const onSubmit = async () => {
+    const tmpGuess = guess.trim();
+    if (tmpGuess !== "") {
+      if (tmpGuess.length === 5) {
+        const isValid: boolean = true; //await WordValidator(tmpGuess);
+        if (isValid) {
+          setData((preData) => {
+            let newData = preData;
+            newData.geusses[preData.nmbAttempt] = tmpGuess.toUpperCase();
+            newData.nmbAttempt = preData.nmbAttempt + 1;
+            return newData;
+          });
+          setGeuss("");
+        } else {
+          toast.info(`${tmpGuess} not a word`);
+        }
+      } else {
+        toast.info("wold must be exactly 5 characters long!");
       }
-    };
-    getWold();
-  }, []);
+    }
+  };
 
   return (
     <div className="flex flex-col items-center h-screen">
@@ -37,38 +40,18 @@ const Game = () => {
         Lendstack-Wordle
       </h1>
       <div className=" h-full flex flex-col justify-center items-center w-[25rem]">
-        <WordDisplay attempts={attempts} word={word} />
+        <WordDisplay data={data} />
 
-        {nbrAttempt < attempts.length && (
+        {data.nmbAttempt < data.geusses.length && (
           <WordInput guess={guess} setGuess={setGeuss} />
         )}
 
-        <SubmitButton
-          guess={guess}
-          onSubmit={async () => {
-            if (guess !== "") {
-              if (guess.length === 5) {
-                const isValid: boolean = await WordValidator(guess);
-                if (isValid) {
-                  setAttempt((prevAttempts) => {
-                    const newAttempts = [...prevAttempts];
-                    newAttempts[nbrAttempt] = guess.toUpperCase();
-                    return newAttempts;
-                  });
-                  setnbrAttempt((pre) => pre + 1);
-                  setGeuss("");
-                } else {
-                  toast.info(`${guess} not a word`);
-                }
-              } else {
-                toast.info("wold must be exactly 5 characters long!");
-              }
-            }
-          }}
-        />
+        {data.nmbAttempt < data.geusses.length && (
+          <SubmitButton guess={guess} onSubmit={onSubmit} />
+        )}
       </div>
-
       <ToastContainer />
+      <AlertStatics />
     </div>
   );
 };

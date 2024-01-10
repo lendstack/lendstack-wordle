@@ -1,22 +1,19 @@
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
-
 import { IoMdCloseCircleOutline } from "react-icons/io";
-import { Suspense, useState, useTransition } from "react";
+import { useEffect, useState } from "react";
+import { useGlobalContext } from "../context/store";
 
-export default function AlertTutorial() {
+export default function AlertStatics() {
+  const { data, setData } = useGlobalContext();
   const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    if (data.nmbAttempt === 5) setOpen(true);
+  }, [data.nmbAttempt]);
 
   return (
     <div>
-      <button
-        onClick={() => {
-          setOpen(true);
-        }}
-        className="w-[8rem] py-1 rounded-2xl border-[1px] border-black"
-      >
-        How to play
-      </button>
       <Dialog
         PaperProps={{
           style: {
@@ -43,15 +40,24 @@ export default function AlertTutorial() {
 
           <DialogContent>
             <div className="flex flex-col text-white">
-              <h1 className="text-[27px]">How To Play</h1>
-              <p className="text-[17px]">Guess the Wordle in 6 tries.</p>
-              <p className="text-[14px]">
-                - Each guess must be a valid 5-letter word.
-              </p>
-              <p className="text-[14px]">
-                - The color of the tiles will change to show how close your
-                guess was to the word.
-              </p>
+              <h1 className="text-[27px]">Guess Distribution</h1>
+              {data.geusses.map((wld, index) => {
+                let nbr = 0;
+                const wordArray = Array.from(data.world);
+                wordArray.forEach((char, index) => {
+                  if (char === wld[index]) {
+                    nbr++;
+                  }
+                });
+                return (
+                  <div className="flex items-center gap-2">
+                    <p className="w-[10px]">{index + 1}</p>
+                    <div className="h-[20px] w-[320px] bg-red-600 text-[14px] flex items-center pl-1">
+                      {nbr}%
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </DialogContent>
         </div>
