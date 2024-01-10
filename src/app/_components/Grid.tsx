@@ -1,6 +1,5 @@
 import { useContext } from "react"
 import { globalContext } from "~/lib/context/globalContext"
-
 interface props {
     indexX: number
     indexY:number
@@ -20,7 +19,7 @@ const Item:React.FC<props> = ({indexX, indexY})=> {
         }
         return "bg-gay-500/20"
     }
-    return <div className={`w-[60px] h-[60px] rounded-sm border-2 border-gray-600/15 ${getColor ()} flex justify-center items-center `}>
+    return <div className={`w-[50px] h-[50px] rounded-sm border-2 border-gray-600/15 ${getColor ()} flex justify-center items-center `}>
         <p className='text-[18px] font-semibold'>{(guessState?.[indexX]?.[indexY])? guessState?.[indexX]?.[indexY]?.char : ''}</p>
     </div>
 }
@@ -33,7 +32,7 @@ const Row:React.FC<RowProps> = ({index}) => {
     const itemsArray:React.ReactElement[] = []
 
     for (let i = 0; i < 5; i++)
-        itemsArray.push (<Item indexX={index} indexY={i} />)
+        itemsArray.push (<Item key={i} indexX={index} indexY={i} />)
     return <div className="flex gap-2">
         {itemsArray}
     </div>
@@ -43,8 +42,8 @@ const Grid:React.FC = ({}) => {
 
     const rowsArray: React.ReactElement[] = []
 
-    for (let i = 0; i < 5; i++)
-        rowsArray.push (<Row  index={i}/>)
+    for (let i = 0; i < 6; i++)
+        rowsArray.push (<Row key={i}  index={i}/>)
     return <div className="flex flex-col gap-2 justify-center items-center">
         {rowsArray}
     </div>

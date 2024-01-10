@@ -26,5 +26,5 @@ export const keyBoardRows = [
     {char:'B', type:''},
     {char:'N', type:''},
     {char:'M', type:''},
-    {char:'*', type:''},
+    {char:'Backspace', type:''},
 ]

@@ -1,30 +1,35 @@
 import useWordAnalyser from "~/lib/hooks/useWordAnalyser";
 import { keyBoardRows } from "../../../constants";
+import { MdOutlineBackspace } from "react-icons/md";
 
 const Keyboard: React.FC = ({}) => {
 
-    const {analyseWord, handleSubmit} = useWordAnalyser ()
+    const {analyseWord, handleSubmit, handleReturn} = useWordAnalyser ()
   return (
     <div className="grid-cols-20 grid w-full justify-center gap-1">
       {keyBoardRows?.map((item, index) => {
         return (
           <button
+            id={item.char}
             onClick={()=> {
+              console.log (item.char)
               if (item.char === 'Enter')
                 handleSubmit ();
-              else 
+              else if (item.char === 'Backspace')
+                handleReturn ()
+              else
                 analyseWord (item.char.toLowerCase ());
             }}
             className={`keyboard-btn
             ${item.char === ' ' ? 'opacity-0' : ''}
             ${
-              item.char === "Enter" || item.char === "*"
+              item.char === "Enter" || item.char === "Backspace"
                 ? "col-span-3"
                 : "col-span-2"
             }`}
             key={index}
           >
-            {item?.char}
+            {item?.char === 'Backspace' ? <MdOutlineBackspace/> : item?.char}
           </button>
         );
       })}

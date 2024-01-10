@@ -5,6 +5,6 @@
 
 @layer components {
     .keyboard-btn {
-        @apply box-border px-2 py-1 bg-slate-300 hover:bg-slate-200 border-none rounded-sm ;
+        @apply box-border px-2 py-1 bg-slate-300 hover:bg-slate-200 border-none rounded-sm flex justify-center items-center ;
     }
 }
