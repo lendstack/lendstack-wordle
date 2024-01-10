@@ -124,6 +124,32 @@ code {
   animation: bounce 0.2s ease-in-out forwards;
 }
 
+.intro-text {
+  font-family: 'Dancing Script', cursive;
+  font-size: 3em;
+  letter-spacing: 0.5em;
+}
+.intro-text>span.e {
+  position: absolute;
+  top: 35%;
+  right: 20%;
+}
+.intro-text>span.b {
+  position: absolute;
+  top: 40%;
+  right: 34.5%;
+}
+.intro-text>span.d {
+  position: absolute;
+  top: 50%;
+  right: 25%;
+}
+
+.intro-text>span.z {
+  position: absolute;
+  top: 50%;
+  right: 13%;
+}
 @keyframes flip {
   0% {
     transform: rotateX(0);

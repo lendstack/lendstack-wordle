@@ -8,6 +8,7 @@ import {
     ModalCloseButton,
     Button
 } from '@chakra-ui/react';
+import { Link } from 'react-router-dom';
 
 interface WordleModalProps {
     isOpen: boolean;
@@ -44,15 +45,22 @@ const WordleModal = (props: WordleModalProps) => {
                 </ModalBody>
 
                 <ModalFooter>
-                    <Button variant="ghost">Back to Home</Button>
-                    <Button
-                        bg={'#E3651D'}
-                        color={'#fff'}
-                        mr={3}
-                        onClick={props.onClose}
+                    <Link
+                        to={'/'}
+                        style={{ marginRight: '12px', fontWeight: 'bold' }}
                     >
-                        Try again
-                    </Button>
+                        Back to Home
+                    </Link>
+                    <Link to={'/play'}>
+                        <Button
+                            bg={'#E3651D'}
+                            color={'#fff'}
+                            mr={3}
+                            onClick={props.onClose}
+                        >
+                            Try again
+                        </Button>
+                    </Link>
                 </ModalFooter>
             </ModalContent>
         </Modal>
