@@ -9,6 +9,7 @@ import {
 } from "react";
 import { DataDTO } from "../dto/dataDto";
 import WordGenerator from "../utils/wordGenerator";
+import ValideDataGame from "../utils/valideDataGame";
 
 interface ContextProps {
   data: DataDTO;
@@ -33,13 +34,23 @@ export const GlobalContextProvider = ({
 
   useEffect(() => {
     const getWold = async () => {
-      // const tmp = await WordGenerator();
+
+      // const storedGameData = localStorage.getItem('myGameData');
+      // if (storedGameData) {
+      //   const tmpData = JSON.parse(storedGameData);
+      //   const isValide: DataDTO | null = await ValideDataGame(data, tmpData);
+      //   console.log("isVlaide--->", isValide);
+
+      // }
+
+      const tmp = await WordGenerator();
       if (true) {
         setData((preValue) => {
           let newData = preValue;
           // newData.world = tmp.toUpperCase();
           newData.world = "FIFAL";
-          console.log("newData.world=", newData.world);
+          console.log("newData.world=", newData);
+          localStorage.setItem('myGameData', JSON.stringify(newData));
           return newData;
         });
       }
