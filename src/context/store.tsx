@@ -17,7 +17,7 @@ interface ContextProps {
 
 const GlobalContext = createContext<ContextProps>({
   data: { world: "", geusses: [], nmbAttempt: 0 },
-  setData: () => {},
+  setData: () => { },
 });
 
 export const GlobalContextProvider = ({
@@ -33,11 +33,12 @@ export const GlobalContextProvider = ({
 
   useEffect(() => {
     const getWold = async () => {
-      const tmp = await WordGenerator();
-      if (tmp) {
+      // const tmp = await WordGenerator();
+      if (true) {
         setData((preValue) => {
           let newData = preValue;
-          newData.world = tmp.toUpperCase();
+          // newData.world = tmp.toUpperCase();
+          newData.world = "FIFAL";
           console.log("newData.world=", newData.world);
           return newData;
         });

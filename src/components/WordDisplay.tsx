@@ -1,17 +1,14 @@
 import { DataDTO } from "../dto/dataDto";
-import Letter from "./Letter";
+import GetKeysData from "../utils/getKeysData";
+import Letter from "./letter";
+
 
 export default function WorldDisplay({ data }: { data: DataDTO }) {
   return (
-    <>
+    <div>
       {data.geusses.map((attempt: any, index: any) => {
-        let keysData: { letter: string; color: string }[] = [];
-        keysData = [...attempt].map((letter, index) => {
-          if (letter === "*") return { letter, color: "bg-gray-200" };
-          if (letter === data.world[index])
-            return { letter: letter, color: "bg-[#638C54]" };
-          return { letter: letter, color: "bg-[#3A3A3C]" };
-        });
+
+        let keysData: { letter: string; color: string }[] = GetKeysData(attempt, data.world);
 
         return (
           <div key={index} className="flex justify-evenly mt-2 gap-2">
@@ -21,6 +18,6 @@ export default function WorldDisplay({ data }: { data: DataDTO }) {
           </div>
         );
       })}
-    </>
+    </div>
   );
 }
