@@ -7,20 +7,24 @@ interface props {
 const Item:React.FC<props> = ({indexX, indexY})=> {
 
     const {guessState, turn} = useContext (globalContext)
+
+    const itemActive = ()=> {
+        return ((guessState?.[indexX]?.[indexY]) && ((turn??0) > indexX)) ? true :false
+    }
     const getColor = () => {
-        if ((guessState?.[indexX]?.[indexY]) && ((turn??0) > indexX))
+        if (itemActive ())
         {
             if (guessState?.[indexX]?.[indexY]?.status === 'match' )
-                return "bg-green-400"
+                return "bg-[#79B851]"
             else if (guessState?.[indexX]?.[indexY]?.status === 'partial-match')
-                return "bg-yellow-400"
+                return "bg-[#F3C237]"
             else if ((guessState?.[indexX]?.[indexY]?.status === 'no-match'))
-                return "bg-gray-400"
+                return "bg-[#A4AEC4]"
         }
         return "bg-gay-500/20"
     }
-    return <div className={`w-[50px] h-[50px] rounded-sm border-2 border-gray-600/15 ${getColor ()} flex justify-center items-center `}>
-        <p className='text-[18px] font-semibold'>{(guessState?.[indexX]?.[indexY])? guessState?.[indexX]?.[indexY]?.char : ''}</p>
+    return <div className={`w-[50px] h-[50px] rounded-sm border-2 border-mediumGray/60 ${getColor ()} flex justify-center items-center `}>
+        <p className={`text-[20px] font-semibold dark:text-white  ${itemActive () ? 'text-white': 'text-[#313E51]'}`}>{(guessState?.[indexX]?.[indexY])? guessState?.[indexX]?.[indexY]?.char.toUpperCase () : ''}</p>
     </div>
 }
 

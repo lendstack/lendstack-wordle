@@ -4,7 +4,14 @@
 
 
 @layer components {
+
+    .primary-btn {
+        @apply px-4 py-2 rounded-md text-white bg-[#A729F5] hover:opacity-85
+    }
     .keyboard-btn {
-        @apply box-border px-2 py-1 bg-slate-300 hover:bg-slate-200 border-none rounded-sm flex justify-center items-center ;
+        @apply box-border px-2 py-1 bg-mediumGray/45 dark:bg-navy dark:hover:opacity-75 dark:text-white hover:bg-secondaryPurple border-none rounded-sm flex justify-center items-center ;
+    }
+    .btn-link {
+        @apply px-2 py-1 text-[17px] rounded-md text-[#A729F5] bg-lightGray dark:bg-navy hover:opacity-90;
     }
 }

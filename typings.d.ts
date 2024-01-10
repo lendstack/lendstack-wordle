@@ -11,6 +11,8 @@ type GlobalContext = {
     indexY?:number
     setX?: (val:number) => void
     setY?: (val:number) => void
+    setGameCount?: (val:number) => void
+    gameCount?: number
 }
 
 type CharType = {

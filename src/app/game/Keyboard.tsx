@@ -2,9 +2,13 @@ import useWordAnalyser from "~/lib/hooks/useWordAnalyser";
 import { keyBoardRows } from "../../../constants";
 import { MdOutlineBackspace } from "react-icons/md";
 
-const Keyboard: React.FC = ({}) => {
+interface props {
+  setIsOpen?:(value:boolean) => void
+  setStatus?:(value:boolean) => void
+}
+const Keyboard: React.FC<props> = ({setIsOpen, setStatus}) => {
 
-    const {analyseWord, handleSubmit, handleReturn} = useWordAnalyser ()
+    const {analyseWord, handleSubmit, handleReturn} = useWordAnalyser (setIsOpen, setStatus)
   return (
     <div className="grid-cols-20 grid w-full justify-center gap-1">
       {keyBoardRows?.map((item, index) => {

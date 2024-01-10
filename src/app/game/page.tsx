@@ -14,6 +14,7 @@ const Game: React.FC = ({}) => {
   const [turn, setTurn] = useState(0);
   const [indexX, setX] =useState (0)
   const [indexY, setY] = useState (0)
+  const [gameCount, setGameCount] = useState (0)
 
   const fetchWord = () => {
     axios
@@ -28,10 +29,14 @@ const Game: React.FC = ({}) => {
 
   useEffect(() => {
     fetchWord();
-  }, []);
+    setGuessState ([])
+    setTurn (0)
+    setX(0)
+    setY(0)
+  }, [gameCount]);
   return (
     <div className="flex h-[100vh] w-[100vw] items-center justify-center">
-      <globalContext.Provider value={{ currentWord, guessState, setGuessState, turn, setTurn, indexX, setX, setY, indexY }}>
+      <globalContext.Provider value={{ currentWord, guessState, setGuessState, turn, setTurn, indexX, setX, setY, indexY, setGameCount, gameCount }}>
         <GameScreen />
       </globalContext.Provider>
     </div>
