@@ -36,7 +36,7 @@ function App() {
         <div className={styles.game}>
           <Navbar help={setHelp} dark={dark} darkness={setDark}/>
           <hr className="border-1 border-black"/>
-          <Game error={setError} result={setResult} correct={setCorrect}/>
+          <Game error={setError} result={setResult} correct={setCorrect} winLose={correct}/>
         </div>
       </div>
     )

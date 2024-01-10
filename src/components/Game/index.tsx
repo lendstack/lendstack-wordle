@@ -5,6 +5,7 @@ type game = {
     error: Dispatch<SetStateAction<string>>;
     result: Dispatch<SetStateAction<string>>;
     correct: Dispatch<SetStateAction<string>>;
+    winLose: string;
 }
 
 export default function Game(props: game) {
@@ -13,7 +14,7 @@ export default function Game(props: game) {
     const [, setLetters] = useState({});
     const [clicked, setClicked] = useState<number>(0);
     const [remain, setRemain] = useState<number>(6);
-    const [remaining, setRemaining] = useState<string>("You have " + remain + " remaining chances! 😊");
+    const [remaining, setRemaining] = useState<string>("You can start by submitting your first word. You have " + remain + " remaining chances! 😊");
 
     const onClickDown = (event: any): void => {
         if (event.key == "Enter") {
@@ -25,27 +26,36 @@ export default function Game(props: game) {
         } else if ("abcdefghijklmnopqrstuvwxyz".includes(event.key.toLowerCase())) {
         setLetter(event.key.toUpperCase());
         setClicked(clicked + 1);
+        } else if (!"abcdefghijklmnopqrstuvwxyz".includes(event.key.toLowerCase())) {
+            props.error("Only alphabetic characters please!");
+            setTimeout(() => {
+                props.error("");
+            }, 1000);
         }
     };
 
     useEffect(() => {
         window.addEventListener("keydown", onClickDown);
-
         return () => window.removeEventListener("keydown", onClickDown);
     });
 
     useEffect(() => {
-        setTimeout(() => {
-            if (remain != 0) {
-                if (remain >= 3)
-                setRemaining("You have " + remain + " remaining chances! 😊");
-                else {
-                    setRemaining("You have " + remain + " remaining chances! 🤔");
-                } 
-            } else {
-                setRemaining("No remaining chances! 😟");
-            }
-        }, 750);
+        if (remain != 6 && props.winLose != "win")
+            setTimeout(() => {
+                if (remain != 0) {
+                    if (remain >= 3)
+                    setRemaining("You have " + remain + " remaining chances! 😊");
+                    else {
+                        setRemaining("You have " + remain + " remaining chances! 🤔");
+                    } 
+                } else {
+                    setRemaining("No remaining chances! 😟");
+                }
+            }, 750);
+        else if (props.winLose == "win")
+            setTimeout(() => {
+                setRemaining("You guessed it right! 💪🏼");
+            }, 750);
     }, [remain])
 
     const handleClickSubmit = () => {
