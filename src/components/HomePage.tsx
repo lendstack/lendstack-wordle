@@ -1,7 +1,9 @@
 import { Button, Image } from "@nextui-org/react";
-import InfoModal from "./InfoModal";
+import { useContext } from "react";
+import { AppContext } from "../App";
 
 function HomePage() {
+  const context: any = useContext(AppContext);
   return (
     <div className="h-full w-full bg-[#ced4da] text-[#212529]">
       <div className="flex justify-center items-center flex-col h-[85%]   p-2 ">
@@ -19,7 +21,14 @@ function HomePage() {
         <Button variant="flat">Play</Button>
       </div>
       <div className="w-full h-[15%] p-2 bg-white flex items-center flex-col justify-around">
-        <InfoModal></InfoModal>
+        <h1
+          onClick={() => {
+            context.setInfoModal(true);
+          }}
+          className="font-bold text-[2rem] font-header underline hover:cursor-pointer hover:opacity-85"
+        >
+          How to play this game?
+        </h1>
         <p className="font-regular text-[1rem]">{`Abdellah Bellakrim © ${new Date().getFullYear()}`}</p>
       </div>
     </div>

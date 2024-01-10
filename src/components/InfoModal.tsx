@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   Modal,
   ModalContent,
@@ -7,21 +7,16 @@ import {
   ModalFooter,
   Button,
 } from "@nextui-org/react";
+import { AppContext } from "../App";
 
 export default function App() {
-  const [isOpen, setIsopen] = useState(false);
-
+  const context: any = useContext(AppContext);
   return (
     <>
-      <h1
-        onClick={() => {
-          setIsopen(true);
-        }}
-        className="font-bold text-[2rem] font-header underline hover:cursor-pointer hover:opacity-85"
+      <Modal
+        isOpen={context.isInfoModalOpen}
+        onOpenChange={context.setInfoModal}
       >
-        How to play this game?
-      </h1>
-      <Modal isOpen={isOpen} onOpenChange={setIsopen}>
         <ModalContent className="p-4">
           {(onClose) => (
             <>
