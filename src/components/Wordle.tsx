@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import useWordle from '../Hooks/useWordle';
 import { WordleGrid } from './WordleGrid';
 import { Flex, useDisclosure } from '@chakra-ui/react';
@@ -9,25 +9,31 @@ const Wordle = ({ word }: any) => {
     const { currentGuess, HandleKeys, guesses, isCorrect, round, usedKeys } =
         useWordle(word);
     const { isOpen, onOpen, onClose } = useDisclosure();
+    const [isOver, setIsOver] = useState<boolean>(false);
+    const [title, setTitle] = useState<string>('');
     useEffect(() => {
         window.addEventListener('keyup', HandleKeys);
         if (isCorrect) {
-            onOpen();
-            console.log('Correct!');
+            if (!isOver) onOpen();
+            setIsOver(true);
+
+            setTitle('Yaay!! You win');
             window.removeEventListener('keyup', HandleKeys);
         }
         if (round > 5) {
-            console.log('You are out of guesses');
+            if (!isOver) onOpen();
+            setIsOver(true);
+            setTitle('You are out of guesses');
             window.removeEventListener('keyup', HandleKeys);
         }
         return () => {
             window.removeEventListener('keyup', HandleKeys);
         };
     }, [HandleKeys, isCorrect, round]);
-    // useEffect(() => {
-    //     console.log('round:', round);
-    //     console.log('isCorrect:', isCorrect);
-    // }, [round, isCorrect]);
+    useEffect(() => {
+        console.log('round:', round);
+        console.log('isCorrect:', isCorrect);
+    }, [round, isCorrect]);
     return (
         <>
             {/* <h2>Guess: {currentGuess}</h2> */}
@@ -41,26 +47,16 @@ const Wordle = ({ word }: any) => {
                 />
                 <KeyPad usedKeys={usedKeys} />
             </Flex>
-            {isCorrect && (
-                <WordleModal
-                    title={'Yaay!! You win'}
-                    word={word}
-                    round={round}
-                />
-            )}
-            {round > 5 && !isCorrect && (
-                <WordleModal
-                    title={'Oups!! You Lose'}
-                    word={word}
-                />
-            )}
-            {/* {isOpen && (
+            {isOpen && (
                 <WordleModal
                     onClose={onClose}
                     isOpen={isOpen}
                     onOpen={onOpen}
+                    title={title}
+                    word={word}
+                    round={round}
                 />
-            )} */}
+            )}
         </>
     );
 };

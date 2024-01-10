@@ -8,18 +8,10 @@ import { CSSReset, ChakraProvider } from '@chakra-ui/react';
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
 );
-const theme = {
-    styles: {
-        global: {
-            body: {
-                bg: '#F8F4EC'
-            }
-        }
-    }
-};
+
 root.render(
     <React.StrictMode>
-        <ChakraProvider theme={theme}>
+        <ChakraProvider>
         <CSSReset />
             <App />
         </ChakraProvider>
