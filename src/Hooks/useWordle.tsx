@@ -84,7 +84,7 @@ const useWordle = (word: string) => {
                 title: 'Error',
                 description: 'The word does not exist in the dictionary',
                 status: 'error',
-                duration: 1000,
+                duration: 2000,
                 isClosable: true,
                 position: 'top'
             });
@@ -95,7 +95,23 @@ const useWordle = (word: string) => {
     const HandleKeys = async ({ key }: any) => {
         if (key === 'Enter') {
             const exist = await checkIfExist();
-            if (round < 6 && currentGuess.length === 5 && exist) {
+            if (previousGuesses.indexOf(currentGuess) !== -1) {
+                toast({
+                    title: 'Error',
+                    description:
+                        "You have already guessed this word! Don't waste your guesses",
+                    status: 'info',
+                    duration: 2000,
+                    isClosable: true,
+                    position: 'top'
+                });
+            }
+            if (
+                round < 6 &&
+                currentGuess.length === 5 &&
+                exist &&
+                previousGuesses.indexOf(currentGuess) === -1
+            ) {
                 addNewGuess();
             }
         }
