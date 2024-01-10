@@ -5,11 +5,11 @@ import './index.css'
 import { createBrowserRouter } from 'react-router-dom'
 import { RouterProvider } from 'react-router-dom'
 import { Suspense } from 'react'
-import Home from './containers/Home.jsx'
-import Login from './containers/Login.jsx'
-import SignUp from './containers/SignUp.jsx'
-import Game from './containers/Game.jsx'
-import Error from './components/Error.jsx'
+import Error from './pages/Error.jsx'
+import Home from './pages/Home.jsx'
+import SignUp from './pages/SignUp.jsx'
+import Login from './pages/Login.jsx'
+import Game from './pages/Game.jsx'
 
 const appRouter = createBrowserRouter([
   {

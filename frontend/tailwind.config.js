@@ -6,6 +6,11 @@ export default {
   ],
   theme: {
     extend: {},
+    colors: {
+      correct: '#6BAA63',
+      nearly: '#C9B458',
+      inCorrect: '#787C7E'
+    }
   },
   plugins: [],
 }
