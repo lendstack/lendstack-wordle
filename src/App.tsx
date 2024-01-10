@@ -1,9 +1,14 @@
-import { Box } from "@chakra-ui/react";
+import { Box, VStack } from "@chakra-ui/react";
+import Logo from "./components/Logo";
+import WordInput from "./components/WordInput";
 
 function App() {
   return (
     <>
-      <Box>Project setup</Box>
+      <VStack>
+        <Logo />
+        <WordInput onAddWord={() => {}}/>
+      </VStack>
     </>
   );
 }
