@@ -12,8 +12,7 @@ export default function Wordle() {
     const [errorMessage, setErrorMessage] = React.useState<string | null>(null);
     const [gameOver, setGameOver] = React.useState<boolean>(false);
     useEffect(() => {
-      const randomWord = generateRandomWord(5);
-      setTargetWord(randomWord);
+      setTargetWord(generateRandomWord(5));
     }, []);
     useEffect(() => {
       if (attempts === 0 || (guessedWord === targetWord && guessedWord !== '')) {
