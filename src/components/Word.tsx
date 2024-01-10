@@ -35,7 +35,7 @@ const Word = ({ active, display, attempt }: WordProps) => {
           />
         ))}
       </HStack>
-      {active && <Text color="teal.400">Remaining attemps: {4 - attempt}</Text>}
+      {active && <Text fontWeight="600" color="teal.400">Remaining attemps: {4 - attempt}</Text>}
     </VStack>
   );
 };
