@@ -11,7 +11,7 @@ interface WordInputProps {
 const WordInput = ({ onAddWord }: WordInputProps) => {
   const [value, setValue] = useState("");
   const [error, setError] = useState("");
-  const styles = useStyleConfig("Box", { variant: "secondary" });
+  const styles = useStyleConfig("PinInputField", { variant: "secondary" });
 
   return (
     <Box marginTop={5}>
