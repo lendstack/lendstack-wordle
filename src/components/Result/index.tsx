@@ -9,12 +9,12 @@ export default function Result(props: any) {
     return (
         <div className="absolute w-full h-full grid place-cente">
             <div
-                className="z-10 flex place-self-center flex-col rounded-xl bg-white p-5 pb-10 drop-shadow-3xl dark:bg-zinc-800 dark:text-white"
+                className="z-10 flex place-self-center flex-col rounded-xl bg-white pb-10 drop-shadow-3xl dark:bg-zinc-800 dark:text-white"
                 style={{ width: "min(600px, 90vw)", height: "min(300px, 70vh)" }}
             >
-                <div className="flex justify-between items-center pb-5 bg-gray-400 dark:bg-gray-400">
+                <div className="flex justify-between items-center pb-5 bg-gray-400 dark:bg-gray-400 rounded-t-xl">
                     <hr />
-                    <h2 className="font-black text-2xl">{result}</h2>
+                    <h2 className="font-black text-2xl pt-4">{result}</h2>
                     <CloseIcon
                         onClick={() => {
                         props.result(false);

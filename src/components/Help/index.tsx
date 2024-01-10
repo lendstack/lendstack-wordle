@@ -49,6 +49,7 @@ export default function Help(props: any) {
                     <hr />
                     <h3 className="text-left font-bold py-5">Examples</h3>
                     <p className="text-left text-sm sm:text-base font-regular opacity-75 mr-1">Let's say that the correct word is "SMART"</p>
+                    <br />
                     <div className="flex gap-1">
                         <Box value="S" state="C" />
                         <Box value="W" />

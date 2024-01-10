@@ -22,7 +22,7 @@
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
-.app:not(hr) {
+.app {
   text-align: center;
   display: grid;
   justify-items: center;

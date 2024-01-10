@@ -124,9 +124,6 @@ export default function Board(props: any) {
           </div>
         );
       })}
-      {/* <div className=" grid place-items-center h-8 font-bold dark:text-white">
-        {lost || win ? message : ""}
-      </div> */}
     </div>
   );
 }
