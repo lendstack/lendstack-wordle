@@ -1,4 +1,5 @@
 import { Button, Image } from "@nextui-org/react";
+import InfoModal from "./InfoModal";
 
 function HomePage() {
   return (
@@ -18,9 +19,7 @@ function HomePage() {
         <Button variant="flat">Play</Button>
       </div>
       <div className="w-full h-[15%] p-2 bg-white flex items-center flex-col justify-around">
-        <h1 className="font-bold text-[2rem] font-header underline hover:cursor-pointer hover:opacity-85">
-          How to play this game?
-        </h1>
+        <InfoModal></InfoModal>
         <p className="font-regular text-[1rem]">{`Abdellah Bellakrim © ${new Date().getFullYear()}`}</p>
       </div>
     </div>
