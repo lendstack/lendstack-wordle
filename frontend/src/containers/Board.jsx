@@ -61,7 +61,7 @@ const Board = () => {
     window.addEventListener('keydown', handleKeyDown);
 
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [currentGuess, solution, guesses, isGameOver, keyboard]);
+  }, [currentGuess, solution, guesses, isGameOver, keyboard, incorrectGuesses]);
 
   return (
     <section className="flex justify-center">
