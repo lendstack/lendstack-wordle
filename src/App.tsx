@@ -26,7 +26,7 @@ function App() {
       value: "",
     });
     setBoard({
-      word: "rider",
+      word: getRandomWord(),
       guesses: [],
       ongoing: true,
       gameResult: [],
