@@ -1,13 +1,17 @@
 import { useEffect, useState } from 'react';
 import './App.css';
-import { ChakraProvider, Flex, IconButton } from '@chakra-ui/react';
+import {
+    ChakraProvider,
+    Flex,
+    IconButton,
+    useDisclosure
+} from '@chakra-ui/react';
 import GetRandomWord from './components/GetRandomWord';
 import Wordle from './components/Wordle';
 import { PatchQuestionFill } from 'react-bootstrap-icons';
 
 function App() {
     const [targetWord, setTargetWord] = useState(null);
-    const [isExist, setIsExist] = useState<Boolean>(false);
 
     useEffect(() => {
         const fetchInitialWord = async () => {
@@ -21,17 +25,8 @@ function App() {
         };
         fetchInitialWord();
     }, []);
-    const theme = {
-        styles: {
-            global: {
-                body: {
-                    bg: '#F8F4EC'
-                }
-            }
-        }
-    };
+    
     return (
-        <ChakraProvider theme={theme}>
             <>
                 <header className="flex justify-between	p-10">
                     <h1 className="text-3xl font-bold text-center main-header">
@@ -57,8 +52,8 @@ function App() {
                         {targetWord && <Wordle word={targetWord} />}
                     </div>
                 </div>
+                
             </>
-        </ChakraProvider>
     );
 }
 
