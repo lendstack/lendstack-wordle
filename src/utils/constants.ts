@@ -11,4 +11,4 @@ export const LOST_MESSAGE =
   "Unfortunatly, you were unable to guess the word, better luck next time.";
 export const WORD_LENGTH = 5;
 export const ATTEMPT_NUMBER = 5;
-export const GAME_MESSAGE = ['None of the letters!', 'Only 1 letter!', 'Close!', 'So close!', 'Got it! 🏆' ]
+export const GAME_MESSAGE = ['None of the letters!', 'Only one correct letter!', 'Only two correct letters!',  'Close!', 'So close!', 'Got it! 🏆' ]

@@ -33,6 +33,7 @@ const GameResult = ({onRestartGame}: GameResultProps) => {
     })
   }
 
+  console.log(gameResult);
   return (
     <Box>
       <Modal isOpen={!ongoing} onClose={() => {}}>
@@ -52,7 +53,7 @@ const GameResult = ({onRestartGame}: GameResultProps) => {
                 />
               ))}
             </HStack>
-            <Text textAlign="center" fontSize="16" fontWeight="600">{GAME_MESSAGE[gameResult.length - 1]}</Text>
+            <Text color="orange.600" textAlign="center" fontSize="16" fontWeight="600">{GAME_MESSAGE[gameResult.length]}</Text>
           </ModalBody>
           <ModalFooter>
             <Button variant="ghost" onClick={cancelRestart}>Cancel</Button>
