@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import useWordleStore from './useWordleStore';
+import CheckIfWordExist from '../components/CheckIfWordExist';
+import { useToast } from '@chakra-ui/react';
 
 const useWordle = (word: string) => {
     const {
@@ -73,12 +75,27 @@ const useWordle = (word: string) => {
         });
         setCurrentGuess('');
     };
-
-    const HandleKeys = ({ key }: any) => {
-        //need to check if the word exists in the dictionary
+    const toast = useToast();
+    const checkIfExist = async () => {
+        const exist: boolean = await CheckIfWordExist(currentGuess);
+        console.log('exist:', exist);
+        if (!exist) {
+            toast({
+                title: 'Error',
+                description: 'The word does not exist in the dictionary',
+                status: 'error',
+                duration: 1000,
+                isClosable: true,
+                position: 'top'
+            });
+            return false;
+        }
+        return true;
+    };
+    const HandleKeys = async ({ key }: any) => {
         if (key === 'Enter') {
-            if (round < 6 && currentGuess.length === 5) {
-                // setRound((round) => round + 1);
+            const exist = await checkIfExist();
+            if (round < 6 && currentGuess.length === 5 && exist) {
                 addNewGuess();
             }
         }
