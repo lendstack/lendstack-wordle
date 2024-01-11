@@ -3,9 +3,11 @@ import { WordleContext } from "@/context/WordleContext";
 import { createContext, useContext, useEffect, useState } from "react";
 import Words from "@/utils/words";
 import Swal from "sweetalert2";
+import { clearLocalStorage, setLocalStorage } from "@/utils/local";
 
 export type UtilityProps = {
   handleKeyPress: (key: string) => void;
+  resetGame: () => void;
   exactMatch: string;
   partialMatch: string;
   noMatch: string;
@@ -67,7 +69,21 @@ export const UtilityProvider = ({
         });
       }, 2000);
     }
-  }, [gameRes, word]);
+  }, [gameRes]);
+
+  useEffect(() => {
+    for (let i = 0; i < guessesIndex; i++) {
+      for (let j = 0; j < 5; j++) {
+        if (guesses[i][j] === word[j]) {
+          setExactMatch((prev) => prev + guesses[i][j]);
+        } else if (word.includes(guesses[i][j])) {
+          setPartialMatch((prev) => prev + guesses[i][j]);
+        } else {
+          setNoMatch((prev) => prev + guesses[i][j]);
+        }
+      }
+    }
+  }, [guessesIndex, guesses, word]);
 
   function resetGame() {
     setWord(Words.getRandomWord());
@@ -77,10 +93,11 @@ export const UtilityProvider = ({
     setExactMatch("");
     setPartialMatch("");
     setNoMatch("");
+    clearLocalStorage();
   }
 
   function insertCharater(char: string) {
-    if (gameRes) return;
+    if (gameRes || guessesIndex >= 6) return;
     let currentWord = guesses[guessesIndex];
     if (currentWord.length >= 5) return;
     const newGuesses = [...guesses];
@@ -89,29 +106,22 @@ export const UtilityProvider = ({
   }
 
   function removeCharacter() {
+    if (gameRes || guessesIndex >= 6) return;
     const newGuesses = [...guesses];
     newGuesses[guessesIndex] = newGuesses[guessesIndex].slice(0, -1);
     setGuesses(newGuesses);
   }
 
   function submitGuess() {
-    if (guesses[guessesIndex].length < 5) return;
+    if (guessesIndex < 6 && guesses[guessesIndex].length < 5) return;
     if (Words.matchWord(guesses[guessesIndex])) {
       if (guesses[guessesIndex] === word) {
         setGameRes("W");
       } else if (guessesIndex === 5) {
         setGameRes("L");
       }
-      for (let i = 0; i < 5; i++) {
-        if (guesses[guessesIndex][i] === word[i]) {
-          setExactMatch((prev) => prev + guesses[guessesIndex][i]);
-        } else if (word.includes(guesses[guessesIndex][i])) {
-          setPartialMatch((prev) => prev + guesses[guessesIndex][i]);
-        } else {
-          setNoMatch((prev) => prev + guesses[guessesIndex][i]);
-        }
-      }
       guesses[guessesIndex] += "X";
+      setLocalStorage(guessesIndex + 1, guesses, word);
       setGuessesIndex(guessesIndex + 1);
     } else {
       Swal.fire({
@@ -124,6 +134,12 @@ export const UtilityProvider = ({
   }
 
   function handleKeyPress(key: string) {
+    if (gameRes || guessesIndex >= 6) return;
+    if (
+      guesses[guessesIndex - 1] &&
+      guesses[guessesIndex - 1].slice(0, -1) === word
+    )
+      return;
     if (key === "Enter") {
       submitGuess();
     } else if (key === "Backspace") {
@@ -137,6 +153,7 @@ export const UtilityProvider = ({
 
   const value = {
     handleKeyPress,
+    resetGame,
     exactMatch,
     partialMatch,
     noMatch,

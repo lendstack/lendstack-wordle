@@ -2,10 +2,10 @@
 import { UtilityContext } from "@/context/UtilityContext";
 import { useContext, useEffect, useState } from "react";
 import { FaBackspace } from "react-icons/fa";
-
+import { GrPowerReset } from "react-icons/gr";
 
 export default function Keyboard() {
-  const { exactMatch, partialMatch, noMatch, handleKeyPress } =
+  const { exactMatch, partialMatch, noMatch, handleKeyPress, resetGame } =
     useContext(UtilityContext)!;
   const keys = ["QWERTYUIOP", "ASDFGHJKL", "ZXCVBNM"];
   return (
@@ -43,6 +43,14 @@ export default function Keyboard() {
               </div>
             );
           })}
+          {i == 1 && (
+            <div
+              onClick={resetGame}
+              className="bg-red-300 px-2 py-1 flex items-center justify-center text-gray-800 border border-gray-500 rounded cursor-pointer hover:scale-105 transition-all md:px-3 md:py-[7px]"
+            >
+              <GrPowerReset /> 
+            </div>
+          )}
           {i == 2 && (
             <div
               onClick={() => handleKeyPress("Enter")}

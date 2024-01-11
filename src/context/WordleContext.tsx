@@ -2,6 +2,7 @@
 import { createContext, useEffect, useState } from "react";
 import type { Dispatch, SetStateAction } from "react";
 import Words from "@/utils/words";
+import { getLocalStorage } from "@/utils/local";
 
 export type WorldleData = {
   word: string;
@@ -9,7 +10,7 @@ export type WorldleData = {
   guesses: string[];
   setGuesses: Dispatch<SetStateAction<string[]>>;
   guessesIndex: number;
-  setGuessesIndex: Dispatch<SetStateAction<number>>; 
+  setGuessesIndex: Dispatch<SetStateAction<number>>;
 };
 
 export const WordleContext = createContext<undefined | WorldleData>(undefined);
@@ -19,8 +20,17 @@ export const WordleProvider = ({ children }: { children: React.ReactNode }) => {
   const [guesses, setGuesses] = useState<string[]>(new Array(6).fill(""));
   const [guessesIndex, setGuessesIndex] = useState<number>(0);
 
-  useEffect(() => {console.log("wordle context: ", word)}, [word]);
-
+  useEffect(() => {
+    // get data from local storage
+    const {
+      word: localWord,
+      guesses: localGuesses,
+      guessesIndex: localGuessesIndex,
+    } = getLocalStorage();
+    localWord && setWord(localWord);
+    localGuesses && setGuesses(localGuesses);
+    localGuessesIndex && setGuessesIndex(localGuessesIndex);
+  }, []);
 
   const worldleData = {
     word,
