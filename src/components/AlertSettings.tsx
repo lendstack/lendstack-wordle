@@ -6,6 +6,7 @@ import { useState } from "react";
 import { IoMdCloseCircleOutline } from "react-icons/io";
 import { IoSettings } from "react-icons/io5";
 import { useGlobalContext } from "../context/store";
+import { encryptData } from "../utils/crypto";
 
 export default function AlertSettings() {
   const { data, lengthWord, setData } = useGlobalContext();
@@ -22,7 +23,7 @@ export default function AlertSettings() {
         { length: Number(event.target.value) },
         () => "*".repeat(lengthWord)
       )),
-        localStorage.setItem("myGameData", JSON.stringify(newData));
+        encryptData(newData);
       return newData;
     });
     console.log("first", event.target.value);

@@ -67,14 +67,14 @@ const validateGameData = async (
     newData.guesses = guesses;
   } else return null;
 
-  // for (let i = 0; i < newData.guesses.length; i++) {
-  //     if (i < newData.numAttempts) {
-  //         const isValidWord = await WordValidator(newData.guesses[i]);
-  //         if (!isValidWord) {
-  //             return null;
-  //         }
-  //     }
-  // }
+  for (let i = 0; i < newData.guesses.length; i++) {
+    if (i < newData.numAttempts) {
+      const isValidWord = await WordValidator(newData.guesses[i]);
+      if (!isValidWord) {
+        return null;
+      }
+    }
+  }
   return newData;
 };
 

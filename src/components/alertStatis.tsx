@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { useGlobalContext } from "../context/store";
 import GetGeussStatistic from "../utils/getGeussStatis";
 import WordGenerator from "../utils/wordGenerator";
+import { updateScore } from "../utils/supabase";
+import { encryptData } from "../utils/crypto";
 
 export default function AlertStatics() {
   const { data, setData, lengthWord } = useGlobalContext();
@@ -14,7 +16,9 @@ export default function AlertStatics() {
     const tmpIsWin: boolean =
       data.numAttempts > 0 &&
       data.randomWord === data.guesses[data.numAttempts - 1];
+
     const isGameOver = data.numAttempts === data.guesses.length || tmpIsWin;
+
     setIsWin(tmpIsWin);
     if (isGameOver) setOpen(true);
     if (isGameOver && !data.isGameOver) {
@@ -24,7 +28,8 @@ export default function AlertStatics() {
         played: data.played + 1,
         numWins: tmpIsWin ? data.numWins + 1 : data.numWins,
       };
-      localStorage.setItem("myGameData", JSON.stringify(newData));
+      updateScore(newData.played, newData.numWins);
+      encryptData(newData);
       setData(newData);
       setIsWin(tmpIsWin);
     }
@@ -97,7 +102,7 @@ export default function AlertStatics() {
                         "*".repeat(guess.length)
                       ),
                     };
-                    localStorage.setItem("myGameData", JSON.stringify(newData));
+                    encryptData(newData);
                     return newData;
                   });
                 }
@@ -119,7 +124,7 @@ export default function AlertStatics() {
                         "*".repeat(guess.length)
                       ),
                     };
-                    localStorage.setItem("myGameData", JSON.stringify(newData));
+                    encryptData(newData);
                     return newData;
                   });
                 }}

@@ -7,7 +7,8 @@ import WordInput from "../components/WordInput";
 import WordValidator from "../utils/wordValidator";
 import { useGlobalContext } from "../context/store";
 import NavBar from "../components/NavBar";
-import AlertStatics from "../components/alertStatis";
+import AlertStatics from "../components/AlertStatis";
+import { encryptData } from "../utils/crypto";
 
 const Game = () => {
   const { data, setData, lengthWord } = useGlobalContext();
@@ -17,13 +18,13 @@ const Game = () => {
     e.preventDefault();
     if (guess !== "") {
       if (guess.length === lengthWord) {
-        const isValid: boolean = true; //await WordValidator(tmpGuess);
+        const isValid: boolean = await WordValidator(guess);
         if (isValid) {
           setData((preData) => {
             let newData = preData;
             newData.guesses[preData.numAttempts] = guess;
             newData.numAttempts = preData.numAttempts + 1;
-            localStorage.setItem("myGameData", JSON.stringify(newData));
+            encryptData(newData);
             return newData;
           });
           setGeuss("");

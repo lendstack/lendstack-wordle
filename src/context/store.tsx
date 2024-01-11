@@ -7,10 +7,12 @@ import {
   useState,
   useEffect,
 } from "react";
-import { DataDTO } from "../dto/dataDto";
+import { DataDTO, DataScoreDTO } from "../dto/dataDto";
 import WordGenerator from "../utils/wordGenerator";
 import ValideDataGame from "../utils/valideDataGame";
 import AlertTutorial from "../components/AlertTuto";
+import { getScoreByUserid, getSession } from "../utils/supabase";
+import { decryptData, encryptData } from "../utils/crypto";
 
 interface ContextProps {
   data: DataDTO;
@@ -24,6 +26,7 @@ interface ContextProps {
 
 const GlobalContext = createContext<ContextProps>({
   data: {
+    isAuthenticated: false,
     isGameOver: false,
     gridType: 6,
     randomWord: "",
@@ -49,11 +52,11 @@ export const GlobalContextProvider = ({
   const gridType: number = 5;
 
   const [data, setData] = useState<DataDTO>({
+    isAuthenticated: false,
     isGameOver: false,
     gridType: gridType,
     randomWord: "",
     guesses: Array.from({ length: gridType }, () => "*".repeat(lengthWord)),
-    //  ["*".repeat(lengthWord)],
     numAttempts: 0,
     played: 0,
     numWins: 0,
@@ -63,12 +66,12 @@ export const GlobalContextProvider = ({
 
   useEffect(() => {
     const getWold = async () => {
-      const storedGameData = localStorage.getItem("myGameData");
+      const storedGameData = await decryptData();
+      console.log("useContext storedGameData=", storedGameData);
       let isValide: DataDTO | null = null;
       if (storedGameData) {
         try {
-          const tmpData = JSON.parse(storedGameData);
-          isValide = await ValideDataGame(data, tmpData, lengthWord);
+          isValide = await ValideDataGame(data, storedGameData, lengthWord);
           console.log(isValide);
         } catch (error) {}
       }
@@ -78,7 +81,7 @@ export const GlobalContextProvider = ({
           setData((preValue) => {
             let newData = { ...preValue };
             newData.randomWord = tmp.toUpperCase();
-            localStorage.setItem("myGameData", JSON.stringify(newData));
+            encryptData(newData);
             return newData;
           });
         }
@@ -87,6 +90,25 @@ export const GlobalContextProvider = ({
       }
     };
     getWold();
+  }, []);
+
+  const getDataFromSupa = async () => {
+    const temp = await getSession();
+    if (temp) {
+      const score: DataScoreDTO[] | null = await getScoreByUserid();
+      if (score) {
+        setData((preValue) => {
+          let newData = { ...preValue };
+          newData.played = score[0].played;
+          newData.numWins = score[0].numWins;
+          encryptData(newData);
+          return newData;
+        });
+      }
+    }
+  };
+  useEffect(() => {
+    getDataFromSupa();
   }, []);
   return (
     <GlobalContext.Provider

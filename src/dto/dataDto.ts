@@ -1,4 +1,5 @@
 export interface DataDTO {
+  isAuthenticated: boolean;
   isGameOver: boolean;
 
   gridType: number;
@@ -8,4 +9,17 @@ export interface DataDTO {
 
   played: number;
   numWins: number;
+}
+
+export interface DataScoreDTO {
+  id: string;
+
+  user_id: string;
+  name: string;
+  user_avatar: string;
+
+  played: number;
+  numWins: number;
+
+  created_at: string;
 }
