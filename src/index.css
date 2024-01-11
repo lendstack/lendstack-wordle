@@ -125,7 +125,7 @@ code {
 }
 
 .intro-text {
-  font-family: 'Dancing Script', cursive;
+  /* font-family: 'Dancing Script', cursive; */
   font-size: 3em;
   letter-spacing: 0.5em;
 }
@@ -178,3 +178,19 @@ code {
     border-color: #333;
   }
 }
+
+.play {
+  color: #fff;
+  background-color: #000;
+  width: 150px;
+  border-radius: 10px;
+  padding: 10px 10px;
+  text-align: center;
+  /* font-family: 'Dancing Script', cursive; */
+  font-size: 2em;
+  letter-spacing: 0.4em;
+}
+.play:hover {
+  background-color: #E3651D;
+}
+

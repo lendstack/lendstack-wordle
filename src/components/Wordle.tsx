@@ -39,7 +39,7 @@ const Wordle = ({ word }: any) => {
     return (
         <>
             {/* <h2>Guess: {currentGuess}</h2> */}
-            <label htmlFor="current">Guess: </label>
+            {/* <label htmlFor="current">Guess: </label> */}
             <Flex justifyContent={'space-between'} flexDirection={'column'}>
                 <WordleGrid
                     currentGuess={currentGuess}

@@ -40,24 +40,22 @@ const Home = () => {
                         );
                     })}
                 </Flex>
-                <Flex flexDirection={'column'} className="mt-6">
-                    <Text className="intro-text">
-                        MQ<span className="b">B</span>W
-                        <span className="e">E</span>RTYUIOP
-                    </Text>
-                    <Text className="intro-text">
-                        ABRWORD<span className="d">Y</span>LGHIJ
-                    </Text>
-                    <Text className="intro-text">
-                        TUVXNDOMY<span className="z">Z</span>LF
-                    </Text>
-                    <Flex
+                <Flex
+                    flexDirection={'column'}
+                    className="mt-6"
+                    justifyContent={'center'}
+                    alignItems={'center'}
+                >
+                    <Text className="intro-text">MQWRTYUIOPJ</Text>
+                    <Text className="intro-text">ABRWORDLGHI</Text>
+                    <Text className="intro-text">TUVXNDOMYLF</Text>
+                    {/* <Flex
                         justifyContent={'space-between'}
                         fontFamily={'Dancing Script, cursive'}
                         fontSize={'30px'}
                         className="mt-12"
-                    >
-                        <Link
+                    > */}
+                    {/* <Link
                             to=""
                             style={{
                                 color: '#fff',
@@ -69,22 +67,11 @@ const Home = () => {
                             }}
                         >
                             Login
-                        </Link>
-                        <Link
-                            to="/play"
-                            style={{
-                                color: '#fff',
-                                backgroundColor: '#000',
-                                width: '150px',
-                                borderRadius: '20px',
-                                padding: '10px',
-                                textAlign: 'center'
-                            }}
-                           
-                        >
-                            Play
-                        </Link>
-                    </Flex>
+                        </Link> */}
+                    <Link to="/play" className="mt-6 play">
+                        PLay
+                    </Link>
+                    {/* </Flex> */}
                 </Flex>
             </Flex>
         </div>
