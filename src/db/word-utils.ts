@@ -6,7 +6,7 @@ export enum LetterState {
   Miss = "Miss", // Letter doesn't exist at all
   Present = "Present", // Letter exists but wrong location
   Match = "Match", // Letter exists and is in the right location
-  Default = "Default", // Letter default
+  Default = "Default", // LetterState default
 }
 
 export interface WordData {
