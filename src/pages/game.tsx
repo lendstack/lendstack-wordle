@@ -6,16 +6,17 @@ import WordDisplay from "../components/WordDisplay";
 import WordInput from "../components/WordInput";
 import WordValidator from "../utils/wordValidator";
 import { useGlobalContext } from "../context/store";
+import NavBar from "../components/NavBar";
 import AlertStatics from "../components/alertStatis";
 
 const Game = () => {
-  const { data, setData } = useGlobalContext();
+  const { data, setData, lengthWord } = useGlobalContext();
   const [guess, setGeuss] = useState<string>("");
 
   const onSubmit = async (e: any) => {
     e.preventDefault();
     if (guess !== "") {
-      if (guess.length === data.word.length) {
+      if (guess.length === lengthWord) {
         const isValid: boolean = true; //await WordValidator(tmpGuess);
         if (isValid) {
           setData((preData) => {
@@ -30,18 +31,16 @@ const Game = () => {
           toast.info(`${guess} not a word`);
         }
       } else {
-        toast.info("wold must be exactly 5 characters long!");
+        toast.info(`wold must be exactly ${lengthWord} characters long!`);
       }
     }
   };
 
   return (
     <div className="flex flex-col items-center h-screen">
-      <h1 className="text-[26px] font-bold my-2 w-full text-center border-b-[1px] border-gray-700">
-        Lendstack-Wordle
-      </h1>
+      <NavBar />
       <div className="h-full flex flex-col justify-center items-center w-[25rem]">
-        <p>{data.word}</p>
+        <p>{data.randomWord}</p>
 
         <WordDisplay data={data} guess={guess} />
         {data.numAttempts < data.guesses.length && (

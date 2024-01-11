@@ -6,13 +6,14 @@ import GetGeussStatistic from "../utils/getGeussStatis";
 import WordGenerator from "../utils/wordGenerator";
 
 export default function AlertStatics() {
-  const { data, setData } = useGlobalContext();
+  const { data, setData, lengthWord } = useGlobalContext();
   const [open, setOpen] = useState(false);
   const [isWin, setIsWin] = useState(false);
 
   useEffect(() => {
     const tmpIsWin: boolean =
-      data.numAttempts > 0 && data.word === data.guesses[data.numAttempts - 1];
+      data.numAttempts > 0 &&
+      data.randomWord === data.guesses[data.numAttempts - 1];
     const isGameOver = data.numAttempts === data.guesses.length || tmpIsWin;
     setIsWin(tmpIsWin);
     if (isGameOver) setOpen(true);
@@ -64,15 +65,15 @@ export default function AlertStatics() {
               <h1 className="text-[17px]">Guess Distribution</h1>
               {data.guesses.map((attempt, index) => {
                 let geussStatis: { rate: number; color: string } =
-                  GetGeussStatistic(attempt, data.word);
-                if (attempt === "*****") return <div key={index}></div>;
+                  GetGeussStatistic(attempt, data.randomWord);
+                if (index >= data.numAttempts) return <div key={index}></div>;
                 return (
                   <div key={index} className="flex items-center gap-2">
                     <p className="w-[10px]">{index + 1}</p>
                     <div
                       className={`h-[20px] w-[320px] text-[14px] text-black flex items-center pl-1 ${geussStatis.color}`}
                     >
-                      {geussStatis.rate * 20}%
+                      {((geussStatis.rate / lengthWord) * 100).toFixed()}%
                     </div>
                   </div>
                 );
@@ -84,12 +85,12 @@ export default function AlertStatics() {
               className="w-[8rem] py-1  bg-green-500 hover:bg-green-600 text-white rounded-2xl text-center"
               onClick={async () => {
                 setOpen(false);
-                const tmp = await WordGenerator();
+                const tmp = await WordGenerator(lengthWord);
                 if (tmp) {
                   setData((preData) => {
                     const newData = {
                       ...preData,
-                      word: tmp.toUpperCase(),
+                      randomWord: tmp.toUpperCase(),
                       numAttempts: 0,
                       isGameOver: false,
                       guesses: preData.guesses.map((guess) =>

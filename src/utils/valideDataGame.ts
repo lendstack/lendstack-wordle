@@ -3,27 +3,36 @@ import WordValidator from "./wordValidator";
 
 const validateGameData = async (
   preValue: DataDTO,
-  tmpData: any
+  tmpData: any,
+  lengthWord: number
 ): Promise<DataDTO | null> => {
   const newData: DataDTO = { ...preValue };
 
   if (
-    typeof tmpData.word === "string" &&
-    tmpData.word.length === preValue.guesses[0].length
+    typeof tmpData.randomWord === "string" &&
+    tmpData.randomWord.length === lengthWord
   )
-    newData.word = tmpData.word;
+    newData.randomWord = tmpData.randomWord;
   else return null;
+
   if (
     typeof tmpData.numAttempts === "number" &&
-    tmpData.numAttempts <= preValue.guesses[0].length &&
+    tmpData.numAttempts <= preValue.guesses.length &&
     tmpData.numAttempts >= 0
   )
     newData.numAttempts = tmpData.numAttempts;
   else return null;
 
+  // tmpData.gridType <= preValue.guesses[0].length &&
+
+  if (typeof tmpData.gridType === "number" && tmpData.gridType > 0)
+    newData.gridType = tmpData.gridType;
+  else return null;
+
   if (typeof tmpData.played === "number" && tmpData.played >= 0)
     newData.played = tmpData.played;
   else return null;
+
   if (typeof tmpData.isGameOver === "boolean")
     newData.isGameOver = tmpData.isGameOver;
   else return null;
@@ -38,19 +47,24 @@ const validateGameData = async (
 
   if (
     typeof tmpData.guesses === "object" &&
-    tmpData.guesses.length === preValue.guesses.length
+    tmpData.guesses.length === newData.gridType
   ) {
-    newData.guesses = newData.guesses.map((wrd, index) => {
-      if (index <= newData.numAttempts) {
+    let guesses: string[] = [];
+    for (let i = 0; i < newData.gridType; i++) {
+      if (i <= newData.numAttempts) {
         if (
-          typeof tmpData.guesses[index] === "string" &&
-          tmpData.guesses[index].length === wrd.length
-        )
-          return tmpData.guesses[index];
-        else return "-----";
+          typeof tmpData.guesses[i] === "string" &&
+          tmpData.guesses[i].length === lengthWord
+        ) {
+          guesses.push(tmpData.guesses[i]);
+        } else {
+          return null;
+        }
+      } else {
+        guesses.push("*".repeat(lengthWord));
       }
-      return wrd;
-    });
+    }
+    newData.guesses = guesses;
   } else return null;
 
   // for (let i = 0; i < newData.guesses.length; i++) {

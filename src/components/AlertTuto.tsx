@@ -5,24 +5,17 @@ import { GoTriangleRight } from "react-icons/go";
 import { IoMdCloseCircleOutline } from "react-icons/io";
 import Letter from "./Letter";
 import GetKeysData from "../utils/getKeysData";
+import { useGlobalContext } from "../context/store";
 
 export default function AlertTutorial() {
-  const [open, setOpen] = useState(false);
+  const { openAlertTuto, setOpenAlertTuto, data, lengthWord } =
+    useGlobalContext();
   let keysData: { letter: string; color: string }[] = GetKeysData(
     "HAPPY",
     "ALPHA"
   );
   return (
     <div>
-      <button
-        onClick={() => {
-          setOpen(true);
-        }}
-        className="w-[8rem] py-1 rounded-2xl border-[1px] border-black "
-      >
-        How to play
-      </button>
-
       <Dialog
         PaperProps={{
           style: {
@@ -30,9 +23,9 @@ export default function AlertTutorial() {
             boxShadow: "none",
           },
         }}
-        open={open}
-        onClose={() => setOpen(false)}
-        className="bg-white"
+        open={openAlertTuto}
+        onClose={() => setOpenAlertTuto(false)}
+        // className="bg-white"
       >
         <div
           className="bg-[#010611be] w-[25rem] rounded-xl border-[1px] border-white "
@@ -41,7 +34,7 @@ export default function AlertTutorial() {
           <div
             className="flex flex-row justify-end mt-2 mr-2 text-lg"
             onClick={() => {
-              setOpen(false);
+              setOpenAlertTuto(false);
             }}
           >
             <IoMdCloseCircleOutline
@@ -57,12 +50,12 @@ export default function AlertTutorial() {
               </h1>
 
               <p className="text-[17px] ">
-                Guess the Wordle in 6 tries or less.
+                {` Guess the Wordle in ${data.guesses.length} tries or less.`}
               </p>
               <div className="flex items-center w-[20rem] mt-2 ">
                 <GoTriangleRight size={20} className=" " />
                 <p className="text-[14px] font-serif w-[90%]">
-                  Each guess must be a valid 5-letter word.
+                  {`Each guess must be a valid ${lengthWord}-letter word.`}
                 </p>
               </div>
               <div className="flex items-start justify-start w-[20rem] mt-1">

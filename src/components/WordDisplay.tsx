@@ -14,7 +14,7 @@ export default function wordDisplay({
       {data.guesses.map((attempt: any, index: any) => {
         let keysData: { letter: string; color: string }[] = GetKeysData(
           attempt,
-          data.word
+          data.randomWord
         );
         if (index === data.numAttempts) {
           keysData = keysData.map((key, index) => {

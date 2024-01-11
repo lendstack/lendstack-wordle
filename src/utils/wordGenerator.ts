@@ -1,9 +1,9 @@
 import axios from "axios";
-const WordGenerator = async (): Promise<string> => {
+const WordGenerator = async (lengthWord: number): Promise<string> => {
   const options = {
     method: "GET",
     url: "https://wordsapiv1.p.rapidapi.com/words",
-    params: { random: "true", letters: 5 },
+    params: { random: "true", letters: lengthWord },
     headers: {
       "X-RapidAPI-Key": import.meta.env.VITE_API_KEY,
       "X-RapidAPI-Host": import.meta.env.VITE_API_HOST,

@@ -1,14 +1,14 @@
-const GetKeysData = (attempt: string, word: string) => {
+const GetKeysData = (attempt: string, randomWord: string) => {
   let keysData: { letter: string; color: string }[] = [];
   let wordLetterCount: Record<string, number> = {};
 
-  for (const letter of word) {
+  for (const letter of randomWord) {
     wordLetterCount[letter] = (wordLetterCount[letter] || 0) + 1;
   }
 
   keysData = [...attempt].map((letter, index) => {
     if (letter === "*") return { letter, color: "bg-gray-200" };
-    if (letter === word[index]) {
+    if (letter === randomWord[index]) {
       wordLetterCount[letter]--;
       return { letter, color: "bg-[#638C54]" }; // Green
     }

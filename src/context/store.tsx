@@ -10,22 +10,34 @@ import {
 import { DataDTO } from "../dto/dataDto";
 import WordGenerator from "../utils/wordGenerator";
 import ValideDataGame from "../utils/valideDataGame";
+import AlertTutorial from "../components/AlertTuto";
 
 interface ContextProps {
   data: DataDTO;
   setData: Dispatch<SetStateAction<DataDTO>>;
+
+  openAlertTuto: boolean;
+  setOpenAlertTuto: Dispatch<SetStateAction<boolean>>;
+
+  lengthWord: number;
 }
 
 const GlobalContext = createContext<ContextProps>({
   data: {
     isGameOver: false,
-    word: "",
+    gridType: 6,
+    randomWord: "",
     guesses: [],
     numAttempts: 0,
     played: 0,
     numWins: 0,
   },
   setData: () => {},
+
+  openAlertTuto: false,
+  setOpenAlertTuto: () => {},
+
+  lengthWord: 0,
 });
 
 export const GlobalContextProvider = ({
@@ -33,14 +45,21 @@ export const GlobalContextProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
+  const lengthWord: number = 5;
+  const gridType: number = 5;
+
   const [data, setData] = useState<DataDTO>({
     isGameOver: false,
-    word: "",
-    guesses: ["*****", "*****", "*****", "*****", "*****"],
+    gridType: gridType,
+    randomWord: "",
+    guesses: Array.from({ length: gridType }, () => "*".repeat(lengthWord)),
+    //  ["*".repeat(lengthWord)],
     numAttempts: 0,
     played: 0,
     numWins: 0,
   });
+
+  const [openAlertTuto, setOpenAlertTuto] = useState<boolean>(false);
 
   useEffect(() => {
     const getWold = async () => {
@@ -49,15 +68,16 @@ export const GlobalContextProvider = ({
       if (storedGameData) {
         try {
           const tmpData = JSON.parse(storedGameData);
-          isValide = await ValideDataGame(data, tmpData);
+          isValide = await ValideDataGame(data, tmpData, lengthWord);
+          console.log(isValide);
         } catch (error) {}
       }
       if (isValide === null) {
-        const tmp = await WordGenerator();
+        const tmp = await WordGenerator(lengthWord);
         if (tmp) {
           setData((preValue) => {
             let newData = { ...preValue };
-            newData.word = tmp.toUpperCase();
+            newData.randomWord = tmp.toUpperCase();
             localStorage.setItem("myGameData", JSON.stringify(newData));
             return newData;
           });
@@ -73,9 +93,13 @@ export const GlobalContextProvider = ({
       value={{
         data,
         setData,
+        openAlertTuto,
+        setOpenAlertTuto,
+        lengthWord,
       }}
     >
       {children}
+      <AlertTutorial />
     </GlobalContext.Provider>
   );
 };

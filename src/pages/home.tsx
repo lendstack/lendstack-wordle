@@ -1,8 +1,10 @@
 import logo from "../assets/logo.png";
 import { Link } from "react-router-dom";
-import AlertTutorial from "../components/alert-tuto";
+import AlertTutorial from "../components/AlertTuto";
+import { useGlobalContext } from "../context/store";
 
 const Home = () => {
+  const { setOpenAlertTuto } = useGlobalContext();
   return (
     <div className="flex flex-col items-center  justify-center  h-screen">
       <img src={logo} alt="logo" className="h-[8rem]" />
@@ -11,7 +13,14 @@ const Home = () => {
         Get 6 chances to guess a 5-letter word.
       </p>
       <div className="flex gap-6">
-        <AlertTutorial />
+        <button
+          onClick={() => {
+            setOpenAlertTuto(true);
+          }}
+          className="w-[8rem] py-1 rounded-2xl border-[1px] border-black "
+        >
+          How to play
+        </button>
 
         <Link
           to="/game"
