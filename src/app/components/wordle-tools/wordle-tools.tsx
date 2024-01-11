@@ -64,6 +64,9 @@ export default function wordleTools({ word }: WordleToolsProps) {
 	const [keyboard, setKeyboard] = useState<KeyColor[]>([]);
 	const [istrue, setIstrue] = useState<boolean>(false);
 	const [tries, setTries] = useState<number>(0);
+	const [animate, setAnimate] = useState<boolean>(false);
+	const [animateIndex, setAnimateIndex] = useState<number>(0);
+	const [popUp, setPopUp] = useState<boolean>(false);
 
 	const craftSolution = (history: KeyColor[][]) => {
 		const wordHash = word.split("");
@@ -87,14 +90,10 @@ export default function wordleTools({ word }: WordleToolsProps) {
 		}
 	}
 
-	const addToHistory = (letter: string) => {
-		
-	}
-
 	const handleInput = async (event: KeyboardEvent) => {
 		if (
 			istrue === false
-			&& tries < 5
+			&& tries < 6
 			)
 		{
 			if (
@@ -114,6 +113,12 @@ export default function wordleTools({ word }: WordleToolsProps) {
 							setIstrue(true);
 						craftSolution(history);
 						setSolution("");
+
+						setAnimateIndex(tries);
+						setAnimate(true);
+						setTimeout(() => {
+							setAnimate(false);
+						}, 1000);
 					}
 				}
 				catch (error)
@@ -130,11 +135,15 @@ export default function wordleTools({ word }: WordleToolsProps) {
 				if (solution.length < 5)
 				{
 					setSolution(solution + event.key.toUpperCase());
+					setPopUp(true);
+					setTimeout(() => {
+						setPopUp(false);
+					}, 500);
 				}
 			}
 		}
 	}
 
-	return { history, solution, keyboard, handleInput, tries };
+	return { history, solution, keyboard, handleInput, tries, animate, animateIndex, popUp };
 
 };
