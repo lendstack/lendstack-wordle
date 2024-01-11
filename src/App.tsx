@@ -19,6 +19,9 @@ function App() {
   const [solution, setSolution] = useState(null);
   const [Board, setBoard] = useState<string[][]>(BoardDefault);
   const [Cursor, setCursor] = useState({ y: 0, x: 0 });
+  const [retry, setretry] = useState(6);
+  const [win, setwin] = useState(false);
+  const [lose, setlose] = useState(false);
 
   const onTap = (KeyVal: string) => {
     if (Cursor.x > 4) return;
@@ -38,11 +41,19 @@ function App() {
 
   const onEnter = () => {
     if (Cursor.x !== 5) return;
+    let currentWord: string = "";
+    for (let i = 0; i < 5; i++) {
+      currentWord += Board[Cursor.y][i];
+    }
     setCursor({ y: Cursor.y + 1, x: 0 });
+    setretry(retry - 1);
+    if (currentWord.toLocaleLowerCase() === solution) setwin(true);
+    if (currentWord.toLocaleLowerCase() !== solution && retry === 1)
+      setlose(true);
   };
 
   useEffect(() => {
-    fetch("http://localhost:3001/solutions")
+    fetch("http://localhost:3001/words")
       .then((res) => res.json())
       .then((json) => {
         // random int between 0 & 14
@@ -62,6 +73,11 @@ function App() {
         onTap,
         onDelete,
         onEnter,
+        Cursor,
+        win,
+        setwin,
+        lose,
+        setlose,
       }}
     >
       <div className="w-screen h-screen dark">

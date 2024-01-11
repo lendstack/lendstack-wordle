@@ -6,3 +6,15 @@
   padding: 0;
   margin: 0;
 }
+
+#correct {
+  background-color: #365314;
+}
+
+#almost {
+  background-color: #ca8a04;
+}
+
+#error {
+  background-color: #4b5563;
+}

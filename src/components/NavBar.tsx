@@ -16,23 +16,12 @@ export default function NavBar() {
       </Link>
       <div className="flex h-full items-center  w-[70px] justify-between">
         <div
-          className="w-fit h-fit hover:cursor-pointer hover:opacity-85"
+          className="w-fit h-fit hover:cursor-pointer hover:opacity-85 font-semibold text-[16px]"
           onClick={() => {
             context.setInfoModal(true);
           }}
         >
-          <Image
-            src="/info.png"
-            alt="info.png"
-            className="rounded-none w-[22px] h-[22px]"
-          ></Image>
-        </div>
-        <div className="w-fit h-fit hover:cursor-pointer hover:opacity-85">
-          <Image
-            src="/statistics.png"
-            alt="statistics.png"
-            className="rounded-none w-[22px] h-[22px]"
-          ></Image>
+          About
         </div>
       </div>
     </nav>
