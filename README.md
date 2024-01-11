@@ -21,11 +21,12 @@ cd lendstack-wordle
 ```
 
 3. **Configure Environment Variables**:
+   <br>
    Create a `.env` file in the root of your project and add environment variables.
    like this:
 
 ```
-# https://rapidapi.com/dpventures/api/wordsapi/pricing
+# https://rapidapi.com/dpventures/api/wordsapi
 VITE_API_KEY=
 VITE_API_HOST=
 
@@ -51,6 +52,8 @@ npm run dev
 ```
 
 Open http://localhost:5173 with your browser to see the result.
+<br>
+Or you can check deployed site: [ahammam-wordle](https://lendstack-wordle-gar6u103r-ahammamlhos-projects.vercel.app/)
 
 ## Technologies:
 
@@ -63,8 +66,17 @@ Open http://localhost:5173 with your browser to see the result.
 
 This Wordle game project includes several key features:
 
-- **Login**: Users can log in to their accounts.
+- **User Authentication**: Users can log in to their accounts.
 - **Leaderboard**: Ranks users based on their game performance.
 - **Grid Customization**: Offers 5x6, 5x5, and 5x4 grid options for varied challenges.
 - **Tutorial Alert**: Provides a guide on how to play the game.
 - **Persistent Attempts**: Saves game progress, even when the page is refreshed.
+
+## approach
+
+- **React Router**: Utilizes react-router-dom for efficient navigation throughout the application.
+- **State Management**: Implements state management using the useContext API and useState hook for responsive UI updates.
+- **Supabase Authentication**: Integrates Google Sign-In option for user authentication,
+- **Local Storage**: Utilizes browser's local storage to persistently save user data such as number of attempts, games played, and wins.
+- **Data Encryption**: Enhances data security by using crypto-js to encrypt data stored in local storage.
+- [**Word API**](https://rapidapi.com/dpventures/api/wordsapi/): Incorporates a third-party API for generating random words and validating user guesses
