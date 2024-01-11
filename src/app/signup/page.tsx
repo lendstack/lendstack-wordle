@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import z from "zod";
 import toast from "react-hot-toast";
+import DarkModeSwitcher from "../_components/DarkSwitcher";
 
 const requestSchema = z.object({
   name: z.string(),
@@ -34,9 +35,15 @@ const page = () => {
     }
   };
   return (
-   <main className='flex justify-center items-center w-full h-full'>
-     <div className="flex min-w-[450px] max-w-[550px] flex-col justify-center gap-4 rounded-md">
-      <h1>Create New Acount</h1>
+   <main className='flex justify-center items-center w-[100vw] h-[100vh] relative'>
+    <div className="absolute top-8 left-8">
+    <DarkModeSwitcher />
+    </div>
+    <div className="absolute top-8 right-8">
+      <button className="primary-btn" onClick={() => router.push ('/login')}>Login</button>
+    </div>
+     <div className="flex px-6 py-8 min-w-[450px] max-w-[550px] flex-col justify-center items-center gap-4 rounded-md bg-[#F4F6FA] dark:bg-navy">
+      <h1 className='text-darkNavy dark:text-white font-semibold text-[24px]'>Create New Acount</h1>
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -45,7 +52,7 @@ const page = () => {
       >
         <div className="flex flex-col gap-3 ">
           <div className="flex flex-col gap-2">
-            <label htmlFor="username">Your Username</label>
+            <label htmlFor="username" className="text-navy dark:text-lightGray">Your Username</label>
             <input
               type="text"
               id="username"
@@ -55,7 +62,7 @@ const page = () => {
             />
           </div>
           <div className="flex flex-col gap-2">
-            <label htmlFor="email">Your Email</label>
+            <label className="text-navy dark:text-lightGray" htmlFor="email">Your Email</label>
             <input
               type="email"
               id="email"
@@ -65,7 +72,7 @@ const page = () => {
             />
           </div>
           <div className="flex flex-col gap-2">
-            <label htmlFor="password">Your Password</label>
+            <label className="text-navy dark:text-lightGray" htmlFor="password">Your Password</label>
             <input
               type="password"
               id="email"
@@ -74,8 +81,8 @@ const page = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          <button className="btn-primary" type="submit">
-            Login
+          <button className="primary-btn w-full" type="submit">
+            Signup
           </button>
         </div>
       </form>

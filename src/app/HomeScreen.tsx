@@ -12,7 +12,6 @@ const HomeScreen:React.FC = ({}) => {
         
         <button onClick={()=> {
             
-            router.push ('/game')
 
         }} className='px-6 py-4 rounded-sm text-white bg-blue-400'>start game</button>
     </div>)

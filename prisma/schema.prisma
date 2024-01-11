@@ -54,16 +54,36 @@ model Session {
 }
 
 model User {
-  id           String    @id @default(uuid())
-  name         String    @unique @db.VarChar(255)
-  email        String    @unique
+  id           String      @id @default(uuid())
+  name         String      @unique @db.VarChar(255)
+  email        String      @unique
   password     String
   profileImage String?
-  createAt     DateTime  @default(now())
-  updateAt     DateTime  @default(now())
+  createAt     DateTime    @default(now())
+  updateAt     DateTime    @default(now())
   accounts     Account[]
   sessions     Session[]
   Post         Post[]
+  Games        Game[]
+  Invites      GameIvite[]
+}
+
+model Game {
+  id        String @id @default(uuid())
+  status    String
+  solution  String
+  tryNumber Int
+  userId    String
+  user      User   @relation(fields: [userId], references: [id])
+}
+
+model GameIvite {
+  id         String @id @default(uuid())
+  solution   String
+  ownerId    String
+  owner      User   @relation(fields: [ownerId], references: [id])
+  senderId   String
+  senderName String
 }
 
 model VerificationToken {

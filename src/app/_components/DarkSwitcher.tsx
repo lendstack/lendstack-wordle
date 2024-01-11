@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { MdLightMode } from "react-icons/md";
 import { BsFillMoonStarsFill } from "react-icons/bs";
 
@@ -24,10 +24,12 @@ const DarkModeSwitcher:React.FC = ({}) => {
         localStorage.setItem ("darkMode", `${isDark}`)
     }, [isDark])
 
+   
     const toggleDarkModa = () => {
-        setDark ((prev) => !prev)
+        
+            setDark ((prev) => !prev)
     }
-    return (<div className="w-[96%] gap-6  rounded-md flex justify-center items-center" onClick={toggleDarkModa}>
+    return (<div className="w-[96%] gap-6  rounded-md flex justify-center items-center" id='darkSwitcher' onClick={toggleDarkModa} onKeyDown={(e) => e.preventDefault ()} >
         <MdLightMode className={`${isDark ? 'text-mediumGray' : 'text-mainPurple'}`} />
         <Switcher isOn={isDark} />
         <BsFillMoonStarsFill className={`${isDark ? 'text-mainPurple' : 'text-mediumGray'}`}/>

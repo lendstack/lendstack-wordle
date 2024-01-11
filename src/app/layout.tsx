@@ -3,7 +3,7 @@ import "~/styles/globals.css";
 import { Inter } from "next/font/google";
 import { cookies } from "next/headers";
 import { Toaster } from "react-hot-toast";
-import { TRPCReactProvider } from "~/trpc/react";
+import Provider from "./_trpc/Provider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -24,10 +24,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`font-sans ${inter.variable} w-full  h-full dark:bg-[url(/pattern-background-desktop-dark.svg)] bg-[url(/pattern-background-desktop-light.svg)] dark:bg-darkNavy`} >
-        <TRPCReactProvider cookies={cookies().toString()}>
-          {children}
+         <Provider>
           <Toaster />
-        </TRPCReactProvider>
+         {children}
+         </Provider>
       </body>
     </html>
   );

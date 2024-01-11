@@ -2,6 +2,8 @@ import { useContext, useState } from "react";
 import { globalContext } from "../context/globalContext";
 import isAlpha from "../utlis";
 import toast from "react-hot-toast";
+import { trpc } from "~/app/_trpc/client";
+import useAuth from "./useAuth";
 const useWordAnalyser = (setIsOpen?:(value:boolean)=> void, setStatus?:(value:boolean) => void) => {
   const {
     currentWord,
@@ -14,26 +16,42 @@ const useWordAnalyser = (setIsOpen?:(value:boolean)=> void, setStatus?:(value:bo
     setTurn,
     turn,
   } = useContext(globalContext);
-
+  const utils = trpc.useUtils ()
+  const newGameMutation = trpc.gameRouter.createGame.useMutation ({
+    onSuccess:() => {
+      toast.success ('Game history created successfully')
+      utils.gameRouter.invalidate ()
+      utils.statsRouter.invalidate ()
+    },
+    onError: () => toast.error ('Failed to create game history')
+  })
+  const {user} = useAuth ();
+  const newGame = (status:string) => {
+    newGameMutation.mutateAsync ({
+      userId:user?.id??'',
+      solution:(currentWord??''),
+      tryNumber:(turn??0),
+      status:status
+    })
+  }
   const checkResult = () => {
-    console.log("checking results");
-    console.log(guessState?.[indexY ?? 0]?.length);
-    console.table(guessState?.[indexY ?? 0]);
     const successCount = guessState?.[indexY ?? 0]?.filter(
       (obj) => obj.status === "match",
     ).length;
-    console.log("match count", successCount);
     if (successCount === 5){
+      if (user)
+        newGame ('win')
       setIsOpen && setIsOpen(true)
       setStatus?.(true)
     }
     else if (successCount != 5 && turn === 5){
+        if (user)
+          newGame ('loss')
         setIsOpen && setIsOpen (true)}
   };
 
   const handleSubmit = () => {
     if ((guessState?.[indexY ?? 0]?.length??0) === 5) {
-      console.log ('here is the problem')
       checkResult();
       setX?.(0);
       setY?.((indexY ?? 0) + 1);
