@@ -1,58 +1,63 @@
 # lendstack-wordle
+Welcome to HixCoder Wordle, a web-based Wordle game built with React!
 
-## Requirements:
-Your task is to create a web-based Wordle game using React that adheres to the following specifications:
+## Overview
 
-### User Interface (UI):
+HixCoder Wordle is a fun word-guessing game where players try to guess a hidden word within a limited number of attempts. The game features a clean and intuitive user interface, robust state management, and engaging gameplay.
 
-Design a clean and intuitive UI for the game that includes:
+## Table of Contents
+- [Installation](#installation)
+- [Features](#features)
+- [Bonus Features](#bonus-features)
+- [Approach](#approach)
+  
+## Installation
 
-- Input field for guessing words.
-- Submit button to submit the guess.
-- Display area for previous guesses.
-= Indication of correct letters in correct positions (right letter, right position).
-- Indication of correct letters in the wrong position.
-- Display remaining attempts.
-- End game state UI (upon winning or losing).
+To compile and run lendstack-wordle, follow these steps:
 
-### State Management:
+1. Clone the repository: `git clone <repository-url>`
+2. Navigate to the project directory: `cd lendstack-wordle`
+3. Compile the source code: `npm i && npm run dev`
+4. Check the link: `http://localhost:5173/`
+5. Or you can check deployed site: [lendstack-wordle](https://lendstack-wordle-hixcoder.vercel.app)
+   
+## Features
+1. Input field for guessing words.
+2. Submit button to submit guesses.
+3. Display area for previous guesses.
+4. Indication of correct letters in correct positions.
+5. Indication of correct letters in the wrong positions.
+6. Display of remaining attempts.
+7. End game state UI upon winning or losing.
 
-Implement a robust state management system to handle:
+## Bonus Features
+1. Game information modal with additional details.
+2. Use of local storage to persist game data between sessions.
 
-- Target word selection (randomly generate a word at the start of the game).
-- Storing user guesses and their results.
-- Tracking remaining attempts.
+# Approach
+## Code Structure
+The code is organized in a clean and maintainable structure, with reusable components and efficient state management. Key files include:
 
-### User Interaction:
+- GamePage.tsx: Main component for the game page.
+- word-utils.ts: Utility functions for words-related operations.
+- GameEnd.tsx and GameInfo.tsx: Components for displaying end of game Modal and game information for show how to play Modal.
+    
+## Technology Stack
 
-- Capture user input for word guesses.
-- Validate input (alphabetic characters, word length, etc.).
-- Handle the submission of guesses and update the game state accordingly.
+- React: Chosen for its component-based architecture and efficient state management.
+- TypeScript: To bring type safety and enhance the development experience.
+- CSS: Utilized for styling to maintain a clean and responsive UI.
 
+## State Management
 
-### Game Logic:
+- Leveraged React's useState hook for managing the game state, including user guesses, game statistics, and the selected word.
+- Used local storage and encryption for persisting game data between sessions.
 
-- Compare the user's guessed word against the target word.
-- Provide feedback to the user about the correctness of the guessed word.
-- End the game when the correct word is guessed or when the attempts reach zero.
+## User Interface (UI)
+- Designed a clean and intuitive UI with input fields, submission buttons, and a feedback display for guesses.
+- Incorporated modal components for displaying game information and end game states.
 
-## Code Quality:
-
-- Write clean, readable, and maintainable code.
-- Implement best practices for React development.
-- Ensure error handling for edge cases (invalid input, unexpected behavior).
-
-## Submission Guidelines:
-
-- Fork this [repository](https://github.com/lendstack/lendstack-wordle) and create a new branch named `wordle-[YOUR NAME]`.
-- Provide clear instructions on how to run the application locally.
-- Include a README file explaining your approach, decisions made, and any additional features implemented.
-- Open a PR.
-
-## Evaluation Criteria:
-
-- UI/UX design and functionality.
-- Code quality, structure, and maintainability.
-- State management and logic implementation.
-- Handling of edge cases and error scenarios.
-- Bonus points for additional features or optimizations.
+## Game Logic
+- Implemented game logic to compare user guesses against the target word.
+- Provided feedback on the correctness of guessed words and tracked remaining attempts.
+- Ended the game when the correct word was guessed or when attempts reached zero.
