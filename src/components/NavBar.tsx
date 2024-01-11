@@ -10,7 +10,7 @@ export default function NavBar() {
     <nav className="sticky h-[65px] w-full border-b border-divider px-6 flex justify-between">
       <Link
         to="/"
-        className="w-[60%] md:w-[90%] flex md:pl-[50%] h-full font-bold text-[30px] font-header items-center hover:cursor-pointer hover:opacity-85"
+        className="w-[60%] md:w-[90%] flex md:pl-[47%] h-full font-bold text-[30px] font-header items-center hover:cursor-pointer hover:opacity-85"
       >
         Wordle
       </Link>

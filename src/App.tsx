@@ -5,10 +5,19 @@ import GamePage from "./components/GamePage";
 import { Route, Routes } from "react-router-dom";
 
 export const AppContext: any = createContext({});
+const BoardDefault: string[][] = [
+  ["", "", "", "", ""],
+  ["", "", "", "", ""],
+  ["", "", "", "", ""],
+  ["", "", "", "", ""],
+  ["", "", "", "", ""],
+  ["", "", "", "", ""],
+];
 
 function App() {
   const [isInfoModalOpen, setInfoModal] = useState(false);
   const [solution, setSolution] = useState(null);
+  const [Board, setBoard] = useState<string[][]>(BoardDefault);
 
   useEffect(() => {
     fetch("http://localhost:3001/solutions")
@@ -21,7 +30,9 @@ function App() {
   }, [setSolution]);
 
   return (
-    <AppContext.Provider value={{ isInfoModalOpen, setInfoModal, solution }}>
+    <AppContext.Provider
+      value={{ isInfoModalOpen, setInfoModal, solution, Board, setBoard }}
+    >
       <div className="w-screen h-screen dark">
         <Routes>
           <Route path="/" Component={HomePage} />

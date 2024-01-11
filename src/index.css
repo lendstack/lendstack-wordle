@@ -1,8 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@import url("https://fonts.googleapis.com/css2?family=Genos:ital,wght@0,500;1,300&display=swap");
 * {
   box-sizing: border-box;
   padding: 0;
