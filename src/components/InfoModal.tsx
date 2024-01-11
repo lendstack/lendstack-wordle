@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import {
   Modal,
   ModalContent,
@@ -8,14 +8,17 @@ import {
   Button,
 } from "@nextui-org/react";
 import { AppContext } from "../App";
+import { Link, useLocation } from "react-router-dom";
 
 export default function App() {
   const context: any = useContext(AppContext);
+  const location = useLocation();
   return (
     <>
       <Modal
         isOpen={context.isInfoModalOpen}
         onOpenChange={context.setInfoModal}
+        className="dark text-white"
       >
         <ModalContent className="p-4">
           {(onClose) => (
@@ -60,7 +63,7 @@ export default function App() {
                     <div className="border-3 border-divider p-2 font-semibold">
                       P
                     </div>
-                    <div className="border-3 border-divider p-2 font-semibold text-white bg-amber-700">
+                    <div className="border-3 border-divider p-2 font-semibold text-white bg-amber-600">
                       I
                     </div>
                     <div className="border-3 border-divider p-2 font-semibold">
@@ -88,7 +91,7 @@ export default function App() {
                     <div className="border-3 border-divider p-2 font-semibold">
                       G
                     </div>
-                    <div className="border-3 border-divider p-2 font-semibold text-white bg-gray-700">
+                    <div className="border-3 border-divider p-2 font-semibold text-white bg-gray-600">
                       U
                     </div>
                     <div className="border-3 border-divider p-2 font-semibold">
@@ -105,9 +108,13 @@ export default function App() {
                 <Button color="danger" variant="light" onPress={onClose}>
                   Close
                 </Button>
-                <Button color="primary" onPress={onClose}>
-                  Play
-                </Button>
+                {location.pathname === "/" && (
+                  <Link to="/game">
+                    <Button color="primary" onPress={onClose}>
+                      Play
+                    </Button>
+                  </Link>
+                )}
               </ModalFooter>
             </>
           )}

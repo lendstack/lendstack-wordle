@@ -1,6 +1,7 @@
 import { Button, Image } from "@nextui-org/react";
 import { useContext } from "react";
 import { AppContext } from "../App";
+import { Link } from "react-router-dom";
 
 function HomePage() {
   const context: any = useContext(AppContext);
@@ -18,7 +19,9 @@ function HomePage() {
         <h3 className="font-regular text-[18px] mb-8">
           Get 6 chances to guess a 5-letter word.
         </h3>
-        <Button variant="flat">Play</Button>
+        <Link to="/game">
+          <Button variant="flat">Play</Button>
+        </Link>
       </div>
       <div className="w-full h-[15%] p-2 bg-white flex items-center flex-col justify-around">
         <h1

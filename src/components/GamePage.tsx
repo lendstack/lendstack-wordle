@@ -1,7 +1,10 @@
-import React from "react";
-
+import NavBar from "./NavBar";
 function GamePage() {
-  return <div>GamePage</div>;
+  return (
+    <div className="h-screen w-screen bg-black text-white">
+      <NavBar></NavBar>
+    </div>
+  );
 }
 
 export default GamePage;
