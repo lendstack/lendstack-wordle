@@ -1,11 +1,10 @@
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
-import { useState } from "react";
 import { GoTriangleRight } from "react-icons/go";
 import { IoMdCloseCircleOutline } from "react-icons/io";
-import Letter from "./Letter";
 import GetKeysData from "../utils/getKeysData";
 import { useGlobalContext } from "../context/store";
+import Letter from "./Letter";
 
 export default function AlertTutorial() {
   const { openAlertTuto, setOpenAlertTuto, data, lengthWord } =

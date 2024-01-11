@@ -1,15 +1,10 @@
-import logo from "../assets/logo.png";
+import { useNavigate } from "react-router-dom";
 import googleLogo from "../assets/google.svg";
-import { Link, useNavigate } from "react-router-dom";
+import logo from "../assets/logo.png";
 import { useGlobalContext } from "../context/store";
 
 import { useEffect, useState } from "react";
-import {
-  handleGoogleSignin,
-  getAllScore,
-  getSession,
-  createScore,
-} from "../utils/supabase";
+import { createScore, getSession, handleGoogleSignin } from "../utils/supabase";
 
 const Home = () => {
   const navigate = useNavigate();

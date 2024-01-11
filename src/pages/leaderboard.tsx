@@ -1,12 +1,8 @@
-import { Link } from "react-router-dom";
-import logo from "../assets/logo.png";
-import { useGlobalContext } from "../context/store";
-
 import { useEffect, useState } from "react";
-import { getAllScore, getSession, handleGoogleSignin } from "../utils/supabase";
-import NavBar from "../components/NavBar";
 import LeaderBItem from "../components/LeaderItem";
+import NavBar from "../components/NavBar";
 import { DataScoreDTO } from "../dto/dataDto";
+import { getAllScore } from "../utils/supabase";
 
 const LeaderBoard = () => {
   const [allScores, setAllScores] = useState<DataScoreDTO[] | null>(null);

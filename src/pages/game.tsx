@@ -7,8 +7,9 @@ import WordInput from "../components/WordInput";
 import WordValidator from "../utils/wordValidator";
 import { useGlobalContext } from "../context/store";
 import NavBar from "../components/NavBar";
-import AlertStatics from "../components/AlertStatis";
+
 import { encryptData } from "../utils/crypto";
+import AlertStatistcs from "../components/alertStatis";
 
 const Game = () => {
   const { data, setData, lengthWord } = useGlobalContext();
@@ -55,7 +56,7 @@ const Game = () => {
         )}
       </div>
       <ToastContainer />
-      <AlertStatics />
+      <AlertStatistcs />
     </div>
   );
 };

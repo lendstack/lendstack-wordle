@@ -7,7 +7,7 @@ import WordGenerator from "../utils/wordGenerator";
 import { updateScore } from "../utils/supabase";
 import { encryptData } from "../utils/crypto";
 
-export default function AlertStatics() {
+export default function AlertStatistcs() {
   const { data, setData, lengthWord } = useGlobalContext();
   const [open, setOpen] = useState(false);
   const [isWin, setIsWin] = useState(false);

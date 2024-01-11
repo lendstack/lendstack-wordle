@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useGlobalContext } from "../context/store";
 import { RiLogoutCircleRFill } from "react-icons/ri";
 import { MdLeaderboard } from "react-icons/md";
-import AlertSettings from "./AlertSettings";
+import AlertSettings from "./AlertSettinssgs";
 import { getSession, handleSignOut, createScore } from "../utils/supabase";
 import { useEffect, useState } from "react";
 
