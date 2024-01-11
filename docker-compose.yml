@@ -1,0 +1,28 @@
+version: "3.8"
+services:
+  #============== jsonserver ===============
+  jsonserver:
+    build: ./src/lib/.
+    image: jsonserver
+    ports:
+      - 3001:3001
+    container_name: jsonserver
+    networks:
+      - common
+    restart: on-failure
+  #============== frontend ===============
+  frontend:
+    build: .
+    image: frontend
+    ports:
+      - 3000:3000
+    container_name: frontend
+    networks:
+      - common
+    restart: on-failure
+    depends_on:
+      - jsonserver
+
+networks:
+  common:
+    driver: bridge
