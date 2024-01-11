@@ -1,0 +1,196 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* :root {
+
+  background-color: #F8F4EC;
+} */
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.keypad {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+  margin-top: 5em;
+}
+
+.keypad-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  /* border: 1px solid #ccc; */
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.keypad > div.orange {
+  background-color: #E3651D;
+  border-color: #E3651D;
+  color: #fff;
+}
+
+.keypad > div.grey {
+  background-color: #A9A9A9;
+  border-color: #A9A9A9;
+  color: #fff;
+}
+.keypad > div.black {
+  background-color: #000000;
+  border-color: #000000;
+  color: #fff;
+}
+
+
+.keypad-button:hover {
+  background-color: #ddd;
+}
+
+
+.row {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.row > div {
+  display: block;
+  width: 60px;
+  height: 60px;
+  border: 1px solid #bbb;
+  border-radius: 50%;
+  margin: 4px;
+  text-align: center;
+  line-height: 60px;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 2.5em;
+}
+
+.main-header {
+  font-family: 'Dancing Script', cursive;
+  font-size: 3em;
+  /* margin-top: 2em; */
+}
+
+.row > div.orange {
+  background-color: #E3651D;
+  border-color: #E3651D;
+  color: #fff;
+  animation: flip 0.5s ease forwards;
+}
+
+.row > div.grey {
+  background-color: #A9A9A9;
+  border-color: #A9A9A9;
+  color: #fff;
+  animation: flip 0.5s ease forwards;
+}
+.row > div.black {
+  background-color: #000000;
+  border-color: #000000;
+  color: #fff;
+  animation: flip 0.5s ease forwards;
+}
+.row> div:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.row> div:nth-child(3) {
+  animation-delay: 0.4s;
+}
+.row> div:nth-child(4) {
+  animation-delay: 0.6s;
+}
+.row> div:nth-child(5) {
+  animation-delay: 0.8s;
+}
+
+.row.current > div.filled {
+  animation: bounce 0.2s ease-in-out forwards;
+}
+
+.intro-text {
+  /* font-family: 'Dancing Script', cursive; */
+  font-size: 3em;
+  letter-spacing: 0.5em;
+}
+.intro-text>span.e {
+  position: absolute;
+  top: 35%;
+  right: 20%;
+}
+.intro-text>span.b {
+  position: absolute;
+  top: 40%;
+  right: 34.5%;
+}
+.intro-text>span.d {
+  position: absolute;
+  top: 50%;
+  right: 25%;
+}
+
+.intro-text>span.z {
+  position: absolute;
+  top: 50%;
+  right: 13%;
+}
+@keyframes flip {
+  0% {
+    transform: rotateX(0);
+  }
+  45% {
+    transform: rotateX(90deg);
+  }
+  55% {
+    transform: rotateX(90deg);
+  }
+  100% {
+    transform: rotateX(0);
+  }
+}
+
+@keyframes bounce {
+  0% {
+    transform: scale(1);
+    border-color: #ddd;
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+    border-color: #333;
+  }
+}
+
+.play {
+  color: #fff;
+  background-color: #000;
+  width: 150px;
+  border-radius: 10px;
+  padding: 10px 10px;
+  text-align: center;
+  /* font-family: 'Dancing Script', cursive; */
+  font-size: 2em;
+  letter-spacing: 0.4em;
+}
+.play:hover {
+  background-color: #E3651D;
+}
+
