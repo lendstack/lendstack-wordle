@@ -1,108 +1,215 @@
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Chalkboard', 'Comic Sans MS', 'Arial', sans-serif;
-  }
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Chalkboard", "Comic Sans MS", "Arial", sans-serif;
+}
 
 .App {
-    background: #f4f4f4;
-    padding: 30px;
-    max-width: 800px;
-    margin: 30px auto;
-    border-radius: 10px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background: #f4f4f4;
+  padding: 30px;
+  max-width: 1200px; /* Adjusted for sidebar */
+  margin: 30px auto;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 }
-  
-.App h1 {
-    text-align: center;
+
+.main-content {
+  flex-grow: 1;
+  max-width: 800px; /* Max width for main content */
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes colorPulse {
+  0% {
     color: #333;
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
+    text-shadow: none;
+  }
+  50% {
+    color: #307678;
+    text-shadow: 0 0 10px #9eecd9, 0 0 20px #9eecd9;
+  }
+  100% {
+    color: #333;
+    text-shadow: none;
+  }
 }
+
+/* Header */
+.App h1 {
+  text-align: center;
+  color: #333;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  animation: fadeIn 1s ease-out, colorPulse 3s ease-in-out infinite;
+  animation-delay: 0.5s;
+}
+
+.attempts {
+  /* Common styles */
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.attempts.high {
+  color: #4caf50; /* Green for many attempts remaining */
+}
+
+.attempts.medium {
+  color: #ffeb3b; /* Yellow for fewer attempts remaining */
+}
+
+.attempts.low {
+  color: #f44336; /* Red for few attempts remaining */
+}
+
+/* Sidebar */
+.sidebar {
+  width: 150px; /* Width of the sidebar */
+  padding: 10px;
+  margin-left: 30px; /* Spacing between the game and the sidebar */
+}
+
+/* Key/Color Guide */
+.key-color-guide {
+  /* ... existing styles ... */
+}
+
+.welcome-message {
+  padding: 20px;
+  margin-bottom: 30px; /* Space before the game starts */
+  text-align: center;
+  background-color: #f9f9f9; /* Light background to make it stand out */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+  color: #333;
+  font-size: 1.2rem; /* Slightly larger font for readability */
+}
+
+.welcome-message h2 {
+  color: #307678; /* A color that stands out */
+  margin-bottom: 15px;
+  animation: fadeIn 2s ease-out;
+}
+
+.welcome-message p {
+  color: #555; /* Slightly subdued text color */
+  line-height: 1.6; /* For better readability */
+}
+
+/* Reuse the fadeIn animation from the previous step for the header */
+
 
 .input-button-container {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
-    justify-content: center;
-  }
-  
-  .input-button-container input {
-    flex-grow: 1;
-    padding: 15px;
-    border: none;
-    border-radius: 10px;
-    font-size: 1.5rem;
-    background: #eaeaea;
-    box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  justify-content: center;
+}
 
-  .input-button-container button {
-    background: linear-gradient(to bottom right, #9eecd9, #307678); /* Gradient effect */
-    color: #fff;
-    border: none;
-    padding: 15px 30px;
-    border-radius: 10px;
-    cursor: pointer;
-    font-size: 1.5rem;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25);
-    transition: transform 0.1s ease;
-  }
-  
-  .attempts {
-      text-align: center;
-      font-size: 1.5rem;
-      margin-bottom: 20px;
-      color: #555;
-    }
-    
-  .error-label {
-      color: #d9534f;
-      margin-bottom: 20px;
-      text-align: center;
-      font-size: 1.2rem;
-    }
-    
+
+.input-button-container input {
+  flex-grow: 1;
+  padding: 15px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.5rem;
+  background: #eaeaea;
+  box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.input-button-container button {
+  background: linear-gradient(
+    to bottom right,
+    #9eecd9,
+    #307678
+  );
+  color: #fff;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1.5rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25);
+  transition: transform 0.1s ease;
+}
+
+.attempts {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #555;
+}
+
+.error-label {
+  color: #d9534f;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
 .letter-container {
-    background-color: #d3d3d3;
-    color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 60px;
-    height: 60px;
-    border-radius: 5px;
-    font-size: 2rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  background-color: #d3d3d3;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 5px;
+  font-size: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+.letter-container.revealed {
+  animation: reveal 0.5s ease forwards;
+}
+
+.list-container {
+  display: flex;
+  flex-direction: row; /* Lay out words horizontally */
+  justify-content: center; /* Center-align the words container */
+  gap: 20px;
 }
 .word-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    margin-bottom: 20px;
-    gap: 10px;
+  display: flex;
+  flex-direction: column; /* Stack letters vertically */
+  align-items: center; /* Center-align the letters horizontally */
+  gap: 10px;
 }
+
 .game-over-container {
-    text-align: center;
-    margin-top: 20px;
-  }
-  
-  .game-over-message {
-    font-size: 1.8rem;
-    color: #ff6347;
-  }
-  
-  .play-again-button {
-    background: #4caf50;
-    color: #fff;
-    border: none;
-    padding: 15px 30px;
-    border-radius: 10px;
-    cursor: pointer;
-    font-size: 1.5rem;
-    margin-top: 20px;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25);
-    transition: transform 0.1s ease;
-  }
+  text-align: center;
+  margin-top: 20px;
+}
+
+.game-over-message {
+  font-size: 1.8rem;
+  color: #ff6347;
+}
+
+.play-again-button {
+  background: #4caf50;
+  color: #fff;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1.5rem;
+  margin-top: 20px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25);
+  transition: transform 0.1s ease;
+}

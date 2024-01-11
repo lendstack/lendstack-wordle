@@ -1,3 +1,4 @@
+import "../App.css";
 
 export default function LetterDisplay(props: {letter: string; color: string;}) {
   return (

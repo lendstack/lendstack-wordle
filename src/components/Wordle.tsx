@@ -9,6 +9,8 @@ import ErrorComponent from "./ErrorComponent";
 import AttemptsDisplay from "./AttemptsDisplay";
 import { HistoryDisplay } from "./HistoryDisplay";
 import { ZodError } from "zod";
+import WelcomeMessage from "./WelcomeMessage";
+import Sidebar from "./Sidebar";
 
 export default function Wordle() {
   const [wordList, setWordList] = React.useState<string[]>([]);
@@ -33,7 +35,7 @@ export default function Wordle() {
   const handleOnClick = async () => {
     if (!attempts) return;
     try {
-      console.log(guessedWord);
+      console.log(targetWord);
       await EnglishWordSchema.parseAsync(guessedWord);
       setWordList([...wordList, guessedWord]);
       setGuessedWord("");
@@ -54,29 +56,28 @@ export default function Wordle() {
   };
 
   return (
-    <div>
-      <GameHeader />
-      {gameOver === true ? (
-        <GameOverDisplay
-          message={
-            targetWord === guessedWord
-              ? "Congratulations! You won!"
-              : "Game Over! You lost!"
-          }
-          onPlayAgain={resetGame}
-        />
-      ) : (
-        <>
-          <InputForm
-            guessedWord={guessedWord}
-            handleOnChange={handleOnChange}
-            handleOnClick={handleOnClick}
+    <div className="game-layout">
+      <div className="main-content">
+        <GameHeader />
+        {wordList.length === 0 && !gameOver ? <WelcomeMessage /> : null}
+        {gameOver ? (
+          <GameOverDisplay
+            message={targetWord === guessedWord ? "Congratulations! You won!" : "Game Over! You lost!"}
+            onPlayAgain={resetGame}
           />
-          <ErrorComponent message={errorMessage} />
-          <AttemptsDisplay attempts={attempts} />
-          <HistoryDisplay wordList={wordList} targetWord={targetWord} />
-        </>
-      )}
+        ) : (
+          <>
+            <InputForm
+              guessedWord={guessedWord}
+              handleOnChange={handleOnChange}
+              handleOnClick={handleOnClick}
+            />
+            <ErrorComponent message={errorMessage} />
+            <HistoryDisplay wordList={wordList} targetWord={targetWord} />
+          </>
+        )}
+      </div>
+      <Sidebar attempts={attempts} />
     </div>
   );
 }

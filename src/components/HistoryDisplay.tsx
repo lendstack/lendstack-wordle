@@ -1,4 +1,5 @@
 import WordDisplay from "./WordDisplay";
+import "../App.css";
 
 export function HistoryDisplay(props: {
   wordList: string[];

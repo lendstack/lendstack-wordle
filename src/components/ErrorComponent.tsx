@@ -1,3 +1,4 @@
+import "../App.css";
 
 export default function ErrorComponent(props: { message: string | null }) {
   if (!props.message) return null;
