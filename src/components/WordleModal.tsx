@@ -21,14 +21,14 @@ interface WordleModalProps {
 
 const WordleModal = (props: WordleModalProps) => {
     return (
-        <Modal isOpen={props.isOpen} onClose={props.onClose} isCentered>
+        <Modal closeOnOverlayClick={false} isOpen={props.isOpen} onClose={props.onClose} isCentered>
             <ModalOverlay
                 bg="rgba(164,53,240, 0.4)"
                 backdropFilter="blur(10px) hue-rotate(90deg)"
             />
             <ModalContent>
                 <ModalHeader className="text-center">{props.title}</ModalHeader>
-                <ModalCloseButton />
+                {/* <ModalCloseButton /> */}
                 <ModalBody className="text-center">
                     <p>
                         The word is :{' '}
