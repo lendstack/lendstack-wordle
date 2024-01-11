@@ -23,7 +23,8 @@ These instructions will get you a copy of the project up and running on your loc
     cd lendstack-wordle
     ```
 3. ```bash
-   git checkout wordle-AbdellahBellakrim```
+   git checkout wordle-AbdellahBellakrim
+   ```
 
 4. Run Docker Compose to build and start the services:
     ```bash
