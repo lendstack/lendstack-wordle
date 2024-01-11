@@ -11,6 +11,8 @@ export interface WordData {
   userGuessList: string[];
   userGuessStats: LetterState[][];
   randomWord: string;
+  gamesPlayed: number;
+  gamesWinned: number;
 }
 
 /**

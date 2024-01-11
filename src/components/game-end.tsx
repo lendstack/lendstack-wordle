@@ -1,30 +1,54 @@
 import { Modal } from "@mui/material";
-import React from "react";
 import { ImCross } from "react-icons/im";
+import { WordData } from "../db/word-utils";
+import { data } from "autoprefixer";
 
-export function GameEnd() {
-  const [open, setOpen] = React.useState(true);
+export function GameEnd(props: {
+  open: boolean;
+  onClose: () => void;
+  data: WordData;
+}) {
+  //   const [open, setOpen] = React.useState(props.open);
   //   const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const handleClose = () => props.onClose();
+  const winRate =
+    props.data.gamesPlayed === 0
+      ? 0
+      : (props.data.gamesWinned * 100) / props.data.gamesPlayed;
+
+  const lastGuess =
+    props.data.userGuessList[props.data.userGuessList.length - 1] ?? "";
+
+  const isWin = lastGuess.toLowerCase() === props.data.randomWord.toLowerCase();
+
+  function handleRetry() {
+    const dataTmp = props.data;
+    dataTmp.userGuessList = [];
+    dataTmp.userGuessStats = [];
+    localStorage.setItem("data", JSON.stringify(dataTmp));
+    handleClose();
+  }
+
+  function handleContinue() {
+    const dataTmp = props.data;
+    dataTmp.randomWord = "";
+    dataTmp.userGuessList = [];
+    dataTmp.userGuessStats = [];
+    localStorage.setItem("data", JSON.stringify(dataTmp));
+    handleClose();
+  }
 
   return (
     <div>
       <Modal
         className="flex flex-col justify-center items-center "
-        open={open}
-        onClose={handleClose}
+        open={props.open}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
         <div className=" h-fit max-w-96 w-[60%] bg-slate-50 outline-none m-auto text-black rounded-md">
-          <div
-            onClick={handleClose}
-            className="flex flex-row justify-end  text-sm md:text-md lg:text-lg "
-          >
-            <ImCross className="text-gray-400 hover:text-black cursor-pointer m-4" />
-          </div>
-          <h1 className="text-4xl font-semibold px-2 pb-4 text-center ">
-            Game End
+          <h1 className="text-4xl font-semibold px-2 pb-4 m-4 text-center ">
+            {`${isWin ? "Victory" : "Defeat"}`}
           </h1>
 
           <div className="mt-4 ">
@@ -32,8 +56,8 @@ export function GameEnd() {
               Statics:
             </h2>
             <div className="w-[70%] flex  flex-col bg-orange-100 rounded-r-lg py-4 px-4">
-              <h3 className="text-xl">Played: 1</h3>
-              <h3 className="text-xl">Win Rate: 18%</h3>
+              <h3 className="text-xl">{`Played: ${props.data.gamesPlayed}`}</h3>
+              <h3 className="text-xl">{`Win Rate: ${winRate.toFixed(2)}%`}</h3>
             </div>
           </div>
           <div className="my-4 ">
@@ -52,12 +76,21 @@ export function GameEnd() {
             <button className="text-slate-50 bg-[#18191E] hover:bg-black  font-medium py-2.5 px-8 mt-2  rounded-t-xl w-fit mx-auto">
               Home
             </button>
-            <button className="text-slate-50 bg-[#18191E] hover:bg-black  font-medium py-2.5 px-8 mt-2  rounded-t-xl w-fit mx-auto">
-              Retry
-            </button>
-            <button className="text-slate-50 bg-[#18191E] hover:bg-black  font-medium py-2.5 px-8 mt-2  rounded-t-xl w-fit mx-auto">
-              Continue
-            </button>
+            {isWin ? (
+              <button
+                onClick={handleContinue}
+                className="text-slate-50 bg-[#18191E] hover:bg-black  font-medium py-2.5 px-8 mt-2  rounded-t-xl w-fit mx-auto"
+              >
+                Continue
+              </button>
+            ) : (
+              <button
+                onClick={handleRetry}
+                className="text-slate-50 bg-[#18191E] hover:bg-black  font-medium py-2.5 px-8 mt-2  rounded-t-xl w-fit mx-auto"
+              >
+                Retry
+              </button>
+            )}
           </div>
         </div>
       </Modal>
