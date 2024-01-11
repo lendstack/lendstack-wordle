@@ -1,58 +1,46 @@
-# lendstack-wordle
+# Getting Started with Create React App
 
-## Requirements:
-Your task is to create a web-based Wordle game using React that adheres to the following specifications:
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-### User Interface (UI):
+## Available Scripts
 
-Design a clean and intuitive UI for the game that includes:
+In the project directory, you can run:
 
-- Input field for guessing words.
-- Submit button to submit the guess.
-- Display area for previous guesses.
-= Indication of correct letters in correct positions (right letter, right position).
-- Indication of correct letters in the wrong position.
-- Display remaining attempts.
-- End game state UI (upon winning or losing).
+### `npm start`
 
-### State Management:
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-Implement a robust state management system to handle:
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
 
-- Target word selection (randomly generate a word at the start of the game).
-- Storing user guesses and their results.
-- Tracking remaining attempts.
-
-### User Interaction:
-
-- Capture user input for word guesses.
-- Validate input (alphabetic characters, word length, etc.).
-- Handle the submission of guesses and update the game state accordingly.
+### `How to Play The Game`
 
 
-### Game Logic:
+=> Playing the Game:
 
-- Compare the user's guessed word against the target word.
-- Provide feedback to the user about the correctness of the guessed word.
-- End the game when the correct word is guessed or when the attempts reach zero.
+    => Type Your Guess:
+        Use your real keyboard to type a word that you think might be the hidden word.
+        Remember, the word must be exactly five letters long.
 
-## Code Quality:
+    => Submit Your Guess:
+        Once you've typed your five-letter word, press the Enter key on your keyboard to submit your guess.
 
-- Write clean, readable, and maintainable code.
-- Implement best practices for React development.
-- Ensure error handling for edge cases (invalid input, unexpected behavior).
+    => Check Your Result:
+        After each guess, the game will give you feedback.
+        If your guess is correct, a message box will appear congratulating you on your win!
 
-## Submission Guidelines:
+    => Number of Attempts:
+        You have a total of six attempts to guess the correct word.
+        Use the feedback from each guess to make better guesses in the next rounds.
 
-- Fork this [repository](https://github.com/lendstack/lendstack-wordle) and create a new branch named `wordle-[YOUR NAME]`.
-- Provide clear instructions on how to run the application locally.
-- Include a README file explaining your approach, decisions made, and any additional features implemented.
-- Open a PR.
+    => Winning the Game:
+        You win the game by guessing the correct word within the six allowed attempts.
 
-## Evaluation Criteria:
+    => Losing the Game:
+        If you don't guess the word within six tries, you will receive a message that you've lost the game.
 
-- UI/UX design and functionality.
-- Code quality, structure, and maintainability.
-- State management and logic implementation.
-- Handling of edge cases and error scenarios.
-- Bonus points for additional features or optimizations.
+
+
+
+
