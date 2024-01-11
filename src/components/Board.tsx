@@ -10,7 +10,7 @@ function Board() {
           {row.map((letter: string, index: number) => (
             <div
               key={index}
-              className="w-[56px] h-[56px] border bg-[#ced4da] rounded-md text-black  text-[25px] font-bold font flex justify-center items-center uppercase"
+              className="w-[56px] h-[56px] border-2 border-divider rounded-md text-white  text-[25px] font-bold font flex justify-center items-center uppercase"
             >
               {letter}
             </div>

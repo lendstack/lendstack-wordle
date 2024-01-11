@@ -19,7 +19,7 @@ function Key({ KeyVal }: any) {
   };
   return (
     <div
-      className="w-10 h-16 m-[2px] rounded grid text-[20px] bg-[#ced4da] text-black cursor-pointer place-items-center hover:opacity-85"
+      className="w-10 h-16 m-[2px] rounded grid text-[12px] md:text-[16px]  border-2 border-divider text-white cursor-pointer place-items-center hover:opacity-85"
       style={custom}
       onClick={OnclickHandler}
     >
