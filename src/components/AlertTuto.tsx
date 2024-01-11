@@ -4,7 +4,7 @@ import { GoTriangleRight } from "react-icons/go";
 import { IoMdCloseCircleOutline } from "react-icons/io";
 import GetKeysData from "../utils/getKeysData";
 import { useGlobalContext } from "../context/store";
-import Letter from "./Letter";
+import Letter from "./LetterItem";
 
 export default function AlertTutorial() {
   const { openAlertTuto, setOpenAlertTuto, data, lengthWord } =

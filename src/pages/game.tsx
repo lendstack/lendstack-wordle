@@ -7,9 +7,8 @@ import WordInput from "../components/WordInput";
 import WordValidator from "../utils/wordValidator";
 import { useGlobalContext } from "../context/store";
 import NavBar from "../components/NavBar";
-
 import { encryptData } from "../utils/crypto";
-import AlertStatistcs from "../components/AlertStatis";
+import AlertStatistcs from "../components/AlertStatistcs";
 
 const Game = () => {
   const { data, setData, lengthWord } = useGlobalContext();

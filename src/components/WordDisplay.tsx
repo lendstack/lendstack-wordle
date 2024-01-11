@@ -1,6 +1,6 @@
 import { DataDTO } from "../dto/dataDto";
 import GetKeysData from "../utils/getKeysData";
-import Letter from "./Letter";
+import Letter from "./LetterItem";
 
 export default function wordDisplay({
   data,
