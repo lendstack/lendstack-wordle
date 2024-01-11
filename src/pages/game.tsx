@@ -9,7 +9,7 @@ import { useGlobalContext } from "../context/store";
 import NavBar from "../components/NavBar";
 
 import { encryptData } from "../utils/crypto";
-import AlertStatistcs from "../components/alertStatis";
+import AlertStatistcs from "../components/AlertStatis";
 
 const Game = () => {
   const { data, setData, lengthWord } = useGlobalContext();
