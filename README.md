@@ -1,58 +1,30 @@
-# lendstack-wordle
-
-## Requirements:
-Your task is to create a web-based Wordle game using React that adheres to the following specifications:
-
-### User Interface (UI):
-
-Design a clean and intuitive UI for the game that includes:
-
-- Input field for guessing words.
-- Submit button to submit the guess.
-- Display area for previous guesses.
-= Indication of correct letters in correct positions (right letter, right position).
-- Indication of correct letters in the wrong position.
-- Display remaining attempts.
-- End game state UI (upon winning or losing).
-
-### State Management:
-
-Implement a robust state management system to handle:
-
-- Target word selection (randomly generate a word at the start of the game).
-- Storing user guesses and their results.
-- Tracking remaining attempts.
-
-### User Interaction:
-
-- Capture user input for word guesses.
-- Validate input (alphabetic characters, word length, etc.).
-- Handle the submission of guesses and update the game state accordingly.
 
 
-### Game Logic:
+# Features Implemented
 
-- Compare the user's guessed word against the target word.
-- Provide feedback to the user about the correctness of the guessed word.
-- End the game when the correct word is guessed or when the attempts reach zero.
+ * Users have the option to initiate a Wordle game as a guest.
+ * Users can log in to their accounts.
+ * Users can view their game statistics.
+ * Users can access their game history.
+ * Users can access a guide on how to play.
+ * Users have the capability to challenge other users to guess a word.
+ * Users can toggle between light and dark modes.
 
-## Code Quality:
+ # Approach
 
-- Write clean, readable, and maintainable code.
-- Implement best practices for React development.
-- Ensure error handling for edge cases (invalid input, unexpected behavior).
+- I employed React Context to manage the application's state, opting for simplicity given the nature of the state. To handle backend routes seamlessly, I utilized 'trpc.' For enhanced server-side rendering and optimal performance, I incorporated Next.js Server Components. Authentication was implemented using NextAuth with credentials serving as the primary provider.
 
-## Submission Guidelines:
+# Technologies 
 
-- Fork this [repository](https://github.com/lendstack/lendstack-wordle) and create a new branch named `wordle-[YOUR NAME]`.
-- Provide clear instructions on how to run the application locally.
-- Include a README file explaining your approach, decisions made, and any additional features implemented.
-- Open a PR.
+- [Next.js](https://nextjs.org)
+- [NextAuth.js](https://next-auth.js.org)
+- [Prisma](https://prisma.io)
+- [Tailwind CSS](https://tailwindcss.com)
+- [tRPC](https://trpc.io)
 
-## Evaluation Criteria:
+# How To Star Project
 
-- UI/UX design and functionality.
-- Code quality, structure, and maintainability.
-- State management and logic implementation.
-- Handling of edge cases and error scenarios.
-- Bonus points for additional features or optimizations.
+```bash
+./start.sh
+
+
