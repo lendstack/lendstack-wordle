@@ -20,9 +20,9 @@ cd wordle-project
 Install dependencies:
 ```bash
 npm install
-Start the development server:
 ```
 
+Start the development server:
 ```bash
 npm run dev
 ```
