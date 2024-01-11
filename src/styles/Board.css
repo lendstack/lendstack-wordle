@@ -1,0 +1,27 @@
+.board {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+}
+
+.board__row {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+}
+
+.board__cell {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: capitalize;
+  border: 1px solid var(--primary);
+  border-radius: 7px;
+  font-size: large;
+  font-weight: 900;
+}

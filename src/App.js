@@ -1,9 +1,12 @@
+import axios, { isCancel } from "axios";
 import { useCallback, useEffect, useRef, useState } from "react";
-import "./App.css";
+import toast, { Toaster } from "react-hot-toast";
+import "./styles/App.css";
 import Board from "./Board";
 import Keyboard from "./Keyboard";
 import Modal from "./Modal";
 import { words } from "./words";
+import NavBar from "./NavBar";
 
 const ROWS = 6;
 
@@ -18,43 +21,78 @@ function App() {
   const [currentWord, setCurrentWord] = useState("");
   const [letters, setLetters] = useState("");
   const [gameStatus, setGameStatus] = useState("");
+  const [showInstructions, setShowInstructions] = useState(false);
 
   const ref = useRef();
 
-  const selectWord = () =>
-    setSolution(words[Math.floor(Math.random() * words.length)]);
+  const selectWord = () => {
+    let selectedWord = "";
+    axios
+      .get(`https://random-word-api.herokuapp.com/word?length=5`)
+      .then((response) => {
+        if (response.data.length === 0) throw new Error();
+        selectedWord =
+          response.data[Math.floor(Math.random() * response.data.length)];
+        setSolution(selectedWord.toUpperCase());
+      })
+      .catch(() => {
+        selectedWord = words[Math.floor(Math.random() * words.length)];
+        setSolution(selectedWord.toUpperCase());
+      });
+  };
 
   useEffect(() => {
     selectWord();
   }, []);
 
-  const handleKeyDown = useCallback(
-    (e) => {
-      const { key, keyCode } = e;
-      if (keyCode === 8 && currentWord.length) {
-        setCurrentWord((currentRow) => currentRow.slice(0, -1));
+  const processKey = useCallback(
+    (key) => {
+      if (showInstructions) return;
+
+      if ((key === "-" || key === "Backspace") && currentWord.length) {
+        setCurrentWord((currentWord) => currentWord.slice(0, -1));
         return;
       }
-      if (currentWord.length === 5) {
-        if (keyCode !== 13) return;
-        else {
-          setGuesses((guesses) =>
-            guesses.map((guess, idx) =>
-              idx === currentRow ? currentWord : guess
-            )
-          );
-          setCurrentRow((currentRow) => currentRow + 1);
-          setLetters((letters) => merge(letters, currentWord));
-          setCurrentWord("");
-          return;
-        }
-      }
+      if ((key === "+" || key === "Enter") && currentWord.length === 5) {
+        axios
+          .get(`https://api.dictionaryapi.dev/api/v2/entries/en/${currentWord}`)
+          .then((response) => {
+            console.log("response: ", response.data.title);
+            if (response.data.title === "No Definitions Found") {
+              console.log("No Definitions Found");
+              setGameStatus("Word not in dictionary");
+              toast.error("Word not in dictionary");
+              return;
+            }
+            setGuesses((guesses) =>
+              guesses.map((guess, idx) =>
+                idx === currentRow ? currentWord : guess
+              )
+            );
+            setCurrentRow((currentRow) => currentRow + 1);
+            setLetters((letters) => merge(letters, currentWord));
+            setCurrentWord("");
+          })
+          .catch((error) => {
+            if (isCancel(error)) return;
 
-      if (keyCode >= 65 && keyCode <= 90) {
-        setCurrentWord((currentRow) => currentRow + key.toUpperCase());
+            toast.error("Word not in dictionary");
+            return;
+          });
+        return;
+      }
+      if (/^[A-Za-z]$/.test(key) && currentWord.length < 5) {
+        setCurrentWord((currentWord) => currentWord + key.toUpperCase());
       }
     },
-    [currentWord, currentRow]
+    [currentWord, currentRow, showInstructions]
+  );
+
+  const handleKeyDown = useCallback(
+    (e) => {
+      processKey(e.key);
+    },
+    [processKey]
   );
   useEffect(() => {
     document.addEventListener("keydown", handleKeyDown);
@@ -84,19 +122,31 @@ function App() {
 
   return (
     <div className="App">
+      <NavBar
+        showInstructions={showInstructions}
+        setShowInstructions={setShowInstructions}
+      />
       <Board
         guesses={guesses}
         currentWord={currentWord}
         currentRow={currentRow}
         solution={solution}
       />
-      <Keyboard letters={letters} solution={solution} guesses={guesses} />
+      <Keyboard
+        letters={letters}
+        solution={solution}
+        guesses={guesses}
+        onClick={processKey}
+      />
       <Modal
         gameStatus={gameStatus}
         ref={ref}
         solution={solution}
         handleGameReset={handleGameReset}
+        showInstructions={showInstructions}
+        setShowInstructions={setShowInstructions}
       />
+      <Toaster position="top-center" />
     </div>
   );
 }
