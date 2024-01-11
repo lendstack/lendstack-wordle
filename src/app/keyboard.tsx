@@ -1,39 +1,43 @@
 "use client";
 import { UtilityContext } from "@/context/UtilityContext";
 import { useContext, useEffect, useState } from "react";
+import { FaBackspace } from "react-icons/fa";
+
 
 export default function Keyboard() {
-  const { exactMatch, partialMatch, handleKeyPress } =
+  const { exactMatch, partialMatch, noMatch, handleKeyPress } =
     useContext(UtilityContext)!;
   const keys = ["QWERTYUIOP", "ASDFGHJKL", "ZXCVBNM"];
   return (
-    <div className="mt-2 flex flex-col gap-1 justify-center items-center">
+    <div className="md:gap-[6px] flex flex-col gap-1 justify-center items-center">
       {keys.map((row, i) => (
-        <div key={`1-${i}`} className="flex gap-1">
+        <div key={`1-${i}`} className="flex gap-1 md:gap-[6px]">
           {i == 2 && (
             <div
               onClick={() => handleKeyPress("Backspace")}
-              className="bg-gray-300 px-2 py-1 flex items-center justify-center text-gray-800 border border-gray-500 rounded cursor-pointer hover:scale-105 transition-all"
+              className="bg-red-300 px-3 py-1 text-2xl flex items-center justify-center text-gray-800 border border-gray-500 rounded cursor-pointer hover:scale-105 transition-all"
             >
-              Back
+              <FaBackspace size={""} />
             </div>
           )}
           {row.split("").map((key, j) => {
-            const [bg, setBg] = useState("bg-gray-300");
+            const [bg, setBg] = useState("bg-red-200");
             useEffect(() => {
               if (exactMatch.includes(key.toLowerCase())) {
-                setBg("bg-green-400");
+                setBg("bg-green-300");
               } else if (partialMatch.includes(key.toLowerCase())) {
                 setBg("bg-yellow-200");
+              } else if (noMatch.includes(key.toLowerCase())) {
+                setBg("bg-gray-200");
               } else {
-                setBg("bg-gray-300");
+                setBg("bg-red-200");
               }
-            }, [exactMatch, partialMatch]);
+            }, [exactMatch, partialMatch, noMatch]);
             return (
               <div
                 key={`2-${j}`}
                 onClick={() => handleKeyPress(key.toLowerCase())}
-                className={`${bg} px-2 py-1 flex items-center justify-center text-gray-800 border border-gray-500 rounded cursor-pointer hover:scale-105 transition-all`}
+                className={`${bg} px-2 py-1 flex items-center justify-center text-gray-800 border border-gray-500 rounded cursor-pointer hover:scale-105 transition-all md:px-3 md:py-[7px]`}
               >
                 {key}
               </div>
@@ -42,7 +46,7 @@ export default function Keyboard() {
           {i == 2 && (
             <div
               onClick={() => handleKeyPress("Enter")}
-              className="bg-gray-300 px-2 py-1 flex items-center justify-center text-gray-800 border border-gray-500 rounded cursor-pointer hover:scale-105 transition-all"
+              className="bg-red-300 px-2 py-1 flex items-center justify-center text-gray-800 border border-gray-500 rounded cursor-pointer hover:scale-105 transition-all md:px-3 md:py-[7px]"
             >
               Enter
             </div>

@@ -15,13 +15,11 @@ export type WorldleData = {
 export const WordleContext = createContext<undefined | WorldleData>(undefined);
 
 export const WordleProvider = ({ children }: { children: React.ReactNode }) => {
-  const [word, setWord] = useState<string>("");
+  const [word, setWord] = useState<string>(Words.getRandomWord());
   const [guesses, setGuesses] = useState<string[]>(new Array(6).fill(""));
   const [guessesIndex, setGuessesIndex] = useState<number>(0);
 
-  useEffect(() => {
-    setWord(Words.getRandomWord());
-  }, []);
+  useEffect(() => {console.log("wordle context: ", word)}, [word]);
 
 
   const worldleData = {

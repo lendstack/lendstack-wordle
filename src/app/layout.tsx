@@ -18,7 +18,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body suppressHydrationWarning={true} className={`${inter.className} bg-gray-200`}>
+      <body suppressHydrationWarning={true} className={`${inter.className} bg-red-100`}>
         <WordleProvider>
           <UtilityProvider>{children}</UtilityProvider>
         </WordleProvider>
