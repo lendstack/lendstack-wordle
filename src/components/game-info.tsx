@@ -23,7 +23,7 @@ export function GameInfo(props: { open: boolean; onClose: () => void }) {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <div className=" h-fit max-w-96 w-[60%] bg-slate-50 outline-none m-auto text-black rounded-md">
+        <div className=" h-fit max-w-96 w-[80%] sm:w-[60%] bg-slate-50 outline-none m-auto text-black rounded-md">
           <div
             onClick={handleClose}
             className="flex flex-row justify-end  text-sm md:text-md lg:text-lg "

@@ -61,7 +61,7 @@ export function GameEnd(props: {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <div className=" h-fit max-w-96 w-[60%] bg-[#eae3e3f1] outline-none m-auto text-black rounded-md">
+        <div className=" h-fit max-w-96  w-[80%] sm:w-[60%] bg-[#eae3e3f1] outline-none m-auto text-black rounded-md">
           <h1
             className={`${
               isWin ? "text-green-600" : "text-red-600"

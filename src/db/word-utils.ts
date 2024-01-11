@@ -1,7 +1,7 @@
 import wordDb from "./word-db.json";
 import CryptoJS from "crypto-js";
-const SECRET_KEY = "mysecretkey";
 
+const MySecret = import.meta.env.VITE_SECRET_KEY ?? "mysecret11111";
 export enum LetterState {
   Miss = "Miss", // Letter doesn't exist at all
   Present = "Present", // Letter exists but wrong location
@@ -20,7 +20,7 @@ export interface WordData {
 export function encryptData(name: string, data: any) {
   const encrypted = CryptoJS.AES.encrypt(
     JSON.stringify(data),
-    SECRET_KEY
+    MySecret!
   ).toString();
   localStorage.setItem(name, encrypted);
 }
@@ -28,7 +28,7 @@ export function encryptData(name: string, data: any) {
 export function decryptData(name: string) {
   const encrypted = localStorage.getItem(name);
   if (encrypted) {
-    const decrypted = CryptoJS.AES.decrypt(encrypted, SECRET_KEY).toString(
+    const decrypted = CryptoJS.AES.decrypt(encrypted, MySecret!).toString(
       CryptoJS.enc.Utf8
     );
     return JSON.parse(decrypted);

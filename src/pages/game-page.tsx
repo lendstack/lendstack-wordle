@@ -13,7 +13,6 @@ import { GameInfo } from "../components/game-info";
 import { LuBadgeInfo } from "react-icons/lu";
 
 export default function GamePage() {
-  const SECRET_KEY = "mysecretkey";
   const [open2, setOpen2] = useState(false);
 
   const [open, setOpen] = useState(false);
