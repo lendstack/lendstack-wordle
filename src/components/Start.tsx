@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
-import GetRandomWord from "./GetRandomWord";
-import Wordle from "./Wordle";
-import useWordleStore from "../Hooks/useWordleStore";
-import CheckIfWordExist from "./CheckIfWordExist";
+import { useEffect, useState } from 'react';
+import GetRandomWord from './GetRandomWord';
+import Wordle from './Wordle';
+import useWordleStore from '../Hooks/useWordleStore';
+import CheckIfWordExist from './CheckIfWordExist';
 
 const Start = () => {
     const [targetWord, setTargetWord] = useState(null);
@@ -22,7 +22,6 @@ const Start = () => {
     return (
         <div className="flex justify-center">
             <div className="w-1/2">
-                {/* <h2 className="text-2xl font-bold text-center">{targetWord}</h2> */}
                 {targetWord && <Wordle word={targetWord} />}
             </div>
         </div>

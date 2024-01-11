@@ -38,11 +38,9 @@ const useWordle = (word: string) => {
                 }
             }
         });
-        // console.log(formatted);
         return formatted;
     };
     const addNewGuess = () => {
-        // console.log('addNewGuess');
         if (currentGuess === word) setIsCorrect(true);
         const formatted = checkGuess();
         let newGuesses = [...guesses];
@@ -121,6 +119,14 @@ const useWordle = (word: string) => {
         if (key === 'Backspace')
             setCurrentGuess(currentGuess.slice(0, currentGuess.length - 1));
     };
-    return { currentGuess, HandleKeys, isCorrect, round, guesses, usedKeys, previousGuesses };
+    return {
+        currentGuess,
+        HandleKeys,
+        isCorrect,
+        round,
+        guesses,
+        usedKeys,
+        previousGuesses
+    };
 };
 export default useWordle;

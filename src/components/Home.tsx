@@ -1,4 +1,4 @@
-import { Button, Flex, Grid, Text } from '@chakra-ui/react';
+import { Flex, Grid, Text } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 
 const Home = () => {
@@ -49,29 +49,10 @@ const Home = () => {
                     <Text className="intro-text">MQWRTYUIOPJ</Text>
                     <Text className="intro-text">ABRWORDLGHI</Text>
                     <Text className="intro-text">TUVXNDOMYLF</Text>
-                    {/* <Flex
-                        justifyContent={'space-between'}
-                        fontFamily={'Dancing Script, cursive'}
-                        fontSize={'30px'}
-                        className="mt-12"
-                    > */}
-                    {/* <Link
-                            to=""
-                            style={{
-                                color: '#fff',
-                                backgroundColor: '#E3651D',
-                                width: '150px',
-                                borderRadius: '20px',
-                                padding: '10px',
-                                textAlign: 'center'
-                            }}
-                        >
-                            Login
-                        </Link> */}
+
                     <Link to="/play" className="mt-6 play">
                         PLay
                     </Link>
-                    {/* </Flex> */}
                 </Flex>
             </Flex>
         </div>

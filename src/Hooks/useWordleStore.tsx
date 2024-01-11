@@ -35,7 +35,7 @@ const useWordleStore = create<WordleStore>((set) => ({
     setPreviousGuesses: (newPreviousGuesses) =>
         set({ previousGuesses: newPreviousGuesses }),
     setLetters: (newLetters) => set({ letters: newLetters }),
-    // letters: Array(26).fill(undefined),
+
     letters: Array.from({ length: 28 }, (_, index: number) => ({
         key:
             index === 26
@@ -43,8 +43,6 @@ const useWordleStore = create<WordleStore>((set) => ({
                 : index === 27
                 ? 'Backspace'
                 : String.fromCharCode(65 + index)
-        // if (index === 27) return { key: 'Backspace' };
-        // key: String.fromCharCode(65 + index)
     })),
     usedKeys: Array(26).fill({ key: '', color: '' }),
     setUsedKeys: (newUsedKeys) => set({ usedKeys: newUsedKeys }),
@@ -60,7 +58,7 @@ const useWordleStore = create<WordleStore>((set) => ({
             guesses: Array(6).fill(''),
             previousGuesses: [],
             usedKeys: Array(26).fill({ key: '', color: '' }),
-            isOver: false,
+            isOver: false
         })
 }));
 

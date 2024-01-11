@@ -4,9 +4,7 @@ import {
     ModalContent,
     ModalHeader,
     ModalFooter,
-    ModalBody,
-    ModalCloseButton,
-    Button
+    ModalBody
 } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 
@@ -22,14 +20,19 @@ interface WordleModalProps {
 
 const WordleModal = (props: WordleModalProps) => {
     return (
-        <Modal closeOnOverlayClick={false} isOpen={props.isOpen} onClose={props.onClose} isCentered>
+        <Modal
+            closeOnOverlayClick={false}
+            isOpen={props.isOpen}
+            onClose={props.onClose}
+            isCentered
+        >
             <ModalOverlay
                 bg="rgba(164,53,240, 0.4)"
                 backdropFilter="blur(10px) hue-rotate(90deg)"
             />
             <ModalContent>
                 <ModalHeader className="text-center">{props.title}</ModalHeader>
-                {/* <ModalCloseButton /> */}
+
                 <ModalBody className="text-center">
                     <p>
                         The word is :{' '}
@@ -59,16 +62,6 @@ const WordleModal = (props: WordleModalProps) => {
                     >
                         Back to Home
                     </Link>
-                    {/* <Link to={'/play'}>
-                        <Button
-                            bg={'#E3651D'}
-                            color={'#fff'}
-                            mr={3}
-                            onClick={props.onClose}
-                        >
-                            Try again
-                        </Button>
-                    </Link> */}
                 </ModalFooter>
             </ModalContent>
         </Modal>

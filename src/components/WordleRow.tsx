@@ -4,7 +4,6 @@ interface WordleRowProps {
 }
 
 const WordleRow = (props: WordleRowProps) => {
-    // console.log('WordleRow props:', guess?.length);
     if (props.guess && props.guess?.length > 0) {
         return (
             <div className="row past">
@@ -22,7 +21,11 @@ const WordleRow = (props: WordleRowProps) => {
         return (
             <div className="row current">
                 {props.currentGuess.split('').map((letter, index) => {
-                    return <div key={index} className="filled">{letter}</div>;
+                    return (
+                        <div key={index} className="filled">
+                            {letter}
+                        </div>
+                    );
                 })}
                 {[...Array(5 - props.currentGuess.split('').length)].map(
                     (_, index) => {
