@@ -22,13 +22,13 @@ These instructions will get you a copy of the project up and running on your loc
     ```bash
     cd lendstack-wordle
     ```
-3. git checkout wordle-AbdellahBellakrim
+3. ```bash
+   git checkout wordle-AbdellahBellakrim```
 
 4. Run Docker Compose to build and start the services:
     ```bash
     docker-compose up --build
     ```
-PS: I opened PR 
 ## Usage
 
 Once the services are up and running, you can access the frontend at `http://localhost:3000`.
@@ -36,3 +36,5 @@ Once the services are up and running, you can access the frontend at `http://loc
 ## Built With
 #### React.js && TypeScript
 #### NextUI && Tailwind CSS
+
+PS: I opened a PR My branch is ``` wordle-AbdellahBellakrim```
