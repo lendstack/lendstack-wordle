@@ -1,6 +1,5 @@
 import { forwardRef, useImperativeHandle, useState } from "react";
-import { ReactComponent as Exit } from "./Exit.svg";
-import "./styles/App.css";
+import { ReactComponent as Exit } from "../Exit.svg";
 function Modal(
   {
     gameStatus,
@@ -76,7 +75,7 @@ function Modal(
           </>
         ) : (
           <>
-            <p>{gameStatus}</p>
+            <div>{gameStatus}</div>
             <p>The word was: {solution.toUpperCase()}</p>
             <div className="modal__button" onClick={onClose}> Play Again </div>
           </>

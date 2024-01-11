@@ -1,5 +1,7 @@
-import { ReactComponent as Enter } from "./Enter.svg";
-import { ReactComponent as BackSpace } from "./BackSpace.svg";
+import { ReactComponent as Enter } from "../Enter.svg";
+import { ReactComponent as BackSpace } from "../BackSpace.svg";
+
+import "../App.css";
 
 const rows = ["QWERTYUIOP", "ASDFGHJKL+", "ZXCVBNM-"];
 
@@ -18,13 +20,13 @@ const Keyboard = ({ letters, solution, guesses, onClick }) => (
           if (letter === "+")
             return (
               <div className="keyboard__letter">
-                <Enter onClick={() => onClick("+")}/>
+                <Enter onClick={() => onClick("+")} />
               </div>
             );
           if (letter === "-")
             return (
               <div className="keyboard__letter">
-                <BackSpace onClick={() => onClick("-")}/>
+                <BackSpace onClick={() => onClick("-")} />
               </div>
             );
           const displayValue = letter;

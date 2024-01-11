@@ -1,12 +1,12 @@
 import axios, { isCancel } from "axios";
 import { useCallback, useEffect, useRef, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import "./styles/App.css";
-import Board from "./Board";
-import Keyboard from "./Keyboard";
-import Modal from "./Modal";
+import "./App.css";
+import Board from "./components/Board";
+import Keyboard from "./components/Keyboard";
+import Modal from "./components/Modal";
 import { words } from "./words";
-import NavBar from "./NavBar";
+import NavBar from "./components/NavBar";
 
 const ROWS = 6;
 
@@ -57,9 +57,7 @@ function App() {
         axios
           .get(`https://api.dictionaryapi.dev/api/v2/entries/en/${currentWord}`)
           .then((response) => {
-            console.log("response: ", response.data.title);
             if (response.data.title === "No Definitions Found") {
-              console.log("No Definitions Found");
               setGameStatus("Word not in dictionary");
               toast.error("Word not in dictionary");
               return;

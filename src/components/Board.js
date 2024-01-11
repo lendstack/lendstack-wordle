@@ -1,3 +1,6 @@
+// import "./styles/Board.css";
+import "../App.css"
+
 const getColors = (solution, word) => {
   const convertedSolution = solution.split("");
 
