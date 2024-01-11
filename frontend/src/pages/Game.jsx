@@ -1,15 +1,17 @@
 import Board from "../containers/Board";
 import Header from "../containers/Header";
-// import KeyBoard from "../containers/KeyBoard";
+import { GameProvider } from "../context/GameContext";
+import KeyBoard from '../containers/KeyBoard'
 
 const Game = () => {
 
   return (
-    <div className="flex w-full h-[100vh] flex-col justify-between">
-
+    <div className="flex w-[100vw] h-[100vh] flex-col justify-between">
         <Header />
-        <Board />
-        {/* <KeyBoard /> */}
+      <GameProvider>
+          <Board />
+         <KeyBoard />
+      </GameProvider>
     </div>
   )
 }

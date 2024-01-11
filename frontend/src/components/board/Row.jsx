@@ -5,7 +5,7 @@ export const Row = ({ guess , complete, solution}) => {
     const boxes = [];
     
     for(let i = 0; i < 5; i++){
-      let style = "flex justify-center items-center border border-black w-9 h-9 rounded-lg"
+      let style = "flex justify-center items-center border border-black w-12 h-12 rounded-lg"
       if (complete) {
         if (guess[i] === solution[i]){
           style += ' bg-correct';

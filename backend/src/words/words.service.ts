@@ -16,6 +16,16 @@ const wordBank = [
   'bling',
   'coins',
   'hello',
+  'coach',
+  'coast',
+  'coast',
+  'colon',
+  'comet',
+  'comma',
+  'condo',
+  'conic',
+  'corny',
+  'could',
 ];
 
 @Injectable()
