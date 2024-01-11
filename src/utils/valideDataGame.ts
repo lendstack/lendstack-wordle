@@ -23,8 +23,6 @@ const validateGameData = async (
     newData.numAttempts = tmpData.numAttempts;
   else return null;
 
-  // tmpData.gridType <= preValue.guesses[0].length &&
-
   if (typeof tmpData.gridType === "number" && tmpData.gridType > 0)
     newData.gridType = tmpData.gridType;
   else return null;

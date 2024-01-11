@@ -93,11 +93,11 @@ export const GlobalContextProvider = ({
   }, []);
 
   const getDataFromSupa = async () => {
-    const temp = await getSession();
-    if (temp) {
+    const session = await getSession();
+    if (session) {
       const score: DataScoreDTO[] | null = await getScoreByUserid();
       console.log("score=", score);
-      if (score && score.length !== 0) {
+      if (score && score.length !== 0 && score[0]) {
         console.log("score && score.length", score, score.length);
         setData((preValue) => {
           let newData = { ...preValue };
@@ -122,6 +122,7 @@ export const GlobalContextProvider = ({
         lengthWord,
       }}
     >
+      <div>test</div>
       {children}
       <AlertTutorial />
     </GlobalContext.Provider>
