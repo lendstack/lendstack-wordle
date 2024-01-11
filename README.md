@@ -9,7 +9,6 @@ Design a clean and intuitive UI for the game that includes:
 
 - Input field for guessing words.
 - Submit button to submit the guess.
-- Display area for previous guesses.
 = Indication of correct letters in correct positions (right letter, right position).
 - Indication of correct letters in the wrong position.
 - Display remaining attempts.
