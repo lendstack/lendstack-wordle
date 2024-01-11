@@ -5,6 +5,12 @@ Welcome to HixCoder Wordle, a web-based Wordle game built with React!
 
 HixCoder Wordle is a fun word-guessing game where players try to guess a hidden word within a limited number of attempts. The game features a clean and intuitive user interface, robust state management, and engaging gameplay.
 
+## Table of Contents
+- [Installation](#installation)
+- [Features](#features)
+- [Bonus Features](#bonus-features)
+- [Approach](#approach)
+  
 ## Installation
 
 To compile and run lendstack-wordle, follow these steps:
