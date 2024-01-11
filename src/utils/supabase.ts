@@ -71,12 +71,15 @@ export async function getAllScore() {
 export async function getScoreByUserid() {
   const session: any = await getSession();
   if (session) {
-    const result = await supabase
+    const { data: result, error } = await supabase
       .from("dataProject")
       .select("*")
       .eq("user_id", session.user.id);
-    console.log("result.data=", result, result.data);
-    return result.data;
+    if (error) {
+      console.error("Error checking for existing record:", error);
+      return null;
+    }
+    return result;
   }
   return null;
 }
