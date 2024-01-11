@@ -4,8 +4,8 @@
 
     * the state management was done using EASY PEASY V5 (https://easy-peasy.vercel.app/)
 
-    * to run the app localy just run :
-#### npm i
-#### npm run start
-    * and the app will be launched on :
-#### localhost:3000
+#### to run the app localy just run :
+ npm i
+ npm run start
+#### and the app will be launched on :
+     localhost:3000
