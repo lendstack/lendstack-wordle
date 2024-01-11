@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
-const IntroductionPopup = () => {
-  const [isOpen, setIsOpen] = useState(true);
+const IntroductionPopup = ({ isOpen, setIsOpen }) => {
+
 
   const closePopup = () => {
     setIsOpen(false);
@@ -9,7 +9,6 @@ const IntroductionPopup = () => {
 
   return (
     <div>
-      {isOpen && (
         <div className="introduction-popup">
           <div className="popup-content">
             <button className="close-button" onClick={closePopup}>
@@ -32,7 +31,6 @@ const IntroductionPopup = () => {
             </div>
             </div>
           </div>
-      )}
 
       {/* The rest of your application content */}
     </div>

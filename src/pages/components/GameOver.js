@@ -11,15 +11,16 @@ function GameOver({ setOpenCard }) {
         </button>
       {gameOver.guessedWord && (
         <div>
-          <h1>You win!</h1>
-          <img className="h-1 w-1" src="../img/unnamed.png" />
+          <h1 className='Win'>You won!</h1>
+          <img className="imageWin" src="../img/win.png" />
           {gameOver.guessedWord && (<h3>You guessed in {currAttempt.attempt} attempts</h3>)}
         </div>
       )}
       {!gameOver.guessedWord && (
         <div>
-          <h1 className="text-black">Nevermind</h1>
-          <p className='corrected' >the Corrected Word : {cerrectWord}</p>
+          <h1 className='Never'>Nevermind</h1>
+          <img className="imageWin" src="../img/images.jpg" />
+          <p className='corrected' >the Corrected Word : <span className='cerrec'>{cerrectWord}</span></p>
           <p>Better luck next time </p>
         </div>
       )}

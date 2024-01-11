@@ -1,9 +1,9 @@
 .App {
     text-align: center;
     background-color: #121212;
+    background-image: url("../../public/img/moon-1859616_1920.jpg");
     width: 100vw;
     height: 100vh;
-    /* display: flex; */
     color: white;
   }
   
@@ -11,7 +11,8 @@
     padding: 0%;
     margin: 0;
   }
-  
+
+
   nav {
     height: 60px;
     width: 100%;
@@ -23,7 +24,6 @@
   
   nav h1 {
     margin: 0;
-    font-family: Helvetica, Arial, sans-serif;
     color: white;
     font-size: 45px;
   }
@@ -32,6 +32,7 @@
     height: calc(100vh - 170px);
     display: flex;
     align-items: center;
+    justify-content: center;
     padding-top: 50px;
     flex-direction: column;
   }
@@ -61,7 +62,7 @@
     font-size: 30px;
     font-weight: bolder;
     color: white;
-    font-family: Arial, Helvetica, sans-serif;
+    border-radius: 8px;
   }
   
   #correct {
@@ -133,7 +134,6 @@
     font-size: 20px;
     background-color: grey;
     color: white;
-    font-family: Arial, Helvetica, sans-serif;
     cursor: pointer;
   }
   
@@ -153,6 +153,33 @@
   
 }
 
+.imageWin {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.Win {
+  font-size: 3em;
+}
+.wordle {
+  font-size: 5em;
+  direction: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.wordle img {
+  margin-left: 40px;
+  height: 40px;
+}
+.wordle button {
+  background: none;
+  border: none;
+  cursor: pointer;
+} 
+.nav{
+  height: 100px;
+}
 .gameOver div {
   max-width: 480px;
   background: #000000;
@@ -172,7 +199,7 @@
 }
 
 .gameOver .corrected {
-  color: red;
+  color: rgb(209, 209, 209);
   font-weight: bold;
   font-size: 0.8em;
   text-transform: uppercase;
@@ -185,10 +212,21 @@
   left: 50%;
   transform: translate(-50%, -50%);
   background: rgba(57, 56, 56, 0.758);
-  padding: 20px;
+  padding: 50px;
   border: 1px solid #ccc;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  z-index: 1000;
+  z-index: 1;
+  height: 40%;
+  width: 35%;
+  font-size: 140%;
+}
+
+.cerrec {
+  color: green;
+}
+
+.Never {
+  color: rgb(177, 1, 36);
 }
 
 .popup-content {
@@ -241,35 +279,35 @@
 }
 .leaves .set div:nth-child(1) {
   left: 20%;
-  animation: animate 14s linear infinite;
+  animation: animate 4s linear infinite;
 }
 .leaves .set div:nth-child(2) {
   left: 50%;
-  animation: animate 12s linear infinite;
+  animation: animate 5s linear infinite;
 }
 .leaves .set div:nth-child(3) {
   left: 70%;
-  animation: animate 12s linear infinite;
+  animation: animate 6s linear infinite;
 }
 .leaves .set div:nth-child(4) {
   left: 5%;
-  animation: animate 15s linear infinite;
+  animation: animate 7s linear infinite;
 }
 .leaves .set div:nth-child(5) {
   left: 85%;
-  animation: animate 14s linear infinite;
+  animation: animate 8s linear infinite;
 }
 .leaves .set div:nth-child(6) {
   left: 90%;
-  animation: animate 12s linear infinite;
+  animation: animate 4s linear infinite;
 }
 .leaves .set div:nth-child(7) {
   left: 15%;
-  animation: animate 14s linear infinite;
+  animation: animate 4s linear infinite;
 }
 .leaves .set div:nth-child(8) {
   left: 60%;
-  animation: animate 15s linear infinite;
+  animation: animate 10s linear infinite;
 }
 .leaves .set div:nth-child(9) {
   left: 40%;
@@ -277,31 +315,31 @@
 }
 .leaves .set div:nth-child(10) {
   left: 30%;
-  animation: animate 10s linear infinite;
+  animation: animate 11s linear infinite;
 }
 .leaves .set div:nth-child(11) {
   left: 50%;
-  animation: animate 10s linear infinite;
+  animation: animate 9s linear infinite;
 }
 .leaves .set div:nth-child(12) {
   left: 80%;
-  animation: animate 10s linear infinite;
+  animation: animate 8s linear infinite;
 }
 .leaves .set div:nth-child(13) {
   left: 90%;
-  animation: animate 10s linear infinite;
+  animation: animate 5s linear infinite;
 }
 .leaves .set div:nth-child(14) {
   left: 30%;
-  animation: animate 10s linear infinite;
+  animation: animate 11s linear infinite;
 }
 .leaves .set div:nth-child(15) {
   left: 5%;
-  animation: animate 10s linear infinite;
+  animation: animate 9s linear infinite;
 }
 .leaves .set div:nth-child(16) {
   left: 40%;
-  animation: animate 16s linear infinite;
+  animation: animate 10s linear infinite;
 }
 .leaves .set div:nth-child(17) {
   left: 10%;
@@ -317,7 +355,7 @@
 }
 .leaves .set div:nth-child(20) {
   left: 50%;
-  animation: animate 15s linear infinite;
+  animation: animate 12s linear infinite;
 }
 .leaves .set div:nth-child(21) {
   left: 70%;
