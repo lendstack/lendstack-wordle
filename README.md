@@ -1,70 +1,51 @@
-# Getting Started with Create React App
+# React Wordle Clone
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to the React Wordle Clone, a fun twist on the classic word puzzle game created using React. Test your vocabulary by guessing the hidden word within limited tries!
 
-## Available Scripts
+## Installation
 
-In the project directory, you can run:
+To set up the game locally, follow these simple steps:
 
-### `npm start`
+```bash
+# Clone the repository to your local machine
+git clone https://github.com/your-username/react-wordle-clone.git
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+# Change to the project directory
+cd react-wordle-clone
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+# Install dependencies
+npm install
 
-### `npm test`
+# Start the development server
+npm start
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Once the server is running, open [http://localhost:3000](http://localhost:3000) in your web browser to enjoy the game!
 
-### `npm run build`
+## How to Play
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- You have six attempts to guess a randomly selected 5-letter word.
+- Type in your guess and press 'Enter' to submit.
+- The color of the letters will change to indicate how close your guess is to the word:
+  - **Green**: The letter is in the correct position.
+  - **Yellow**: The letter is in the word but not in the right position.
+  - **Gray**: The letter is not in the word at all.
+- Use these hints to inform your next guess.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Development
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+During development, you can make use of the following commands:
 
-### `npm run eject`
+- `npm run build`: Builds the app for production to the `build` folder.
+- `npm test`: Runs the test runner in interactive watch mode.
+- `npm run eject`: Removes the single build dependency from your project. **Note**: this is a one-way operation and cannot be undone!
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Additional Information
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). For more information on React, visit the [React documentation](https://reactjs.org/).
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Happy guessing, and have fun sharpening your word skills!
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+---
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+**Disclaimer**: The Wordle Clone is a fan-made recreation and is not associated with the original Wordle game or its creators.
