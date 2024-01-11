@@ -35,7 +35,7 @@ export async function createScore() {
       console.error("Error checking for existing record:", error);
       return;
     }
-    console.log("data--->", existingRecords, error);
+
     if (existingRecords?.length === 0) {
       const temp = {
         user_id: userId,
@@ -75,7 +75,7 @@ export async function getScoreByUserid() {
       .from("dataProject")
       .select("*")
       .eq("user_id", session.user.id);
-    console.log("result.data=", result.data);
+    // console.log("result.data=", result.data);
     return result.data;
   }
   return null;

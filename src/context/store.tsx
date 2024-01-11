@@ -96,7 +96,7 @@ export const GlobalContextProvider = ({
     const temp = await getSession();
     if (temp) {
       const score: DataScoreDTO[] | null = await getScoreByUserid();
-      if (score) {
+      if (score && score.length) {
         setData((preValue) => {
           let newData = { ...preValue };
           newData.played = score[0].played;
