@@ -1,17 +1,27 @@
 import './App.css';
 import { Link } from 'react-router-dom';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useStoreActions, useStoreState } from 'easy-peasy';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify';
+
 
 function Lose() {
   const Start = useStoreActions((state)=> state.Start);
   const CorrectWord = useStoreState((state)=> state.correctWord)
   const Tries = useStoreState((state)=> state.tries)
+  const lose = useStoreState((state)=> state.lose)
+
+  useEffect(()=> {
+    if (lose)
+      toast("YOU LOSE !!!!")
+  }, [lose])
 
   return (
     <div className='w-full h-screen flex flex-col items-center justify-between pt-32 pb-10'>
       <div className='w-full flex flex-col items-center gap-5'>
         <div className='flex flex-col gap-2'>
+          <ToastContainer/>
           <div><p className='text-4xl text-center tracking-[0.5em]'>WORDLE</p></div>
           <div><p className='text-4xl text-center tracking-[0.5em]'>GAME</p></div>
         </div>

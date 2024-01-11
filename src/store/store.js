@@ -15,7 +15,9 @@ export const store = createStore({
     state.lose = false;
   }),
   Verify : action((state, payload)=> {
-    if (payload === state.correctWord)
+    let TheCorrectWord = state.correctWord.toUpperCase();
+    let UserGuess = payload.toUpperCase();
+    if (UserGuess === TheCorrectWord)
       state.win = true;
     else if (state.tries - 1 === 0) {
       state.lose = true;

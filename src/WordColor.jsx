@@ -2,8 +2,8 @@ import { useStoreState } from 'easy-peasy'
 import React from 'react'
 
 export default function WordColor({char, index}) {
-    const correct = useStoreState((state)=> state.correctWord);
-
+    const correct = useStoreState((state)=> state.correctWord).toUpperCase();
+    console.log("char to check : ", char , " at index : ", index, " in word : ", correct);
     if (char === correct[index])
         return (
         <div key={index} className="p-1 border border-white bg-green-600">
