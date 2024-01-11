@@ -30,7 +30,7 @@ export default function wordDisplay({
         return (
           <div key={index} className="flex justify-evenly mt-2 gap-2">
             {keysData.map((keyData, letterIndex) => (
-              <Letter key={letterIndex} keyData={keyData} />
+              <Letter key={letterIndex} keyData={keyData} isTuto={false} />
             ))}
           </div>
         );

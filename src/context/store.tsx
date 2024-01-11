@@ -38,7 +38,6 @@ export const GlobalContextProvider = ({
     word: "",
     guesses: ["*****", "*****", "*****", "*****", "*****"],
     numAttempts: 0,
-
     played: 0,
     numWins: 0,
   });
@@ -48,9 +47,10 @@ export const GlobalContextProvider = ({
       const storedGameData = localStorage.getItem("myGameData");
       let isValide: DataDTO | null = null;
       if (storedGameData) {
-        const tmpData = JSON.parse(storedGameData);
-        isValide = await ValideDataGame(data, tmpData);
-        console.log("isVlaide--->", isValide);
+        try {
+          const tmpData = JSON.parse(storedGameData);
+          isValide = await ValideDataGame(data, tmpData);
+        } catch (error) {}
       }
       if (isValide === null) {
         const tmp = await WordGenerator();

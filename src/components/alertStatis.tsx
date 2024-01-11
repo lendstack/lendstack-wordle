@@ -39,6 +39,7 @@ export default function AlertStatics() {
           },
         }}
         open={open}
+        className="bg-white"
         // onClose={() => setOpen(false)}
       >
         <div className="bg-[#010611be] w-[25rem] rounded-xl border-[1px] border-white flex flex-col">
@@ -101,7 +102,7 @@ export default function AlertStatics() {
                 }
               }}
             >
-              Continue
+              Next word
             </button>
             {!isWin && (
               <button
