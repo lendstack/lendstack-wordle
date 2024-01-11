@@ -1,11 +1,25 @@
 import "../App.css";
 
-export default function ErrorComponent(props: { message: string | null }) {
-  if (!props.message) return null;
+import React, { useEffect } from "react";
+
+const ErrorPopup = (props: { message:string, onClose :() => void}) => {
+  const duration = 2000;
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      props.onClose();
+    }, duration);
+
+    return () => clearTimeout(timer);
+  }, [props.onClose, duration]);
 
   return (
-    <p className="error-label" style={{ color: "red" }}>
-      {props.message}
-    </p>
+    <div className="error-popup">
+      <p>{props.message}</p>
+    </div>
   );
-}
+};
+
+
+export default ErrorPopup;
+

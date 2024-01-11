@@ -8,7 +8,7 @@ export const EnglishWordSchema = z.string().superRefine(
       {
         ctx.addIssue({
             code: z.ZodIssueCode.custom,
-            message: "The word must be 5 characters long and contain only letters",
+            message: "Not a 5 letters word",
         });
         return false;
       }
@@ -17,7 +17,7 @@ export const EnglishWordSchema = z.string().superRefine(
       {
         ctx.addIssue({
         code: z.ZodIssueCode.custom,
-        message: "The word must be an English word",
+        message: "Not an English word",
         });
       }
       return isValid;

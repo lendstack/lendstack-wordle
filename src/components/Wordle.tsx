@@ -9,8 +9,6 @@ import ErrorComponent from "./ErrorComponent";
 import AttemptsDisplay from "./AttemptsDisplay";
 import { HistoryDisplay } from "./HistoryDisplay";
 import { ZodError } from "zod";
-import WelcomeMessage from "./WelcomeMessage";
-import Sidebar from "./Sidebar";
 
 export default function Wordle() {
   const [wordList, setWordList] = React.useState<string[]>([]);
@@ -46,6 +44,10 @@ export default function Wordle() {
       setGuessedWord("");
     }
   };
+  const closeErrorPopup = () => {
+    console.log("Closing error popup");
+    setErrorMessage(null);
+  };
 
   const resetGame = () => {
     setWordList([]);
@@ -57,27 +59,28 @@ export default function Wordle() {
 
   return (
     <div className="game-layout">
-      <div className="main-content">
         <GameHeader />
-        {wordList.length === 0 && !gameOver ? <WelcomeMessage /> : null}
+      <div className="centered-container">
         {gameOver ? (
           <GameOverDisplay
-            message={targetWord === guessedWord ? "Congratulations! You won!" : "Game Over! You lost!"}
-            onPlayAgain={resetGame}
+          win={targetWord === guessedWord? true: false}
+          targetWord = {targetWord}
+          message={targetWord === guessedWord ? "You won!" : "You lost!" }
+          onPlayAgain={resetGame}
           />
-        ) : (
-          <>
+          ) : (
+            <div>
+            <AttemptsDisplay attempts={attempts} />
             <InputForm
               guessedWord={guessedWord}
               handleOnChange={handleOnChange}
               handleOnClick={handleOnClick}
             />
-            <ErrorComponent message={errorMessage} />
+            {errorMessage && <ErrorComponent message={errorMessage} onClose={closeErrorPopup} />}
             <HistoryDisplay wordList={wordList} targetWord={targetWord} />
-          </>
+          </div>
         )}
       </div>
-      <Sidebar attempts={attempts} />
     </div>
   );
 }
