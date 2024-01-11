@@ -23,6 +23,7 @@ export default function wordleTools({ word }: WordleToolsProps) {
 
 	const notify = () => toast.info("Invalid english word!", {autoClose: 1000});
 	const notifySuccess = () => toast.success("You Won!", {autoClose: 5000});
+	const notifyFalure = () => toast.error("You LOST!", {autoClose: 5000});
 
 	const  [wordsCache, setWordsCache] = useState<{ [key: string]: WORD_STATUS }>({});
 	const [history, setHistory] = useState<KeyColor[][]> (gridArr);
@@ -62,6 +63,10 @@ export default function wordleTools({ word }: WordleToolsProps) {
 		{
 			setIstrue(true);
 			notifySuccess();
+		}
+		else if (tries === 5)
+		{
+			notifyFalure();
 		}
 		craftSolution(history);
 		setSolution("");
