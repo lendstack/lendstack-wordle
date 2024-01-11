@@ -121,7 +121,7 @@ export default function GamePage() {
         <GameEnd open={open} onClose={handleClose} data={data} />
         <div
           onClick={handleInfo}
-          className="flex flex-row justify-end m-4 mb-0 text-4xl md:text-md lg:text-lg "
+          className="flex flex-row justify-end m-4 mb-0 text-4xl "
         >
           <LuBadgeInfo className="text-gray-400 hover:text-white cursor-pointer m-4 mb-0" />
         </div>
