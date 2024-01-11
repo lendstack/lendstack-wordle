@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { use } from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
+import gridArr from '../../../../data/grid.json';
+import keyboardArr from '../../../../data/keyboard.json';
 
 interface KeyColor {
 	key: string,
@@ -11,57 +13,16 @@ interface WordleToolsProps {
 	word: string
 }
 
-export default function wordleTools({ word }: WordleToolsProps) {
+enum WORD_STATUS {
+	INVALID,
+	VALID,
+}
 
-	const [history, setHistory] = useState<KeyColor[][]> // i only wrote the grid this way cause i know it's static
-		(
-			[
-				[
-					{key: "", color: ""},
-					{key: "", color: ""},
-					{key: "", color: ""},
-					{key: "", color: ""},
-					{key: "", color: ""}
-				],
-				[
-					{key: "", color: ""},
-					{key: "", color: ""},
-					{key: "", color: ""},
-					{key: "", color: ""},
-					{key: "", color: ""}
-				],
-				[
-					{key: "", color: ""},
-					{key: "", color: ""},
-					{key: "", color: ""},
-					{key: "", color: ""},
-					{key: "", color: ""}
-				],
-				[
-					{key: "", color: ""},
-					{key: "", color: ""},
-					{key: "", color: ""},
-					{key: "", color: ""},
-					{key: "", color: ""}
-				],
-				[
-					{key: "", color: ""},
-					{key: "", color: ""},
-					{key: "", color: ""},
-					{key: "", color: ""},
-					{key: "", color: ""}
-				],
-				[
-					{key: "", color: ""},
-					{key: "", color: ""},
-					{key: "", color: ""},
-					{key: "", color: ""},
-					{key: "", color: ""}
-				]
-			]
-		);
+export default function wordleTools({ word }: WordleToolsProps) {
+	const  [wordsCache, setWordsCache] = useState<{ [key: string]: WORD_STATUS }>({});
+	const [history, setHistory] = useState<KeyColor[][]> (gridArr);
 	const [solution, setSolution] = useState<string>("");
-	const [keyboard, setKeyboard] = useState<KeyColor[]>([]);
+	const [keyboard, setKeyboard] = useState<KeyColor[]>(keyboardArr);
 	const [istrue, setIstrue] = useState<boolean>(false);
 	const [tries, setTries] = useState<number>(0);
 	const [animate, setAnimate] = useState<boolean>(false);
@@ -90,6 +51,20 @@ export default function wordleTools({ word }: WordleToolsProps) {
 		}
 	}
 
+	function validateSolution() {
+		setTries(tries + 1);
+		if (solution === word)
+			setIstrue(true);
+		craftSolution(history);
+		setSolution("");
+
+		setAnimateIndex(tries);
+		setAnimate(true);
+		setTimeout(() => {
+			setAnimate(false);
+		}, 1000);
+	}
+
 	const handleInput = async (event: KeyboardEvent) => {
 		if (
 			istrue === false
@@ -104,21 +79,28 @@ export default function wordleTools({ word }: WordleToolsProps) {
 			{
 				try
 				{
+					if (wordsCache[solution] == WORD_STATUS.INVALID) {
+						console.error("Invalid english word");
+						return;
+					}
+
+					if (wordsCache[solution] == WORD_STATUS.VALID) {
+						validateSolution();
+						return;
+					}
+					
 					const response = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${solution}`)
 
 					if (response.ok)
 					{
-						setTries(tries + 1);
-						if (solution === word)
-							setIstrue(true);
-						craftSolution(history);
-						setSolution("");
+						wordsCache[solution] = WORD_STATUS.VALID;
+						validateSolution();
 
-						setAnimateIndex(tries);
-						setAnimate(true);
-						setTimeout(() => {
-							setAnimate(false);
-						}, 1000);
+					}
+					else if (response.status === 404)
+					{
+						wordsCache[solution] = WORD_STATUS.INVALID;
+						console.error("Invalid english word");
 					}
 				}
 				catch (error)
