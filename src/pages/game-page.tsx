@@ -6,9 +6,16 @@ import {
   isValidWord,
   getRandomWord,
   getGuessStates,
+  encryptData,
+  decryptData,
 } from "../db/word-utils";
+import { GameInfo } from "../components/game-info";
+import { LuBadgeInfo } from "react-icons/lu";
 
 export default function GamePage() {
+  const SECRET_KEY = "mysecretkey";
+  const [open2, setOpen2] = useState(false);
+
   const [open, setOpen] = useState(false);
   const [guess, setGuess] = useState("");
   const [data, setData] = useState<WordData>({
@@ -22,11 +29,15 @@ export default function GamePage() {
   function handleClose() {
     setOpen(false);
   }
+  const handleClose2 = () => setOpen2(false);
+  function handleInfo() {
+    setOpen2(true);
+  }
 
   useEffect(() => {
     function checkGameStatus(myData: WordData) {
       const lastGuess =
-        myData.userGuessList[myData.userGuessList.length - 1] ?? "";
+        myData.userGuessList[myData.userGuessList.length - 1] ?? "00";
       if (
         myData.userGuessList.length >= 6 ||
         lastGuess.toLowerCase() === myData.randomWord.toLowerCase()
@@ -36,10 +47,13 @@ export default function GamePage() {
       }
     }
     function getData() {
+      setOpen(false);
+
       if (data.randomWord === "") {
-        const dataTmpString = localStorage.getItem("data");
-        if (dataTmpString) {
-          const dataTmp = JSON.parse(dataTmpString);
+        const dataTmp = decryptData("data");
+        // const dataTmpString = localStorage.getItem("data");
+        if (dataTmp) {
+          // const dataTmp = JSON.parse(dataTmpString);
           setData(dataTmp);
 
           checkGameStatus(dataTmp);
@@ -82,7 +96,8 @@ export default function GamePage() {
         gamesPlayed: data.gamesPlayed,
         gamesWinned: data.gamesWinned,
       });
-      localStorage.setItem("data", JSON.stringify(data));
+      encryptData("data", data);
+      // localStorage.setItem("data", JSON.stringify(data));
     }
     if (
       data.userGuessList.length >= 6 ||
@@ -94,7 +109,8 @@ export default function GamePage() {
         dataTmp.gamesWinned++;
       }
       setData(dataTmp);
-      localStorage.setItem("data", JSON.stringify(data));
+      encryptData("data", data);
+      // localStorage.setItem("data", JSON.stringify(data));
       setOpen(true);
     }
   }
@@ -102,10 +118,17 @@ export default function GamePage() {
   return (
     <div className="bg-black text-white  w-screen">
       <div>
+        <GameInfo open={open2} onClose={handleClose2} />
         <GameEnd open={open} onClose={handleClose} data={data} />
-        <h1 className="mx-auto mt-8 text-center text-4xl">HixCoder Wordle</h1>
-        <h3 className="mx-auto mt-8 text-center">{data!.randomWord}</h3>
-        <div className="w-full flex flex-col justify-center items-center my-8">
+        <div
+          onClick={handleInfo}
+          className="flex flex-row justify-end m-4 mb-0 text-4xl md:text-md lg:text-lg "
+        >
+          <LuBadgeInfo className="text-gray-400 hover:text-white cursor-pointer m-4 mb-0" />
+        </div>
+        <h1 className="mx-auto my-10 text-center text-4xl">HixCoder Wordle</h1>
+        {/* <h3 className="mx-auto mt-8 text-center">{data!.randomWord}</h3> */}
+        <div className="w-full flex flex-col justify-center items-center my-8 mt-12">
           {data.userGuessList.map((element, index) => (
             <WordRow
               key={element + index}

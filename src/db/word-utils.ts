@@ -1,4 +1,6 @@
 import wordDb from "./word-db.json";
+import CryptoJS from "crypto-js";
+const SECRET_KEY = "mysecretkey";
 
 export enum LetterState {
   Miss = "Miss", // Letter doesn't exist at all
@@ -13,6 +15,24 @@ export interface WordData {
   randomWord: string;
   gamesPlayed: number;
   gamesWinned: number;
+}
+
+export function encryptData(name: string, data: any) {
+  const encrypted = CryptoJS.AES.encrypt(
+    JSON.stringify(data),
+    SECRET_KEY
+  ).toString();
+  localStorage.setItem(name, encrypted);
+}
+
+export function decryptData(name: string) {
+  const encrypted = localStorage.getItem(name);
+  if (encrypted) {
+    const decrypted = CryptoJS.AES.decrypt(encrypted, SECRET_KEY).toString(
+      CryptoJS.enc.Utf8
+    );
+    return JSON.parse(decrypted);
+  }
 }
 
 /**

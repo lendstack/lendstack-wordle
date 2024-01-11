@@ -1,7 +1,9 @@
 import { Modal } from "@mui/material";
 import { ImCross } from "react-icons/im";
-import { WordData } from "../db/word-utils";
+import { LetterState, WordData, encryptData } from "../db/word-utils";
 import { data } from "autoprefixer";
+import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 export function GameEnd(props: {
   open: boolean;
@@ -25,7 +27,9 @@ export function GameEnd(props: {
     const dataTmp = props.data;
     dataTmp.userGuessList = [];
     dataTmp.userGuessStats = [];
-    localStorage.setItem("data", JSON.stringify(dataTmp));
+    encryptData("data", dataTmp);
+
+    // localStorage.setItem("data", JSON.stringify(dataTmp));
     handleClose();
   }
 
@@ -34,8 +38,19 @@ export function GameEnd(props: {
     dataTmp.randomWord = "";
     dataTmp.userGuessList = [];
     dataTmp.userGuessStats = [];
-    localStorage.setItem("data", JSON.stringify(dataTmp));
+    encryptData("data", dataTmp);
+    // localStorage.setItem("data", JSON.stringify(dataTmp));
     handleClose();
+  }
+
+  function geussCorrectPercent(stats: LetterState[]) {
+    let count = 0;
+    for (let i = 0; i < stats.length; i++) {
+      if (stats[i] === LetterState.Match) {
+        count++;
+      } else if (stats[i] === LetterState.Present) count += 0.5;
+    }
+    return count * 20;
   }
 
   return (
@@ -46,8 +61,12 @@ export function GameEnd(props: {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <div className=" h-fit max-w-96 w-[60%] bg-slate-50 outline-none m-auto text-black rounded-md">
-          <h1 className="text-4xl font-semibold px-2 pb-4 m-4 text-center ">
+        <div className=" h-fit max-w-96 w-[60%] bg-[#eae3e3f1] outline-none m-auto text-black rounded-md">
+          <h1
+            className={`${
+              isWin ? "text-green-600" : "text-red-600"
+            } text-4xl font-semibold px-2 pb-4 m-4 text-center`}
+          >
             {`${isWin ? "Victory" : "Defeat"}`}
           </h1>
 
@@ -65,25 +84,33 @@ export function GameEnd(props: {
               Guess Distribution:
             </h2>
             <div className="w-[90%] flex  flex-col bg-blue-100 rounded-r-lg py-4 px-4">
-              <h3 className="text-xl">First : 1</h3>
-              <h3 className="text-xl">Second: 1</h3>
-              <h3 className="text-xl">Third : 1</h3>
-              <h3 className="text-xl">Fourth: 1</h3>
-              <h3 className="text-xl">Fifth : 1</h3>
+              {props.data.userGuessStats.map((wordStats, index) => (
+                <h3
+                  key={"guessinfo-" + (index + 1)}
+                  className="text-xl"
+                >{`Guess ${index + 1} : ${geussCorrectPercent(
+                  wordStats
+                )}%`}</h3>
+              ))}
             </div>
           </div>
           <div className="flex flex-row mt-2  border-b-4 border-slate-200">
-            <button className="text-slate-50 bg-[#18191E] hover:bg-black  font-medium py-2.5 px-8 mt-2  rounded-t-xl w-fit mx-auto">
-              Home
-            </button>
-            {isWin ? (
+            {/* <Link to={`/`} className="mx-auto">
               <button
                 onClick={handleContinue}
-                className="text-slate-50 bg-[#18191E] hover:bg-black  font-medium py-2.5 px-8 mt-2  rounded-t-xl w-fit mx-auto"
+                className="text-slate-50 bg-[#18191E] hover:bg-black  font-medium py-2.5 px-8 mt-2  rounded-t-xl w-fit "
               >
-                Continue
+                Home
               </button>
-            ) : (
+            </Link> */}
+            <button
+              onClick={handleContinue}
+              className="text-slate-50 bg-[#18191E] hover:bg-black  font-medium py-2.5 px-8 mt-2  rounded-t-xl w-fit mx-auto"
+            >
+              Next Word
+            </button>
+
+            {!isWin && (
               <button
                 onClick={handleRetry}
                 className="text-slate-50 bg-[#18191E] hover:bg-black  font-medium py-2.5 px-8 mt-2  rounded-t-xl w-fit mx-auto"
