@@ -1,8 +1,7 @@
 import { Modal } from "@mui/material";
-import React from "react";
 import { ImCross } from "react-icons/im";
-import { WordRow } from "./word-row";
 import { LetterState } from "../db/word-utils";
+import { WordRow } from "./word-row";
 
 export function GameInfo(props: { open: boolean; onClose: () => void }) {
   const handleClose = () => props.onClose();

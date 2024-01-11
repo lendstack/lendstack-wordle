@@ -1,9 +1,5 @@
 import { Modal } from "@mui/material";
-import { ImCross } from "react-icons/im";
 import { LetterState, WordData, encryptData } from "../db/word-utils";
-import { data } from "autoprefixer";
-import { Link } from "react-router-dom";
-import { useEffect } from "react";
 
 export function GameEnd(props: {
   open: boolean;
