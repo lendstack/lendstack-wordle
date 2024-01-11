@@ -7,7 +7,6 @@ import HowToPlay from './wordle-tools/howToPlay';
 import WordleNav from './wordle-tools/wordle-nav';
 import GameStats from './wordle-tools/gameStats';
 
-
 export default function wordle(WordleProps : { word: string }) {
 
 	const [showHowTo, setShowHowTo] = useState<boolean>(true);
@@ -17,7 +16,7 @@ export default function wordle(WordleProps : { word: string }) {
 	
 	useEffect(() => {
 		window.addEventListener('keyup', handleInput);
-
+		console.log(WordleProps.word);
 		return () => {
 			window.removeEventListener('keyup', handleInput)
 		};
@@ -29,6 +28,7 @@ export default function wordle(WordleProps : { word: string }) {
 			e.target.className === 'absolute mobileWidth h-[calc(100%-68px)] min-h-[1032px] flex items-center justify-center bg-[#00000099]'
 		) {
 			setShowHowTo(false);
+			setShowStats(false);
 		}
 	};
 	  

@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import gridArr from '../../../../data/grid.json';
 import keyboardArr from '../../../../data/keyboard.json';
+import { ToastContainer, toast } from 'react-toastify';
 
 interface KeyColor {
 	key: string,
@@ -19,6 +20,9 @@ enum WORD_STATUS {
 }
 
 export default function wordleTools({ word }: WordleToolsProps) {
+
+	const notify = () => toast.info("Invalid english word!", {autoClose: 1000});
+
 	const  [wordsCache, setWordsCache] = useState<{ [key: string]: WORD_STATUS }>({});
 	const [history, setHistory] = useState<KeyColor[][]> (gridArr);
 	const [solution, setSolution] = useState<string>("");
@@ -80,7 +84,7 @@ export default function wordleTools({ word }: WordleToolsProps) {
 				try
 				{
 					if (wordsCache[solution] == WORD_STATUS.INVALID) {
-						console.error("Invalid english word");
+						notify();
 						return;
 					}
 
@@ -100,7 +104,7 @@ export default function wordleTools({ word }: WordleToolsProps) {
 					else if (response.status === 404)
 					{
 						wordsCache[solution] = WORD_STATUS.INVALID;
-						console.error("Invalid english word");
+						notify();
 					}
 					for (let k = 0; k < keyboard.length; k++)
 					{
