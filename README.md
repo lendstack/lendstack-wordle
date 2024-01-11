@@ -10,8 +10,8 @@
     * If the letter in <span style="color: #A9A9A9; font-weight: bold">grey</span>, then it is not in the word  in any spot.
 
 ## Approach
-***This app built using React***
-The app starts by generating a random word of 5 letters using a [third party API](https://random-word-api.herokuapp.com/). Then we start listening on the keyup event so we can store the the guessed word in *currentGuess* state.
+***This app built using React***<br>
+The app starts by generating a random word of 5 letters using a [third party API](https://random-word-api.herokuapp.com/). Then we start listening on the keyup event so we can store the the guessed word in *currentGuess* state.<br>
 After the user clicks **Enter** we first check the existence of the guessed word using [this API](https://dictionaryapi.dev/) if this word exist and not previously guessed and the user still has enough turns then we format this word as objects of `{letter, color}` while *letter* represents each letter of this word and *color* respresent the color of each letter based on the status of your guess as described in [Game logic](#game-logic) section, and store the formatted word in *guesses* state.
 
 
