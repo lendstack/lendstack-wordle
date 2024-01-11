@@ -1,77 +1,82 @@
-import React, { ChangeEvent, useEffect } from 'react'
-import { EnglishWordSchema } from '../utils/validation';
-import WordsList from './WordsList';
+import React, { ChangeEvent, useEffect } from "react";
+import { EnglishWordSchema } from "../utils/validation";
 import "../App.css";
-import { generateRandomWord } from '../utils/generate-word';
+import { generateRandomWord } from "../utils/generate-word";
+import GameHeader from "./ GameHeader";
+import GameOverDisplay from "./GameOverDisplay";
+import InputForm from "./ InputForm";
+import ErrorComponent from "./ErrorComponent";
+import AttemptsDisplay from "./AttemptsDisplay";
+import { HistoryDisplay } from "./HistoryDisplay";
+import { ZodError } from "zod";
 
 export default function Wordle() {
-    const [wordList, setWordList] = React.useState<string[]>([]);
-    const [guessedWord, setGuessedWord] = React.useState<string>("");
-    const [targetWord, setTargetWord] = React.useState<string>("");
-    const [attempts, setAttempts] = React.useState<number>(6);
-    const [errorMessage, setErrorMessage] = React.useState<string | null>(null);
-    const [gameOver, setGameOver] = React.useState<boolean>(false);
-    useEffect(() => {
-      setTargetWord(generateRandomWord(5));
-    }, []);
-    useEffect(() => {
-      if (attempts === 0 || (guessedWord === targetWord && guessedWord !== '')) {
-        setGameOver(true);
-      }
-    }, [attempts, guessedWord, targetWord]);
+  const [wordList, setWordList] = React.useState<string[]>([]);
+  const [guessedWord, setGuessedWord] = React.useState<string>("");
+  const [targetWord, setTargetWord] = React.useState<string>(generateRandomWord(5));
+  const [attempts, setAttempts] = React.useState<number>(6);
+  const [errorMessage, setErrorMessage] = React.useState<string | null>(null);
+  const [gameOver, setGameOver] = React.useState<boolean>(false);
 
-    const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
-      setGuessedWord(e.target.value);
-      setErrorMessage(null);
-    }
-    const handleOnClick = async () => {
-      if (!attempts)
-        return;
-      try
-      {
-        console.log(targetWord);
-        await EnglishWordSchema.parseAsync(guessedWord);
-        setWordList([...wordList, guessedWord]);
-        setGuessedWord('');
-        setAttempts(attempts - 1);
-      }catch(error: any){
-        setErrorMessage(error.errors[0].message ?? error.message ?? "Unknown error");
-        setGuessedWord('');
-      }
-    }
-    const resetGame = () => {
-      setWordList([]);
-      setGuessedWord('');
-      setTargetWord(generateRandomWord(5));
-      setAttempts(6);
-      setGameOver(false);
+
+	useEffect(() => {
+		if (attempts === 0 || (guessedWord === targetWord && guessedWord !== "")) {
+			setGameOver(true);
+		}
+  }, [attempts, guessedWord, targetWord]);
+
+  const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setGuessedWord(e.target.value);
+    setErrorMessage(null);
   };
-    return (
-    <div>
-      <h1>Wordle Quest</h1>
-      {gameOver === true ? (
-        <div className="game-over-container">
-          <p className="game-over-message">
-            {targetWord === guessedWord ? "Congratulations! You won!" : "Game Over! You lost!"}
-          </p>
-          <button className="play-again-button" onClick={resetGame}>
-            Play Again
-          </button>
-        </div>
-      )
-      : (
-      <>
-      <div className='input-button-container'>
-        <input placeholder="Enter a word" value={guessedWord} onChange={handleOnChange}/>
-        <button onClick={handleOnClick}>Submit</button>
-      </div>
-        {errorMessage && <p className="error-label" style={{ color: 'red' }}>{errorMessage}</p>}
-        <p className='attempts'>Remaining attempts: {attempts}</p>
-      <div className='list-container'>
-          {wordList.map((word) => <WordsList guessedWord= {word} targetWord = {targetWord}/>)}
-      </div></>
-      )
+
+  const handleOnClick = async () => {
+    if (!attempts) return;
+    try {
+      console.log(guessedWord);
+      await EnglishWordSchema.parseAsync(guessedWord);
+      setWordList([...wordList, guessedWord]);
+      setGuessedWord("");
+      setAttempts(attempts - 1);
+    } catch (error: any) {
+      if (error instanceof ZodError) setErrorMessage(error.errors[0].message);
+    	else setErrorMessage("An unexpected error occurred");
+      setGuessedWord("");
     }
+  };
+
+  const resetGame = () => {
+    setWordList([]);
+    setGuessedWord("");
+    setTargetWord(generateRandomWord(5));
+    setAttempts(6);
+    setGameOver(false);
+  };
+
+  return (
+    <div>
+      <GameHeader />
+      {gameOver === true ? (
+        <GameOverDisplay
+          message={
+            targetWord === guessedWord
+              ? "Congratulations! You won!"
+              : "Game Over! You lost!"
+          }
+          onPlayAgain={resetGame}
+        />
+      ) : (
+        <>
+          <InputForm
+            guessedWord={guessedWord}
+            handleOnChange={handleOnChange}
+            handleOnClick={handleOnClick}
+          />
+          <ErrorComponent message={errorMessage} />
+          <AttemptsDisplay attempts={attempts} />
+          <HistoryDisplay wordList={wordList} targetWord={targetWord} />
+        </>
+      )}
     </div>
-  )
+  );
 }
