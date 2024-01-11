@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { GameInfo } from "../components/game-info";
+import { Helmet } from "react-helmet";
 
 export default function HomePage() {
   const [open, setOpen] = useState(false);
@@ -22,6 +23,11 @@ export default function HomePage() {
   // },[])
   return (
     <div className="flex flex-col justify-center items-center min-h-screen cursor-default">
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>HixCoder Wordle</title>
+        <meta name="description" content="A simple wodle game for you!" />
+      </Helmet>
       <GameInfo open={open} onClose={handleClose} />
       <img src="/logo.svg" className="w-48 h-48" alt="logo" />
       <h1 className="text-2xl my-4">HixCoder Wordle</h1>
