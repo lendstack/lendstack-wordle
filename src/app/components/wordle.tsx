@@ -16,7 +16,6 @@ export default function wordle(WordleProps : { word: string }) {
 	
 	useEffect(() => {
 		window.addEventListener('keyup', handleInput);
-		console.log(WordleProps.word);
 		return () => {
 			window.removeEventListener('keyup', handleInput)
 		};

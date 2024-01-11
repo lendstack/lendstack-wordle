@@ -5,8 +5,6 @@ import Wordle from './components/wordle'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-// let word: string = "";
-
 export default function Home() {
 
   const [word, setWord] = useState<string>("");
@@ -15,9 +13,7 @@ export default function Home() {
       try {
         const response = await fetch('https://random-word-api.herokuapp.com/word?length=5');
         const data = await response.json();
-        // word = data[0];
         setWord(data[0].toUpperCase());
-        console.log(data);
       }
       catch (error) {
         console.log(error);
