@@ -33,7 +33,6 @@ export default function Wordle() {
   const handleOnClick = async () => {
     if (!attempts) return;
     try {
-      console.log(targetWord);
       await EnglishWordSchema.parseAsync(guessedWord);
       setWordList([...wordList, guessedWord]);
       setGuessedWord("");
@@ -45,7 +44,6 @@ export default function Wordle() {
     }
   };
   const closeErrorPopup = () => {
-    console.log("Closing error popup");
     setErrorMessage(null);
   };
 
