@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const IntroductionPopup = ({ isOpen, setIsOpen }) => {
+const IntroductionPopup = ({ setIsOpen }) => {
 
 
   const closePopup = () => {

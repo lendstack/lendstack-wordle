@@ -23,7 +23,6 @@ function App() {
     guessedWord: false
   });
   const [isOpen, setIsOpen] = useState(true);
-  console.log(cerrectWord);
   const [openCard, setOpenCard] = useState(false);
   useEffect(() => {
     generateWordSet().then((words) => {

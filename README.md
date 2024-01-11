@@ -21,6 +21,9 @@ Wordel Game is a React-based web application designed to provide an engaging wor
 First, run the development server:
 
 ```bash
+#to install the depencies
+npm install
+#to run the app
 npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.

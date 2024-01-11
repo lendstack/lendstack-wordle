@@ -6,6 +6,7 @@ function Letter({ letterPos, attemptVal }) {
   const letter = board[attemptVal][letterPos];
 
   const correct = cerrectWord.toUpperCase()[letterPos] === letter;
+  
   const almost = !correct && letter !== "" && cerrectWord.toUpperCase().includes(letter);
 
   const letterState =
@@ -14,11 +15,9 @@ function Letter({ letterPos, attemptVal }) {
 
   useEffect(() => {
     if (letter !== "" && !correct && !almost) {
-      console.log(letter);
       setDisabledLetter((prev) => [...prev, letter]);
     }
   }, [currAttempt.attempt]);
-
   return (
     <div className='letter' id={letterState}>
       {letter}
