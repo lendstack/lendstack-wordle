@@ -75,7 +75,7 @@ export async function getScoreByUserid() {
       .from("dataProject")
       .select("*")
       .eq("user_id", session.user.id);
-    console.log("result.data=", result.data);
+    console.log("result.data=", result, result.data);
     return result.data;
   }
   return null;
