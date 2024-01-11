@@ -38,7 +38,7 @@ const Game = () => {
   };
 
   return (
-    <div className="flex flex-col items-center h-screen">
+    <div className="flex flex-col items-center h-screen k">
       <NavBar />
       <div className="h-full flex flex-col justify-center items-center w-[25rem]">
         <WordDisplay data={data} guess={guess} />
