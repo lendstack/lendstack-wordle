@@ -17,6 +17,7 @@ interface WordleModalProps {
     title: string;
     word: string;
     round?: number;
+    isCorrect: boolean;
 }
 
 const WordleModal = (props: WordleModalProps) => {
@@ -35,7 +36,7 @@ const WordleModal = (props: WordleModalProps) => {
                         <span className="font-bold">{props.word}</span>
                     </p>
                     <p>
-                        {props.round && (
+                        {props.isCorrect && (
                             <span>
                                 You have guessed the word in {props.round}{' '}
                                 turn(s)

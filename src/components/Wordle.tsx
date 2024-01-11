@@ -20,7 +20,7 @@ const Wordle = ({ word }: any) => {
             setTitle('Yaay!! You win');
             window.removeEventListener('keyup', HandleKeys);
         }
-        if (round > 5) {
+        if (round > 5 && !isCorrect) {
             if (!isOver) onOpen();
             setIsOver(true);
             setTitle('You are out of guesses');
@@ -56,6 +56,7 @@ const Wordle = ({ word }: any) => {
                     title={title}
                     word={word}
                     round={round}
+                    isCorrect={isCorrect}
                 />
             )}
         </>
