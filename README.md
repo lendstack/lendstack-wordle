@@ -42,5 +42,5 @@ Each guess is subjected to the following checks:
 ## Running the Game
 
 To run the game locally, use:
-    - npm i .
-    - npm run start .
+- `npm i `.
+- `npm run start `.
