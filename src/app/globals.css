@@ -34,6 +34,25 @@ body {
   animation: pop 0.5s ease forwards;
 }
 
+.keyboardGrid {
+  min-width: 500px;
+  width: 500px;
+  margin: 20px;
+  text-align-last: center;
+  text-align: center;
+}
+
+.keyboardGrid > div {
+  display: inline-block;
+  margin: 3px;
+}
+
+@media (min-width: 500px) {
+  .mobileWidth {
+    width: 100%;
+  }
+}
+
 @keyframes spin {
   0% {
     transform: rotateX(0deg);

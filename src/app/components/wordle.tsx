@@ -26,7 +26,7 @@ export default function wordle(WordleProps : { word: string }) {
 	const handleMouseClick = (e: MouseEvent) => {
 		if (
 			e.target instanceof Element &&
-			e.target.className === 'absolute w-full h-[calc(100%-68px)] min-h-[1032px] flex items-center justify-center bg-[#00000099]'
+			e.target.className === 'absolute mobileWidth h-[calc(100%-68px)] min-h-[1032px] flex items-center justify-center bg-[#00000099]'
 		) {
 			setShowHowTo(false);
 		}
@@ -39,7 +39,6 @@ export default function wordle(WordleProps : { word: string }) {
 		  document.removeEventListener('mousedown', handleMouseClick);
 		};
 	  }, []);
-
 
   return (
 	<div className='w-full'>
@@ -85,15 +84,17 @@ export default function wordle(WordleProps : { word: string }) {
 					</div>
 				</div>
 				{/* wordle game keyboard */}
-				<div className='grid grid-cols-10 gap-[6px] mt-[20px]'>
+				<div className='gap-[6px] mt-[20px] keyboardGrid'>
 					{keyboard
 					&& keyboard.map((item, index) => (
 						<div
 							key={index}
 							style={{ backgroundColor: item.color }}
-							className='w-[43px] h-[58px] mb-[2px] font-bold text-[1.25em] flex justify-center items-center bg-[#818384] rounded'
+							className={`w-[43px] h-[58px] mb-[2px] font-bold text-[1.25em] bg-[#818384] rounded`}
 						>
-							{item.key}
+							<div className='flex justify-center items-center h-full'>
+								{item.key}
+							</div>
 						</div>
 					))
 				}

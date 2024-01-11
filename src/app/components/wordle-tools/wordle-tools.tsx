@@ -102,6 +102,15 @@ export default function wordleTools({ word }: WordleToolsProps) {
 						wordsCache[solution] = WORD_STATUS.INVALID;
 						console.error("Invalid english word");
 					}
+					for (let k = 0; k < keyboard.length; k++)
+					{
+						for (let i = 0; i < history.length; i++)
+						{
+							const res = history[i].find((item) => item.key === keyboard[k].key)?.color;
+							if (res)
+								keyboard[k].color = res;
+						}
+					}
 				}
 				catch (error)
 				{
