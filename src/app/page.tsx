@@ -1,7 +1,7 @@
 "use client";
 import { useEffect } from "react";
-import Game from "./_game/game";
-import Keyboard from "./keyboard";
+import Game from "./_game";
+import Keyboard from "./_keyboard";
 import Swal from "sweetalert2";
 import { getLocalStorage } from "@/utils/local";
 
@@ -30,6 +30,7 @@ export default function Home() {
       `,
       });
   }, []);
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-center gap-4">
       <h1 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-blue-500">

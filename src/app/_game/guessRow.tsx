@@ -2,7 +2,7 @@
 import { WordleContext } from "@/context/WordleContext";
 import { useContext, useEffect, useState } from "react";
 
-export default function Row({ guessedWord }: { guessedWord: String }) {
+export default function GuessRow({ guessedWord }: { guessedWord: String }) {
     const { word } = useContext(WordleContext)!;
   
     return (

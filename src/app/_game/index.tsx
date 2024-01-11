@@ -3,7 +3,7 @@
 import { UtilityContext } from "@/context/UtilityContext";
 import { WordleContext } from "@/context/WordleContext";
 import { useContext, useEffect } from "react";
-import Row from "./row";
+import GuessRow from "./guessRow";
 
 
 export default function Game() {
@@ -25,7 +25,7 @@ export default function Game() {
     <section>
       <div className="flex flex-col gap-1 md:gap-2">
         {new Array(6).fill(0).map((_, i) => (
-          <Row key={`${guesses[i]}-${i}`} guessedWord={guesses[i]} />
+          <GuessRow key={`${guesses[i]}-${i}`} guessedWord={guesses[i]} />
         ))}
       </div>
     </section>
