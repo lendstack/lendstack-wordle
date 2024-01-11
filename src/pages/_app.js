@@ -77,6 +77,31 @@ function App() {
       <nav>
         <h1>Wordle Game</h1>
       </nav>
+      <div class="leaves">
+            <div class="set">
+                <div><img src="./img/leaf_01.png" /></div>
+                <div><img src="./img/leaf_01.png" /></div>
+                <div><img src="./img/leaf_01.png" /></div>
+                <div><img src="./img/leaf_01.png" /></div>
+                <div><img src="./img/leaf_01.png" /></div>
+                <div><img src="./img/leaf_01.png" /></div>
+                <div><img src="./img/leaf_01.png" /></div>
+                <div><img src="./img/leaf_01.png" /></div>
+                <div><img src="./img/leaf_01.png" /></div>
+                <div><img src="./img/leaf_01.png" /></div>
+                <div><img src="./img/leaf_01.png" /></div>
+                <div><img src="./img/leaf_01.png" /></div>
+                <div><img src="./img/leaf_01.png" /></div>
+                <div><img src="./img/leaf_01.png" /></div>
+                <div><img src="./img/leaf_01.png" /></div>
+                <div><img src="./img/leaf_01.png" /></div>
+                <div><img src="./img/leaf_01.png" /></div>
+                <div><img src="./img/leaf_01.png" /></div>
+                <div><img src="./img/leaf_01.png" /></div>
+                <div><img src="./img/leaf_01.png" /></div>
+                <div><img src="./img/leaf_01.png" /></div>
+            </div>
+        </div>
       <AppContext.Provider 
       value={ { board,
                 setBoard,
