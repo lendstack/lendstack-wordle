@@ -9,15 +9,15 @@ To run the project locally, follow these steps:
 1. Clone the repository:
 
 ```bash
-   git clone https://github.com/ahmedelbahri/lendstack-wordle
-	Navigate to the project directory:
+git clone https://github.com/ahmedelbahri/lendstack-wordle
 ```
 
+Navigate to the project directory:
 ```bash
 cd wordle-project
-Install dependencies:
 ```
 
+Install dependencies:
 ```bash
 npm install
 Start the development server:
@@ -25,8 +25,8 @@ Start the development server:
 
 ```bash
 npm run dev
-Open your browser and visit http://localhost:3000 to view the Wordle application.
 ```
+Open your browser and visit http://localhost:3000 to view the Wordle application.
 
 Project Structure
 The project structure is organized as follows:
