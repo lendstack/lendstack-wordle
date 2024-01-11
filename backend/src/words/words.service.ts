@@ -20,8 +20,7 @@ const wordBank = [
 
 @Injectable()
 export class WordsService {
-  getRandomWord(): string {
-    const randomIndex = Math.floor(Math.random() * wordBank.length);
-    return wordBank[randomIndex];
+  getWords(): string[] {
+    return wordBank;
   }
 }

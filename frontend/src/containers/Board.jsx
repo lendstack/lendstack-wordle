@@ -1,15 +1,25 @@
 import { useEffect, useState } from "react";
 import { keyboardRows } from "../constant";
 import Row from "../components/board/Row";
+import { WORDS_URL } from "../constant";
+import useWordBank from "../hooks/useWordBank";
+import KeyBoard from "./KeyBoard";
 
 const Board = () => {
-  const [solution, setSolution] = useState("hello");
+  const { words, loading, error } = useWordBank(WORDS_URL);
+  const [solution, setSolution] = useState("");
   const [guesses, setGuesses] = useState(new Array(6).fill(null));
   const [currentGuess, setCurrentGuess] = useState('');
   const [isGameOver, setIsGameOver] = useState(false);
   const [incorrectGuesses, setIncorrectGuesses] = useState(0);
   const keyboard = keyboardRows.flat();
 
+  useEffect(() => {
+    if (words){
+      const word = words[Math.floor(Math.random() * words.length)]
+      setSolution(word);
+    }
+  }, [words]);
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -21,6 +31,11 @@ const Board = () => {
         if (key === 'enter') {
           if (currentGuess.length !== 5){
             alert("not enough letters")
+            return;
+          }
+
+          if (!words.includes(currentGuess)){
+            alert("this word not in the list");
             return;
           }
   
@@ -36,11 +51,7 @@ const Board = () => {
             setIncorrectGuesses((prevCount) => prevCount + 1);
 
         if (incorrectGuesses + 1 === 6) {
-          alert("You've reached 6 incorrect guesses. Game over!");
-          setGuesses(new Array(6).fill(null));
-          setCurrentGuess('');
-          setIsGameOver(false);
-          setIncorrectGuesses(0);
+          resetGame();
         }
           }
         }
@@ -61,7 +72,23 @@ const Board = () => {
     window.addEventListener('keydown', handleKeyDown);
 
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [currentGuess, solution, guesses, isGameOver, keyboard, incorrectGuesses]);
+  }, [currentGuess, solution, guesses, isGameOver, keyboard, incorrectGuesses, words]);
+
+  function resetGame(){
+    alert("You've reached 6 incorrect guesses. Game over!");
+    setGuesses(new Array(6).fill(null));
+    setCurrentGuess('');
+    setIsGameOver(false);
+    setIncorrectGuesses(0);
+  }
+
+  if (loading) {
+    return <p className="flex justify-center items-center">Loading...</p>;
+  }
+
+  if (error) {
+    return <p>Error: {error.message}</p>;
+  }
 
   return (
     <section className="flex justify-center">
@@ -76,6 +103,7 @@ const Board = () => {
           )
         })}
       </div>
+      {/* <KeyBoard /> */}
     </section>
   )
 }

@@ -5,7 +5,7 @@ import { WordsService } from './words.service';
 export class WordsController {
   constructor(private wordsService: WordsService) {}
   @Get('random')
-  getRandomWord(): string {
-    return this.wordsService.getRandomWord();
+  getWords(): string[] {
+    return this.wordsService.getWords();
   }
 }
