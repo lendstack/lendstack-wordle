@@ -109,9 +109,9 @@ export const GlobalContextProvider = ({
       }
     }
   };
-  useEffect(() => {
-    getDataFromSupa();
-  }, []);
+  // useEffect(() => {
+  //   getDataFromSupa();
+  // }, []);
   return (
     <GlobalContext.Provider
       value={{
@@ -122,7 +122,6 @@ export const GlobalContextProvider = ({
         lengthWord,
       }}
     >
-      <div>test</div>
       {children}
       <AlertTutorial />
     </GlobalContext.Provider>
