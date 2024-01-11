@@ -6,7 +6,7 @@ import KeyPad from './KeyPad';
 import WordleModal from './WordleModal';
 
 const Wordle = ({ word }: any) => {
-    const { currentGuess, HandleKeys, guesses, isCorrect, round, usedKeys } =
+    const { currentGuess, HandleKeys, guesses, isCorrect, round, usedKeys, previousGuesses } =
         useWordle(word);
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [isOver, setIsOver] = useState<boolean>(false);
@@ -33,12 +33,13 @@ const Wordle = ({ word }: any) => {
     useEffect(() => {
         console.log('round:', round);
         console.log('isCorrect:', isCorrect);
-    }, [round, isCorrect]);
+        console.log('currentGuess:', currentGuess);
+        console.log('previousGuesses:', previousGuesses);
+    }, [round, isCorrect, previousGuesses]);
     return (
         <>
             {/* <h2>Guess: {currentGuess}</h2> */}
             <label htmlFor="current">Guess: </label>
-            <input type="text" value={currentGuess} />
             <Flex justifyContent={'space-between'} flexDirection={'column'}>
                 <WordleGrid
                     currentGuess={currentGuess}

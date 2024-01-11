@@ -121,6 +121,6 @@ const useWordle = (word: string) => {
         if (key === 'Backspace')
             setCurrentGuess(currentGuess.slice(0, currentGuess.length - 1));
     };
-    return { currentGuess, HandleKeys, isCorrect, round, guesses, usedKeys };
+    return { currentGuess, HandleKeys, isCorrect, round, guesses, usedKeys, previousGuesses };
 };
 export default useWordle;

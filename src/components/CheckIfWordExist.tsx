@@ -9,7 +9,7 @@ const CheckIfWordExist = async (word : string) => {
         if (response.status === 404) return false;
         return true;
     } catch (error) {
-        console.error('Error checking if word exist:', error);
+        // console.error('Error checking if word exist:', error);
         return false;
     }
 };

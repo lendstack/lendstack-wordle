@@ -47,11 +47,18 @@ const WordleModal = (props: WordleModalProps) => {
                 <ModalFooter>
                     <Link
                         to={'/'}
-                        style={{ marginRight: '12px', fontWeight: 'bold' }}
+                        style={{
+                            marginRight: '12px',
+                            fontWeight: 'bold',
+                            backgroundColor: '#E3651D',
+                            color: '#fff',
+                            padding: '12px',
+                            borderRadius: '8px'
+                        }}
                     >
                         Back to Home
                     </Link>
-                    <Link to={'/play'}>
+                    {/* <Link to={'/play'}>
                         <Button
                             bg={'#E3651D'}
                             color={'#fff'}
@@ -60,7 +67,7 @@ const WordleModal = (props: WordleModalProps) => {
                         >
                             Try again
                         </Button>
-                    </Link>
+                    </Link> */}
                 </ModalFooter>
             </ModalContent>
         </Modal>
