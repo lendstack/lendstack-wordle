@@ -1,7 +1,7 @@
 import wordDb from "./word-db.json";
 import CryptoJS from "crypto-js";
 
-const MySecret = import.meta.env.VITE_SECRET_KEY ?? "mysecret11111";
+const MySecret = import.meta.env.VITE_SECRET_KEY ?? "mysecretkey";
 export enum LetterState {
   Miss = "Miss", // Letter doesn't exist at all
   Present = "Present", // Letter exists but wrong location
