@@ -84,22 +84,22 @@ This Wordle game project includes several key features:
 ## Screenshot
 
 - Home Page
-  ![Welcome](https://github.com/ahammamlho/Lendstack-Wordle/blob/main/screen-shot/pageHome.png?raw=true)
+  ![Welcome](https://github.com/ahammamlho/Lendstack-Wordle/blob/worlde-ahammam/screen-shot/pageHome.png?raw=true)
 
 - How to play Alert
-  ![TutoAlert](https://github.com/ahammamlho/Lendstack-Wordle/blob/main/screen-shot/AlertTuto.png?raw=true)
+  ![TutoAlert](https://github.com/ahammamlho/Lendstack-Wordle/blob/worlde-ahammam/screen-shot/AlertTuto.png?raw=true)
 
 - Game Page
-  ![game](https://github.com/ahammamlho/Lendstack-Wordle/blob/main/screen-shot/gamePage.png?raw=true)
+  ![game](https://github.com/ahammamlho/Lendstack-Wordle/blob/worlde-ahammam/screen-shot/gamePage.png?raw=true)
 
 - Leaderboard Page
-  ![Leaderboard](https://github.com/ahammamlho/Lendstack-Wordle/blob/main/screen-shot/leaderboardPage.png?raw=true)
+  ![Leaderboard](https://github.com/ahammamlho/Lendstack-Wordle/blob/worlde-ahammam/screen-shot/leaderboardPage.png?raw=true)
 
 - Statistics Alert
-  ![Statistics](https://github.com/ahammamlho/Lendstack-Wordle/blob/main/screen-shot/AlertStatisticsWin.png?raw=true)
+  ![Statistics](https://github.com/ahammamlho/Lendstack-Wordle/blob/worlde-ahammam/screen-shot/AlertStatisticsWin.png?raw=true)
 
 - Statistics Alert
-  ![Statistics](https://github.com/ahammamlho/Lendstack-Wordle/blob/main/screen-shot/AlertStatisticsLose.png?raw=true)
+  ![Statistics](https://github.com/ahammamlho/Lendstack-Wordle/blob/worlde-ahammam/screen-shot/AlertStatisticsLose.png?raw=true)
 
 - Settings Alert
-  ![Settings](https://github.com/ahammamlho/Lendstack-Wordle/blob/main/screen-shot/AlertSettings.png?raw=true)
+  ![Settings](https://github.com/ahammamlho/Lendstack-Wordle/blob/worlde-ahammam/screen-shot/AlertSettings.png?raw=true)
