@@ -16,6 +16,10 @@
   }
 }
 
+.dynamic-bg {
+  background: rgb(var(--background-start-rgb));
+}
+
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
