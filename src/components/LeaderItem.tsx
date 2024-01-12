@@ -32,7 +32,7 @@ export default function LeaderBItem({
          : ""
      }`}
     >
-      <p className=" text-blue-500 font-700 text-2xl  ">{`# ${playerRank}`}</p>
+      <p className=" text-blue-500 font-700 text-2xl  ">{`#${playerRank}`}</p>
 
       <div className="flex items-center w-5/12 ">
         <img

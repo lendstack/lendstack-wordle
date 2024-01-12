@@ -13,7 +13,7 @@ export default function Letter({
           : "w-[3rem] h-[3rem] text-[20px]"
       }  
           ${keyData.color} 
-          flex  justify-center items-center text-white font-bold  rounded-md border-[0.5px] border-gray-500`}
+          flex  justify-center items-center text-white font-bold  rounded-md border-[1px] border-black`}
     >
       {keyData.letter === "*" ? "" : keyData.letter}
     </div>

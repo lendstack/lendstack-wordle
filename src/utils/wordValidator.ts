@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const WordValidator = async (geuss: string): Promise<boolean> => {
+const WordValidator = async (geuss: string) => {
   const options = {
     method: "GET",
     url: `https://wordsapiv1.p.rapidapi.com/words/${geuss}`,
@@ -11,11 +11,11 @@ const WordValidator = async (geuss: string): Promise<boolean> => {
   };
   try {
     const response = await axios(options);
-    if (response.status === 200) return true;
+    if (response.status === 200) return response.data.results;
   } catch (error) {
     console.error(error);
   }
-  return false;
+  return null;
 };
 
 export default WordValidator;

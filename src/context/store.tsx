@@ -30,6 +30,7 @@ const GlobalContext = createContext<ContextProps>({
     isGameOver: false,
     gridType: 6,
     randomWord: "",
+    definition: "",
     guesses: [],
     numAttempts: 0,
     played: 0,
@@ -56,6 +57,7 @@ export const GlobalContextProvider = ({
     isGameOver: false,
     gridType: gridType,
     randomWord: "",
+    definition: "",
     guesses: Array.from({ length: gridType }, () => "*".repeat(lengthWord)),
     numAttempts: 0,
     played: 0,
@@ -79,7 +81,8 @@ export const GlobalContextProvider = ({
         if (tmp) {
           setData((preValue) => {
             let newData = { ...preValue };
-            newData.randomWord = tmp.toUpperCase();
+            newData.randomWord = tmp.randomWord.toUpperCase();
+            newData.definition = tmp.definition;
             encryptData(newData);
             return newData;
           });

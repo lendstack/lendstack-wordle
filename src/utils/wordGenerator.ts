@@ -1,5 +1,8 @@
 import axios from "axios";
-const WordGenerator = async (lengthWord: number): Promise<string> => {
+import WordValidator from "./wordValidator";
+const WordGenerator = async (
+  lengthWord: number
+): Promise<{ randomWord: string; definition: string }> => {
   const options = {
     method: "GET",
     url: "https://wordsapiv1.p.rapidapi.com/words",
@@ -12,12 +15,18 @@ const WordGenerator = async (lengthWord: number): Promise<string> => {
   try {
     while (true) {
       const response = await axios(options);
-      if (/^[A-Za-z]+$/.test(response.data.word)) return response.data.word;
+      if (/^[A-Za-z]+$/.test(response.data.word)) {
+        if (!response.data.results) continue;
+        return {
+          randomWord: response.data.word,
+          definition: response.data.results[0].definition,
+        };
+      }
     }
   } catch (error) {
     console.error(error);
   }
-  return "";
+  return { randomWord: "", definition: "" };
 };
 
 export default WordGenerator;

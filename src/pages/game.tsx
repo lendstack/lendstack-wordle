@@ -1,14 +1,16 @@
 import { useState } from "react";
+import { TbHelpOctagonFilled } from "react-icons/tb";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import AlertStatistcs from "../components/AlertStatistcs";
+import NavBar from "../components/NavBar";
 import SubmitButton from "../components/SubmitButton";
 import WordDisplay from "../components/WordDisplay";
 import WordInput from "../components/WordInput";
-import WordValidator from "../utils/wordValidator";
 import { useGlobalContext } from "../context/store";
-import NavBar from "../components/NavBar";
 import { encryptData } from "../utils/crypto";
-import AlertStatistcs from "../components/AlertStatistcs";
+import WordValidator from "../utils/wordValidator";
+import AlertHelp from "../components/AlertHelp";
 
 const Game = () => {
   const { data, setData, lengthWord } = useGlobalContext();
@@ -32,7 +34,7 @@ const Game = () => {
           toast.info(`${guess} not a word`);
         }
       } else {
-        toast.info(`wold must be exactly ${lengthWord} characters long!`);
+        toast.info(`word must be exactly ${lengthWord} characters long!`);
       }
     }
   };
@@ -41,6 +43,8 @@ const Game = () => {
     <div className="flex flex-col items-center h-screen ">
       <NavBar />
       <div className="h-full flex flex-col justify-center items-center">
+        <AlertHelp />
+
         <WordDisplay data={data} guess={guess} />
         {data.numAttempts < data.guesses.length && (
           <form

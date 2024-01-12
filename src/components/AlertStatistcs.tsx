@@ -61,7 +61,7 @@ export default function AlertStatistcs() {
                   <p className="text-[20px] font-serif">
                     {((data.numWins / data.played) * 100).toFixed()}
                   </p>
-                  <p className="text-[18px] font-extralight">Win %</p>
+                  <p className="text-[18px] font-extralight">Win%</p>
                 </div>
               </div>
               <div className="text-[20px] flex justify-center items-start ">
@@ -87,7 +87,7 @@ export default function AlertStatistcs() {
           </DialogContent>
           <div className="flex  justify-evenly mb-2">
             <button
-              className="w-[8rem] py-1  bg-green-500 hover:bg-green-600 text-white rounded-2xl text-center"
+              className="px-3 py-1  bg-green-500 hover:bg-green-600 text-white rounded-2xl text-center"
               onClick={async () => {
                 setOpen(false);
                 const tmp = await WordGenerator(lengthWord);
@@ -95,7 +95,8 @@ export default function AlertStatistcs() {
                   setData((preData) => {
                     const newData = {
                       ...preData,
-                      randomWord: tmp.toUpperCase(),
+                      randomWord: tmp.randomWord.toUpperCase(),
+                      definition: tmp.definition,
                       numAttempts: 0,
                       isGameOver: false,
                       guesses: preData.guesses.map((guess) =>
@@ -112,7 +113,7 @@ export default function AlertStatistcs() {
             </button>
             {!isWin && (
               <button
-                className="w-[8rem] py-1  bg-blue-500 hover:bg-blue-600 text-white rounded-2xl text-center"
+                className="px-6 py-1  bg-blue-500 hover:bg-blue-600 text-white rounded-2xl text-center"
                 onClick={() => {
                   setOpen(false);
                   setData((preData) => {

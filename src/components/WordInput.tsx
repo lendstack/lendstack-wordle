@@ -11,9 +11,9 @@ export default function wordInput({
   const { lengthWord } = useGlobalContext();
   return (
     <div className="flex gap-2 mt-2  justify-center">
-      <div className="flex bg-[#F6F7FA] mt-0  border rounded-[10px]  w-[10rem] md:w-[15rem]">
+      <div className="flex bg-[#F6F7FA] mt-0  border-[1px] border-black rounded-md">
         <input
-          className="bg-[#F6F7FA] m-1 p-1 flex flex-grow  w-[8rem] md:w-[15rem]
+          className="bg-[#F6F7FA] m-1 p-1 flex flex-grow  
                         text-black placeholder-gray-600 text-sm outline-none"
           type="text"
           placeholder="Enter guess"
@@ -25,7 +25,7 @@ export default function wordInput({
                 setGuess(value);
               } else {
                 toast.info(
-                  `wold must be exactly ${lengthWord} characters long!`
+                  `word must be exactly ${lengthWord} characters long!`
                 );
               }
             } else {

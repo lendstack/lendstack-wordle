@@ -3,7 +3,10 @@ export interface DataDTO {
   isGameOver: boolean;
 
   gridType: number;
+
   randomWord: string;
+  definition: string;
+
   guesses: string[];
   numAttempts: number;
 
