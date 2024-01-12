@@ -44,7 +44,7 @@ const Home = () => {
             }}
           >
             <img src={googleLogo} alt="googleLogo" className="h-[1.5rem]" />
-            <p>Sign in with google</p>
+            <p>Sign in with google 1</p>
           </button>
         }
 
