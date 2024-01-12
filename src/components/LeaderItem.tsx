@@ -23,7 +23,8 @@ export default function LeaderBItem({
     flex flex-row  hover:scale-105 justify-around
      bg-slate-200 items-center  hover:text-black text-black
      rounded-lg hover:border border-black
-     w-[30rem] py-3 my-4
+     sm:min-w-[30rem] py-3 my-4
+     
     ${playerRank === 1 ? "scale-105 hover:scale-110 shadow-md" : ""}
      ${
        user && user.user.id === dataScore.user_id
@@ -45,7 +46,9 @@ export default function LeaderBItem({
       </div>
 
       <div className="flex items-center w-1/6 justify-between">
-        <div className=" font-400  text-center ">{dataScore.played}</div>
+        <div className=" font-400  text-center hidden sm:block ">
+          {dataScore.played}
+        </div>
         <div className="font-400  text-center ">
           {Number(((dataScore.numWins / dataScore.played) * 100).toFixed()) | 0}
           %

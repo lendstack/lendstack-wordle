@@ -19,13 +19,15 @@ const LeaderBoard = () => {
       <NavBar />
       <div
         className="flex flex-row justify-between text-gray-700 text-center cursor-default
-            font-700 
-           w-[30rem] "
+            font-700  p-2
+           sm:w-[30rem] w-[20rem]"
       >
-        <p className="w-1/6 text-left">Rank</p>
-        <p className="w-2/6  text-center sm:text-left">Profile</p>
-        <p className="w-1/6  text-center sm:text-left">Matches</p>
-        <p className="w-1/6 text-center">Win Rate</p>
+        <p className=" ">Ranking</p>
+        <p className="">Name</p>
+        <div className="flex w-1/3 justify-between">
+          <div className="hidden sm:block">Matches</div>
+          <div className=" ">Win Rate</div>
+        </div>
       </div>
       <div>
         {allScores &&
