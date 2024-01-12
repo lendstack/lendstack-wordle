@@ -38,9 +38,9 @@ const Game = () => {
   };
 
   return (
-    <div className="flex flex-col items-center h-screen k">
+    <div className="flex flex-col items-center h-screen ">
       <NavBar />
-      <div className="h-full flex flex-col justify-center items-center w-[25rem]">
+      <div className="h-full flex flex-col justify-center items-center">
         <WordDisplay data={data} guess={guess} />
         {data.numAttempts < data.guesses.length && (
           <form

@@ -8,7 +8,7 @@ import { createScore, getSession, handleGoogleSignin } from "../utils/supabase";
 
 const Home = () => {
   const navigate = useNavigate();
-  const { setOpenAlertTuto } = useGlobalContext();
+  const { setOpenAlertTuto, lengthWord, data } = useGlobalContext();
 
   const [user, setUser] = useState<any>();
   useEffect(() => {
@@ -24,15 +24,15 @@ const Home = () => {
     <div className="flex flex-col items-center  justify-center  h-screen">
       <img src={logo} alt="logo" className="h-[8rem]" />
       <h1 className="text-[26px] font-bold">Lendstack-Wordle</h1>
-      <p className="text-[26px] my-4">
-        Get 6 chances to guess a 5-letter word.
+      <p className="text-[26px] my-4 overflow-hidden text-center">
+        Get {data.gridType} chances to guess a {lengthWord}-letter word.
       </p>
-      <div className="flex gap-6">
+      <div className="flex gap-6 flex-col sm:flex-row  items-center justify-center">
         <button
           onClick={() => {
             setOpenAlertTuto(true);
           }}
-          className="w-[8rem] py-1 rounded-2xl border-[1px] border-black "
+          className="w-[12rem] py-1 rounded-2xl border-[1px] border-black "
         >
           How to play
         </button>
@@ -57,7 +57,7 @@ const Home = () => {
             navigate("/game");
           }}
           disabled={isClicked}
-          className="w-[8rem] py-1 bg-black text-white rounded-2xl text-center"
+          className="w-[12rem] py-1 bg-black text-white rounded-2xl text-center"
         >
           Play
         </button>

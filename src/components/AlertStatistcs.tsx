@@ -48,7 +48,7 @@ export default function AlertStatistcs() {
         className="bg-white"
         // onClose={() => setOpen(false)}
       >
-        <div className="bg-[#010611be] w-[25rem] rounded-xl border-[1px] border-white flex flex-col">
+        <div className="bg-[#010611be] rounded-xl border-[1px] border-white flex flex-col">
           <DialogContent>
             <div className="flex flex-col text-white ">
               <div className="text-[27px]">STATISTICS :</div>

@@ -21,12 +21,19 @@ export default function NavBar() {
   }, []);
 
   return (
-    <div className="flex items-center  justify-between w-[100%] border-b-[1px] border-gray-700 px-3">
+    <div className="flex items-center  justify-between w-screen border-b-[1px] border-gray-700 p-2 ">
       <Link to="/">
-        <img src={logo} alt="logo" className="h-[2rem] cursor-pointer" />
+        <img
+          src={logo}
+          alt="logo"
+          className="sm:h-[2rem] h-[1.5rem] cursor-pointer"
+        />
       </Link>
 
-      <h1 className="text-[26px] font-bold mt-2  ">Lendstack-Wordle</h1>
+      <h1 className="font-bold mt-2 hiddens sm:text-[26px] text-[16px]">
+        Lendstack-Wordle
+      </h1>
+
       <div className="flex gap-3 items-center">
         <AlertSettings />
 

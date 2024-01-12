@@ -50,10 +50,7 @@ export default function AlertSettings() {
         open={open}
         onClose={() => setOpen(false)}
       >
-        <div
-          className="bg-[#010611be] w-[25rem] rounded-xl border-[1px] border-white "
-          color="red"
-        >
+        <div className="bg-[#010611be]  rounded-xl border-[1px] border-white  sm:w-[15rem]">
           <div
             className="flex flex-row justify-end mt-2 mr-2 text-lg"
             onClick={() => {

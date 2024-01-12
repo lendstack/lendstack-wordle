@@ -26,10 +26,7 @@ export default function AlertTutorial() {
         onClose={() => setOpenAlertTuto(false)}
         // className="bg-white"
       >
-        <div
-          className="bg-[#010611be] w-[25rem] rounded-xl border-[1px] border-white "
-          color="red"
-        >
+        <div className="bg-[#010611be] rounded-xl border-[1px] border-white mijn-w-[15rem] max-w-[25rem]">
           <div
             className="flex flex-row justify-end mt-2 mr-2 text-lg"
             onClick={() => {
@@ -51,13 +48,13 @@ export default function AlertTutorial() {
               <p className="text-[17px] ">
                 {` Guess the Wordle in ${data.guesses.length} tries or less.`}
               </p>
-              <div className="flex items-center w-[20rem] mt-2 ">
+              <div className="flex items-center mt-2 ">
                 <GoTriangleRight size={20} className=" " />
-                <p className="text-[14px] font-serif w-[90%]">
+                <p className="text-[14px] font-serif">
                   {`Each guess must be a valid ${lengthWord}-letter word.`}
                 </p>
               </div>
-              <div className="flex items-start justify-start w-[20rem] mt-1">
+              <div className="flex items-start justify-start mt-1">
                 <GoTriangleRight size={20} />
                 <p className="text-[14px] w-[90%] font-serif">
                   The color of the tiles will change to show how close your
