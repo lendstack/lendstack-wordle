@@ -110,7 +110,7 @@ export const GlobalContextProvider = ({
     }
   };
   useEffect(() => {
-    getDataFromSupa();
+    // getDataFromSupa();
   }, []);
   return (
     <GlobalContext.Provider
