@@ -31,7 +31,11 @@ const LeaderBoard = () => {
         {allScores &&
           allScores
             .slice()
-            .sort((a: DataScoreDTO, b: DataScoreDTO) => b.numWins - a.numWins)
+            .sort((a: DataScoreDTO, b: DataScoreDTO) => {
+              const diff = b.numWins - a.numWins;
+              if (diff !== 0) return diff;
+              return b.played - a.played;
+            })
             .map((data: DataScoreDTO, index: number) => {
               return (
                 <LeaderBItem

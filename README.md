@@ -80,3 +80,26 @@ This Wordle game project includes several key features:
 - **Local Storage**: Utilizes browser's local storage to persistently save user data such as number of attempts, games played, and wins.
 - **Data Encryption**: Enhances data security by using crypto-js to encrypt data stored in local storage.
 - [**Word API**](https://rapidapi.com/dpventures/api/wordsapi/): Incorporates a third-party API for generating random words and validating user guesses
+
+## Screenshot
+
+- Home Page
+  ![Welcome](https://github.com/ahammamlho/Lendstack-Wordle/blob/main/screen-shot/pageHome.png?raw=true)
+
+- How to play Alert
+  ![TutoAlert](https://github.com/ahammamlho/Lendstack-Wordle/blob/main/screen-shot/AlertTuto.png?raw=true)
+
+- Game Page
+  ![game](https://github.com/ahammamlho/Lendstack-Wordle/blob/main/screen-shot/gamePage.png?raw=true)
+
+- Leaderboard Page
+  ![Leaderboard](https://github.com/ahammamlho/Lendstack-Wordle/blob/main/screen-shot/leaderboardPage.png?raw=true)
+
+- Statistics Alert
+  ![Statistics](https://github.com/ahammamlho/Lendstack-Wordle/blob/main/screen-shot/AlertStatisticsWin.png?raw=true)
+
+- Statistics Alert
+  ![Statistics](https://github.com/ahammamlho/Lendstack-Wordle/blob/main/screen-shot/AlertStatisticsLose.png?raw=true)
+
+- Settings Alert
+  ![Settings](https://github.com/ahammamlho/Lendstack-Wordle/blob/main/screen-shot/AlertSettings.png?raw=true)

@@ -71,6 +71,7 @@ export const GlobalContextProvider = ({
       if (storedGameData) {
         try {
           isValide = await ValideDataGame(data, storedGameData, lengthWord);
+          console.log(isValide);
         } catch (error) {}
       }
       if (isValide === null) {
