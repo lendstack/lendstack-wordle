@@ -109,9 +109,9 @@ export const GlobalContextProvider = ({
       }
     }
   };
-  // useEffect(() => {
-  //   getDataFromSupa();
-  // }, []);
+  useEffect(() => {
+    getDataFromSupa();
+  }, []);
   return (
     <GlobalContext.Provider
       value={{
