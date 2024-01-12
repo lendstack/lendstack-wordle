@@ -26,7 +26,6 @@ export default function AlertSettings() {
         encryptData(newData);
       return newData;
     });
-    console.log("first", event.target.value);
   };
 
   React.useEffect(() => {

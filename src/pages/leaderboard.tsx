@@ -10,7 +10,6 @@ const LeaderBoard = () => {
     const getScores = async () => {
       const temp = await getAllScore();
       setAllScores(temp);
-      console.log(temp);
     };
     getScores();
   }, []);

@@ -19,11 +19,8 @@ export async function decryptData() {
     ).toString(enc.Utf8);
     try {
       const data = JSON.parse(decrypted);
-      console.log("data=", data);
       return data;
-    } catch (error) {
-      console.log("error=", error);
-    }
+    } catch (error) {}
   }
   return null;
 }

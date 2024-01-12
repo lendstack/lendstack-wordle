@@ -67,12 +67,10 @@ export const GlobalContextProvider = ({
   useEffect(() => {
     const getWold = async () => {
       const storedGameData = await decryptData();
-      console.log("useContext storedGameData=", storedGameData);
       let isValide: DataDTO | null = null;
       if (storedGameData) {
         try {
           isValide = await ValideDataGame(data, storedGameData, lengthWord);
-          console.log(isValide);
         } catch (error) {}
       }
       if (isValide === null) {
@@ -96,9 +94,7 @@ export const GlobalContextProvider = ({
     const session = await getSession();
     if (session) {
       const score: DataScoreDTO[] | null = await getScoreByUserid();
-      console.log("score=", score);
       if (score && score.length !== 0 && score[0]) {
-        console.log("score && score.length", score, score.length);
         setData((preValue) => {
           let newData = { ...preValue };
           newData.played = score[0]?.played | 0;
@@ -110,7 +106,7 @@ export const GlobalContextProvider = ({
     }
   };
   useEffect(() => {
-    // getDataFromSupa();
+    getDataFromSupa();
   }, []);
   return (
     <GlobalContext.Provider

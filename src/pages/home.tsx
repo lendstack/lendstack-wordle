@@ -10,15 +10,16 @@ const Home = () => {
   const navigate = useNavigate();
   const { setOpenAlertTuto } = useGlobalContext();
 
-  // const [user, setUser] = useState<any>();
-  // useEffect(() => {
-  //   const getData = async () => {
-  //     const temp = await getSession();
-  //     setUser(temp);
-  //   };
-  //   getData();
-  // }, []);
+  const [user, setUser] = useState<any>();
+  useEffect(() => {
+    const getData = async () => {
+      const temp = await getSession();
+      setUser(temp);
+    };
+    getData();
+  }, []);
 
+  const [isClicked, setIsClicked] = useState(false);
   return (
     <div className="flex flex-col items-center  justify-center  h-screen">
       <img src={logo} alt="logo" className="h-[8rem]" />
@@ -35,8 +36,8 @@ const Home = () => {
         >
           How to play
         </button>
-        {/* !user && */}
-        {
+
+        {!user && (
           <button
             className="w-[12rem] py-1 rounded-2xl border-[1px] border-black flex items-center justify-around"
             onClick={async () => {
@@ -44,15 +45,18 @@ const Home = () => {
             }}
           >
             <img src={googleLogo} alt="googleLogo" className="h-[1.5rem]" />
-            <p>Sign in with google 2</p>
+            <p>Sign in with google</p>
           </button>
-        }
+        )}
 
         <button
           onClick={async () => {
+            setIsClicked(true);
             await createScore();
+            setIsClicked(false);
             navigate("/game");
           }}
+          disabled={isClicked}
           className="w-[8rem] py-1 bg-black text-white rounded-2xl text-center"
         >
           Play

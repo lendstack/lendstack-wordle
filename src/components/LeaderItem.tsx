@@ -14,7 +14,6 @@ export default function LeaderBItem({
     const getData = async () => {
       const temp = await getSession();
       setUser(temp);
-      console.log("user-user-=", temp);
     };
     getData();
   }, []);
@@ -25,16 +24,16 @@ export default function LeaderBItem({
      bg-slate-200 items-center  hover:text-black text-black
      rounded-lg hover:border border-black
      w-[30rem] py-3 my-4
-
+    ${playerRank === 1 ? "scale-105 hover:scale-110 shadow-md" : ""}
      ${
        user && user.user.id === dataScore.user_id
          ? "border border-gray-400 hover:border-black"
          : ""
      }`}
     >
-      <p className=" text-blue-500 font-700 text-2xl pl-1 ">{`# ${playerRank}`}</p>
+      <p className=" text-blue-500 font-700 text-2xl  ">{`# ${playerRank}`}</p>
 
-      <div className="flex items-center">
+      <div className="flex items-center w-5/12 ">
         <img
           className="rounded-full border-white
            border-2 w-10 h-10  
