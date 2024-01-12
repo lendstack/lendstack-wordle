@@ -13,10 +13,9 @@ export default function AlertHelp() {
   const { data } = useGlobalContext();
 
   const [open, setOpen] = useState(false);
-  let keysData: { letter: string; color: string }[] = GetKeysData(
-    "HAPPY",
-    "ALPHA"
-  );
+  // function maskWord(word: string, charToReveal: string): string {
+  //   return ;
+  // }
   return (
     <div className="w-full flex justify-end">
       <IoMdHelpCircle
@@ -43,9 +42,15 @@ export default function AlertHelp() {
               <h1 className="text-[27px] flex items-center justify-center mb-6 font-bold ">
                 Here's hint
               </h1>
-              <div className="border-x border-b p-2 rounded-3xl">
-                {data.definition}
-              </div>
+              <>
+                <div className="border-x border-b p-2 rounded-3xl text-center">
+                  {data.definition && data.definition !== ""
+                    ? data.definition
+                    : [...data.randomWord]
+                        .map((c, index) => (index == 2 ? c : "*"))
+                        .join("")}
+                </div>
+              </>
               <div className="mt-3 flex justify-center">
                 <button
                   className={`w-[7rem]  py-0.5 rounded-2xl bg-[#227F22] text-white  border shadow-gray-200 shadow-md`}

@@ -13,15 +13,14 @@ export default function AlertSettings() {
   const [open, setOpen] = useState(false);
 
   const [selectedValue, setSelectedValue] = React.useState("6");
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSelectedValue(event.target.value);
+  const handleChange = (event: string) => {
+    setSelectedValue(event);
     setData((preData) => {
       let newData = { ...preData };
-      newData.gridType = Number(event.target.value);
+      newData.gridType = Number(event);
       newData.numAttempts = 0;
-      (newData.guesses = Array.from(
-        { length: Number(event.target.value) },
-        () => "*".repeat(lengthWord)
+      (newData.guesses = Array.from({ length: Number(event) }, () =>
+        "*".repeat(lengthWord)
       )),
         encryptData(newData);
       return newData;
@@ -50,7 +49,8 @@ export default function AlertSettings() {
         open={open}
         onClose={() => setOpen(false)}
       >
-        <div className="bg-[#010611be]  rounded-xl border-[1px] border-white  sm:w-[15rem]">
+        {/* 010611be */}
+        <div className="bg-[#000000]  rounded-xl border-[1px] border-white w-[20rem]  ">
           <div
             className="flex flex-row justify-end mt-2 mr-2 text-lg"
             onClick={() => {
@@ -66,30 +66,52 @@ export default function AlertSettings() {
           <DialogContent>
             <div className="flex flex-col text-white">
               <h1 className="text-[27px] flex items-center justify-center mb-0 font-bold ">
-                Settings
+                Grid Type
               </h1>
-              <div>
-                <p className="text-white"> Grid Type:</p>
-                <div>
+
+              <div className="flex flex-col gap-6 mt-4 ">
+                <div
+                  className="border rounded-md shadow-md shadow-white cursor-pointer"
+                  onClick={() => {
+                    handleChange("6");
+                  }}
+                >
                   <Radio
+                    sx={{
+                      color: "#227F22",
+                    }}
                     checked={selectedValue === "6"}
-                    onChange={handleChange}
                     value="6"
                   />
                   <label>{lengthWord} x 6</label>
                 </div>
-                <div>
+
+                <div
+                  className="border rounded-md shadow-md shadow-white "
+                  onClick={() => {
+                    handleChange("5");
+                  }}
+                >
                   <Radio
+                    sx={{
+                      color: "#227F22",
+                    }}
                     checked={selectedValue === "5"}
-                    onChange={handleChange}
                     value="5"
                   />
                   <label>{lengthWord} x 5</label>
                 </div>
-                <div>
+                <div
+                  className="border rounded-md shadow-md shadow-white"
+                  onClick={() => {
+                    handleChange("4");
+                  }}
+                >
                   <Radio
+                    sx={{
+                      color: "#227F22",
+                    }}
                     checked={selectedValue === "4"}
-                    onChange={handleChange}
                     value="4"
                   />
                   <label>{lengthWord} x 4</label>

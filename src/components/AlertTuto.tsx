@@ -24,9 +24,9 @@ export default function AlertTutorial() {
         }}
         open={openAlertTuto}
         onClose={() => setOpenAlertTuto(false)}
-        // className="bg-white"
+        // className="bg-white"010611be
       >
-        <div className="bg-[#010611be] rounded-xl border-[1px] border-white mijn-w-[15rem] max-w-[25rem]">
+        <div className="bg-[#000000] rounded-xl border-[1px] border-white mijn-w-[15rem] max-w-[25rem]">
           <div
             className="flex flex-row justify-end mt-2 mr-2 text-lg"
             onClick={() => {
@@ -41,9 +41,9 @@ export default function AlertTutorial() {
 
           <DialogContent>
             <div className="flex flex-col text-white">
-              <h1 className="text-[27px] flex items-center justify-center mb-6 font-bold ">
-                How To Play
-              </h1>
+              <div className="text-[27px] flex items-center justify-center mb-6 font-bold">
+                <h1 className="border-x-2 px-3 rounded-xl">How To Play</h1>
+              </div>
 
               <p className="text-[17px] ">
                 {` Guess the Wordle in ${data.guesses.length} tries or less.`}

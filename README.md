@@ -92,6 +92,9 @@ This Wordle game project includes several key features:
 - Game Page
   ![game](https://github.com/ahammamlho/Lendstack-Wordle/blob/worlde-ahammam/screen-shot/gamePage.png?raw=true)
 
+- Alert Hint
+  ![game](https://github.com/ahammamlho/Lendstack-Wordle/blob/worlde-ahammam/screen-shot/AlertHint.png?raw=true)
+
 - Leaderboard Page
   ![Leaderboard](https://github.com/ahammamlho/Lendstack-Wordle/blob/worlde-ahammam/screen-shot/leaderboardPage.png?raw=true)
 

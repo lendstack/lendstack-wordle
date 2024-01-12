@@ -46,9 +46,9 @@ export default function AlertStatistcs() {
         }}
         open={open}
         className="bg-white"
-        // onClose={() => setOpen(false)}
+        // onClose={() => setOpen(false)}010611be
       >
-        <div className="bg-[#010611be] rounded-xl border-[1px] border-white flex flex-col">
+        <div className="bg-[#000000] rounded-xl border-[1px] border-white flex flex-col">
           <DialogContent>
             <div className="flex flex-col text-white ">
               <div className="text-[27px]">STATISTICS :</div>
@@ -64,8 +64,10 @@ export default function AlertStatistcs() {
                   <p className="text-[18px] font-extralight">Win%</p>
                 </div>
               </div>
-              <div className="text-[20px] flex justify-center items-start ">
-                {isWin ? "You Win" : "You Lose"}
+              <div className="text-[20px] flex justify-center items-start my-2 ">
+                <div className="border-x-2 px-3 rounded-xl ">
+                  {isWin ? "You Win" : "You Lose"}
+                </div>
               </div>
               <h1 className="text-[17px]">Guess Distribution</h1>
               {data.guesses.map((attempt, index) => {
@@ -85,9 +87,10 @@ export default function AlertStatistcs() {
               })}
             </div>
           </DialogContent>
-          <div className="flex  justify-evenly mb-2">
+          <div className="flex  justify-evenly mt-2 mb-4">
             <button
-              className="px-3 py-1  bg-green-500 hover:bg-green-600 text-white rounded-2xl text-center"
+              className="px-3 py-1  bg-green-500 hover:bg-green-600 text-black rounded-2xl text-center
+              shadow-md shadow-white"
               onClick={async () => {
                 setOpen(false);
                 const tmp = await WordGenerator(lengthWord);
@@ -113,7 +116,8 @@ export default function AlertStatistcs() {
             </button>
             {!isWin && (
               <button
-                className="px-6 py-1  bg-blue-500 hover:bg-blue-600 text-white rounded-2xl text-center"
+                className="px-6 py-1  bg-blue-500 hover:bg-blue-600 text-black rounded-2xl text-center
+                shadow-md shadow-white"
                 onClick={() => {
                   setOpen(false);
                   setData((preData) => {

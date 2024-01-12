@@ -32,7 +32,6 @@ export async function createScore() {
       .select("*")
       .eq("user_id", userId);
     if (error && error!.code !== "PGRST116") {
-      console.error("Error checking for existing record:", error);
       return;
     }
 
