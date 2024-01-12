@@ -101,8 +101,8 @@ export const GlobalContextProvider = ({
         console.log("score && score.length", score, score.length);
         setData((preValue) => {
           let newData = { ...preValue };
-          newData.played = score[0].played;
-          newData.numWins = score[0].numWins;
+          newData.played = score[0]?.played | 0;
+          newData.numWins = score[0]?.numWins | 0;
           encryptData(newData);
           return newData;
         });
