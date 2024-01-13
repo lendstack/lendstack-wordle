@@ -12,7 +12,7 @@ export default function wordle(WordleProps : { word: string }) {
 	const [showHowTo, setShowHowTo] = useState<boolean>(true);
 	const [showStats, setShowStats] = useState<boolean>(false);
 
-	const { solution, handleInput, history, tries, animate, animateIndex, popUp, keyboard } = WordleTools(WordleProps);
+	const { solution, handleInput, history, tries, animate, animateIndex, popUp, keyboard, submitted } = WordleTools(WordleProps);
 	
 	useEffect(() => {
 		window.addEventListener('keyup', handleInput);
@@ -69,6 +69,7 @@ export default function wordle(WordleProps : { word: string }) {
 												style={{ backgroundColor: item.color, border: item.color /* , animationDelay: `${innerIndex * 0.1}s`*/ }} // animation Delay
 												className={`w-[62px] h-[62px] font-bold text-[2rem] flex justify-center items-center border-solid border-[2px] border-[#3a3a3c]
 													${animateIndex === outerIndex && animate ? 'roller' : ''}
+													${animateIndex >= outerIndex && submitted ? 'text-white' : ''}
 													${tries === outerIndex && innerIndex === solution.length - 1 && popUp ? 'popper' : ''}
 												`}
 											>
@@ -88,7 +89,7 @@ export default function wordle(WordleProps : { word: string }) {
 					&& keyboard.map((item, index) => (
 						<div
 							key={index}
-							style={{ backgroundColor: item.color }}
+							style={{ backgroundColor: item.color, color: item.color === '#acadaecc' ? '' : '#ffffff' }}
 							className={`w-[43px] h-[58px] mb-[2px] font-bold text-[1.25em] bg-[#818384] rounded`}
 						>
 							<div className='flex justify-center items-center h-full'>
