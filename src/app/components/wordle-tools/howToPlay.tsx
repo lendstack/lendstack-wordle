@@ -49,7 +49,7 @@ export default function howToPlay(setShowHowTo: any) {
 			<li>
 			<div className="my-1 flex flex-row">
 				<div className="border border-gray-500 mr-1 w-[32px] h-[32px] font-bold text-[25px] text-center"><div className="relative top-[-3px]">W</div></div>
-				<div className="bg-[#3a3a3c] mr-1 w-[32px] h-[32px] font-bold text-[25px] text-center"><div className="relative top-[-3px]">A</div></div>
+				<div className="bg-[#484849ab] mr-1 w-[32px] h-[32px] font-bold text-[25px] text-center"><div className="relative top-[-3px]">A</div></div>
 				<div className="border border-gray-500 mr-1 w-[32px] h-[32px] font-bold text-[25px] text-center"><div className="relative top-[-3px]">C</div></div>
 				<div className="border border-gray-500 mr-1 w-[32px] h-[32px] font-bold text-[25px] text-center"><div className="relative top-[-3px]">K</div></div>
 				<div className="border border-gray-500 mr-1 w-[32px] h-[32px] font-bold text-[25px] text-center"><div className="relative top-[-3px]">Y</div></div>

@@ -34,6 +34,7 @@ export default function wordleTools({ word }: WordleToolsProps) {
 	const [animate, setAnimate] = useState<boolean>(false);
 	const [animateIndex, setAnimateIndex] = useState<number>(0);
 	const [popUp, setPopUp] = useState<boolean>(false);
+	const [submitted, setSubmitted] = useState<boolean>(false);
 
 	const craftSolution = (history: KeyColor[][]) => {
 		const wordHash = word.split("");
@@ -45,14 +46,17 @@ export default function wordleTools({ word }: WordleToolsProps) {
 				history[tries][i] = { key: solution[i], color: "#548d4e" }; // green
 				wordHash[i] = "";
 			}
-			else if (solution[i] !== wordHash[i] && wordHash.includes(solution[i]))
+		}
+		for (var i = 0;i < solution.length; i++)
+		{
+			if (solution[i] !== wordHash[i] && wordHash.includes(solution[i]))
 			{
 				history[tries][i] = { key: solution[i], color: "#b59f3b" }; // yellow
 				wordHash[wordHash.indexOf(solution[i])] = "";
 			}
 			else
 			{
-				history[tries][i] = { key: solution[i], color: "#3a3a3c" }; // gray
+				history[tries][i] = { key: solution[i], color: "#484849ab" }; // gray
 			}
 		}
 	}
@@ -73,6 +77,7 @@ export default function wordleTools({ word }: WordleToolsProps) {
 
 		setAnimateIndex(tries);
 		setAnimate(true);
+		setSubmitted(true);
 		setTimeout(() => {
 			setAnimate(false);
 		}, 1000);
@@ -148,6 +153,6 @@ export default function wordleTools({ word }: WordleToolsProps) {
 		}
 	}
 
-	return { history, solution, keyboard, handleInput, tries, animate, animateIndex, popUp };
+	return { history, solution, keyboard, handleInput, tries, animate, animateIndex, popUp, submitted };
 
 };

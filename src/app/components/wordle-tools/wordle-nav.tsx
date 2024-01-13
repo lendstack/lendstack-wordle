@@ -23,7 +23,7 @@ export default function howToPlay(props: HowToPlayProps) {
 	}
 	
 	return (
-		<div className='flex flex-row justify-between items-center text-[2rem] font-bold h-[66px] w-full px-5 border-b-[1px] border-[#3a3a3c]'>
+		<div className='flex flex-row justify-between items-center text-[2rem] font-bold h-[66px] w-full px-5 border-b-[1px] border-[#484849ab]'>
 			<div className="mx-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
 			<div>Wordle</div>
 			<div className="flex flex-row items-center">
@@ -31,10 +31,10 @@ export default function howToPlay(props: HowToPlayProps) {
 					onClick={handleHowToClick}
 					className="mx-1"
 				><BiHelpCircle /></button>
-				<button
+				{/* <button
 					className="mx-1"
 					onClick={handleStatsClick}
-				><IoStatsChartSharp /></button>
+				><IoStatsChartSharp /></button> */} {/* stats button */}
 			</div>
 		</div>
 	);
