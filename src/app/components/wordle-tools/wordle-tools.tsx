@@ -49,12 +49,13 @@ export default function wordleTools({ word }: WordleToolsProps) {
 		}
 		for (var i = 0;i < solution.length; i++)
 		{
+			if (history[tries][i].color !== "#548d4e")
 			if (solution[i] !== wordHash[i] && wordHash.includes(solution[i]))
 			{
 				history[tries][i] = { key: solution[i], color: "#b59f3b" }; // yellow
 				wordHash[wordHash.indexOf(solution[i])] = "";
 			}
-			else if (history[tries][i].color !== "#548d4e")
+			else
 			{
 				history[tries][i] = { key: solution[i], color: "#484849ab" }; // gray
 			}
