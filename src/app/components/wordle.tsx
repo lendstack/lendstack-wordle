@@ -24,7 +24,7 @@ export default function wordle(WordleProps : { word: string }) {
 	const handleMouseClick = (e: MouseEvent) => {
 		if (
 			e.target instanceof Element &&
-			e.target.className === 'absolute mobileWidth h-[calc(100%-68px)] min-h-[1032px] flex items-center justify-center bg-[#00000099]'
+			e.target.className === 'absolute mobileWidth h-[calc(100%-68px)] flex items-center justify-center bg-[#00000099]'
 		) {
 			setShowHowTo(false);
 			setShowStats(false);

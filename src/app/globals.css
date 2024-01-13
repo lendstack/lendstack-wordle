@@ -59,6 +59,12 @@ body {
   }
 }
 
+@media (max-width: 500px) {
+  .mobileWidth {
+    min-height: 1032px;
+  }
+}
+
 @keyframes spin {
   0% {
     transform: rotateX(0deg);
