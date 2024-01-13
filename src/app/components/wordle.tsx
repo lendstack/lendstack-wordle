@@ -12,7 +12,7 @@ export default function wordle(WordleProps : { word: string }) {
 	const [showHowTo, setShowHowTo] = useState<boolean>(true);
 	const [showStats, setShowStats] = useState<boolean>(false);
 
-	const { solution, handleInput, history, tries, animate, animateIndex, popUp, keyboard, submitted } = WordleTools(WordleProps);
+	const { solution, handleInput, history, tries, animate, animateIndex, popUp, keyboard } = WordleTools(WordleProps);
 	
 	useEffect(() => {
 		window.addEventListener('keyup', handleInput);
@@ -48,14 +48,14 @@ export default function wordle(WordleProps : { word: string }) {
 			showHowTo={showHowTo}
 			showStats={showStats}
 		/>
-		<div className='min-w-fit'>
+		<div className='min-w-fit h-[90vh] max-h-[1032px]'>
 			{/* how to play popup */}
 			{showHowTo && !showStats && <div className='flex justify-center'>{HowToPlay(setShowHowTo)}</div>}
 			{/* game stats popup */}
-			{showStats && !showHowTo && <div className='flex justify-center'>{GameStats(setShowStats)}</div>}
+			{/* {showStats && !showHowTo && <div className='flex justify-center'>{GameStats(setShowStats)}</div>} */}
 			{/* wordle game grid */}
-			<div className='w-fit m-auto min-w-fit'>
-				<div className='h-[820px] flex flex-row items-center'>
+			<div className='w-fit h-full m-auto min-w-fit flex flex-col justify-between'>
+				<div className='h-[820px] flex flex-row items-center m-12'>
 					<div className='grid gap-[5px] w-fit m-auto'>
 						{
 							history.length > 0
@@ -67,9 +67,8 @@ export default function wordle(WordleProps : { word: string }) {
 												key={innerIndex}
 												
 												style={{ backgroundColor: item.color, border: item.color /* , animationDelay: `${innerIndex * 0.1}s`*/ }} // animation Delay
-												className={`w-[62px] h-[62px] font-bold text-[2rem] flex justify-center items-center border-solid border-[2px] border-[#484849ab]
+												className={`w-[62px] h-[62px] font-bold text-[2rem] flex justify-center items-center border-solid border-[2px] border-[#3a3a3c]
 													${animateIndex === outerIndex && animate ? 'roller' : ''}
-													${animateIndex >= outerIndex && submitted ? 'text-white' : ''}
 													${tries === outerIndex && innerIndex === solution.length - 1 && popUp ? 'popper' : ''}
 												`}
 											>
@@ -89,7 +88,7 @@ export default function wordle(WordleProps : { word: string }) {
 					&& keyboard.map((item, index) => (
 						<div
 							key={index}
-							style={{ backgroundColor: item.color, color: item.color === '#acadaecc' ? '' : '#ffffff' }}
+							style={{ backgroundColor: item.color }}
 							className={`w-[43px] h-[58px] mb-[2px] font-bold text-[1.25em] bg-[#818384] rounded`}
 						>
 							<div className='flex justify-center items-center h-full'>
