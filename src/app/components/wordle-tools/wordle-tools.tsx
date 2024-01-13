@@ -54,7 +54,7 @@ export default function wordleTools({ word }: WordleToolsProps) {
 				history[tries][i] = { key: solution[i], color: "#b59f3b" }; // yellow
 				wordHash[wordHash.indexOf(solution[i])] = "";
 			}
-			else
+			else if (history[tries][i].color !== "#548d4e")
 			{
 				history[tries][i] = { key: solution[i], color: "#484849ab" }; // gray
 			}
