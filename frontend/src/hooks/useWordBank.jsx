@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 
 const useWordBank = (url) => {
-
   const [words, setWords] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -21,6 +20,7 @@ const useWordBank = (url) => {
 
     fetchData();
   }, [url]);
+
 
   return { words, loading, error };
 }

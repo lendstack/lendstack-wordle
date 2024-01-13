@@ -1,7 +1,8 @@
 import Board from "../containers/Board";
+import Footer from "../containers/Footer";
 import Header from "../containers/Header";
 import { GameProvider } from "../context/GameContext";
-import KeyBoard from '../containers/KeyBoard'
+// import KeyBoard from '../containers/KeyBoard'
 
 const Game = () => {
 
@@ -10,8 +11,9 @@ const Game = () => {
         <Header />
       <GameProvider>
           <Board />
-         <KeyBoard />
+         {/* <KeyBoard /> */}
       </GameProvider>
+      <Footer />
     </div>
   )
 }
