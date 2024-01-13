@@ -53,7 +53,7 @@ npm run dev
 
 Open http://localhost:5173 with your browser to see the result.
 <br>
-Or you can check deployed site: [ahammam-wordle](https://lendstack-wordle-gar6u103r-ahammamlhos-projects.vercel.app/)
+Or you can check deployed site: [ahammam-wordle](https://lendstack-wordle-rec.vercel.app)
 
 ## Technologies:
 
