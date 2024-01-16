@@ -35,7 +35,7 @@ export const UtilityProvider = ({
       setTimeout(() => {
         Swal.fire({
           html: `<h1 class="text-3xl text-green-500 font-bold">You Won🎉</h1>
-            <h4 class="mt-4">You guessed Right In <span class="text-green-500 font-bold underline">${guessesIndex}/6</span> Attempts.</h4>`,
+            <h4 class="mt-4">You guessed it Right In <span class="text-green-500 font-bold underline">${guessesIndex}/6</span> Attempts.</h4>`,
           confirmButtonText: "Play Again?",
           width: 320,
           padding: "1rem",

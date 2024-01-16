@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { WordleProvider } from "@/context/WordleContext";
 import { UtilityProvider } from "@/context/UtilityContext";
+import NavBar from "../components/NavBar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,9 +19,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body suppressHydrationWarning={true} className={`${inter.className} bg-red-100`}>
+      <body
+        suppressHydrationWarning={true}
+        className={`${inter.className} bg-red-100 relative max-w-[600px] mx-auto`}
+      >
         <WordleProvider>
-          <UtilityProvider>{children}</UtilityProvider>
+          <UtilityProvider>
+            <NavBar />
+            {children}
+          </UtilityProvider>
         </WordleProvider>
       </body>
     </html>
