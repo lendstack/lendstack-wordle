@@ -19,7 +19,7 @@ const Footer = () => {
           <FaTwitter size={30} />
         </a>
       </div>
-      <p className="mt-2">© 2024 Azedin Ouhadou. All rights reserved.</p>
+      <p className="mt-2">© 2024 Azedine Ouhadou. All rights reserved.</p>
     </footer>
   );
 };

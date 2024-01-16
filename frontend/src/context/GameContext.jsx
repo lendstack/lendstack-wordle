@@ -1,24 +1,17 @@
 import { createContext, useContext } from 'react';
 
-const GameContext = createContext();
+const GameContext = createContext({
+  totalGames: 0,
+  wins: 0,
+  loses: 0,
 
-export const GameProvider = ({ children }) => {
-  // ... (existing code)
-
-  const handleKeyPress = (key) => {
-    // Do something with the key press, for example, log it
-    console.log(`Key pressed: ${key}`);
-    // You can also add more logic to handle the key press in the context
-  };
-
-  const contextValue = {
-    // ... (existing values)
-    handleKeyPress,
-  };
-
-  return <GameContext.Provider value={contextValue}>{children}</GameContext.Provider>;
-};
+  countWins: (prev) => {},
+  countTotalGames: (prev) => {},
+  countLoses: (prev => {}), 
+});
 
 export const useGameContext = () => {
   return useContext(GameContext);
 };
+
+export const GameProvider = GameContext.Provider;

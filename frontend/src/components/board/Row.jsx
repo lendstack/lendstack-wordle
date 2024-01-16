@@ -1,6 +1,4 @@
 
-
-
 export const Row = ({ guess , complete, solution}) => {
     const boxes = [];
     

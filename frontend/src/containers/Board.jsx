@@ -4,6 +4,7 @@ import Row from "../components/board/Row";
 import { WORDS_URL } from "../constant";
 import useWordBank from "../hooks/useWordBank";
 import KeyBoard from "./KeyBoard";
+import { useGameContext } from "../context/GameContext";
 
 const Board = () => {
   const { words, loading, error } = useWordBank(WORDS_URL);
@@ -15,8 +16,7 @@ const Board = () => {
   const [incorrectGuesses, setIncorrectGuesses] = useState(0);
   const [isWin, setIsWin] = useState(false);
   const keyboard = keyboardRows.flat();
-
-  console.log(solution);
+  const {countTotalGames, countWins, countLoses} = useGameContext();
 
   useEffect(() => {
     if (words || isWin){
@@ -26,7 +26,6 @@ const Board = () => {
   }, [words, isWin]);
 
   const handleKeyDown = useCallback((e) => {
-    console.log(e);
     let key;
     if (typeof e === 'string') key = e;
     if (e.key){
@@ -57,12 +56,16 @@ const Board = () => {
         if (isCorrect){
           setIsWin(true);
           setErrorMs("Congratulations you win!!");
+          countTotalGames();
+          countWins();
           resetGame();
         } else {
             setIncorrectGuesses((prevCount) => prevCount + 1);
 
             if (incorrectGuesses + 1 === 6) {
               setErrorMs("You've reached 6 incorrect guesses. Game over!");
+              countTotalGames();
+              countLoses();
               setIsWin(false);
               resetGame();
             }
@@ -79,7 +82,7 @@ const Board = () => {
       }
       setCurrentGuess(currentGuess + key);
     }
-  }, [currentGuess, solution, guesses, isGameOver, keyboard, incorrectGuesses, words]);
+  }, [currentGuess, solution, guesses, isGameOver, keyboard, incorrectGuesses, words, countLoses, countTotalGames, countWins]);
 
   
   useEffect(() => {
