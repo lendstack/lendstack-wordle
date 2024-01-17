@@ -1,0 +1,36 @@
+version: '3.8'
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    ports:
+      - "3001:3001"
+    depends_on:
+      - database
+    networks:
+      - APInetwork
+  database:
+    image: postgres:13
+    container_name: database
+    ports:
+      - 5432:5432
+    env_file:
+      - .env
+    networks:
+      - APInetwork
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    networks:
+      - APInetwork
+networks:
+  APInetwork:
+    driver: bridge
