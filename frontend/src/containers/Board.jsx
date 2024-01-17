@@ -113,7 +113,7 @@ const Board = () => {
   }
 
   return (
-    <section className="flex flex-col items-center justify-between w-full h-[50vh] px-4 md:px-10 2xl:px-14">
+    <section className="flex flex-col items-center justify-between w-full px-4 md:px-10 2xl:px-14 gap-10">
       <div className="flex flex-col gap-2 justify-center items-center">
         {guesses.map((guess, i) => {
           const isCurrentGuess = i === guesses.findIndex(val => val === null);

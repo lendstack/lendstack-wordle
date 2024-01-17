@@ -45,7 +45,7 @@ const Game = () => {
   }, [totalGames, wins, loses]);
 
   return (
-    <div className="flex w-[100vw] h-[100vh] flex-col justify-between">
+    <div className="flex w-[100vw] h-[100vh] flex-col justify-between overflow-y-scroll scroll-smooth">
       <GameProvider value={{totalGames, wins, loses, countTotalGames, countWins, countLoses}}>
         <Header />
           <Board />

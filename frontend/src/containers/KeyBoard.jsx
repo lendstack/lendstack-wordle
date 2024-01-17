@@ -3,7 +3,6 @@
 const KeyBoard = ({handleKeyPress}) => {
 
   return (
-   //<section className="flex justify-center md:mb-12 mx-10">
     <div className=" w-full flex flex-col">
       <div className="w-full mb-2 flex items-center justify-around">
         {["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"].map((key) => (
@@ -41,10 +40,8 @@ const KeyBoard = ({handleKeyPress}) => {
               </button>
         ))}
       </div>
-        
       
     </div>
-   //</section>
   )
 }
 

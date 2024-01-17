@@ -5,9 +5,9 @@ const GameContext = createContext({
   wins: 0,
   loses: 0,
 
-  countWins: (prev) => {},
-  countTotalGames: (prev) => {},
-  countLoses: (prev => {}), 
+  countWins: () => {},
+  countTotalGames: () => {},
+  countLoses: () => {}, 
 });
 
 export const useGameContext = () => {
