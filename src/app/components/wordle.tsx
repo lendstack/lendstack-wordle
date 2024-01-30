@@ -2,7 +2,7 @@
 import React from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
-import WordleTools from './wordle-tools/wordle-tools'
+import UseWordleTools from './wordle-tools/wordle-tools'
 import HowToPlay from './wordle-tools/howToPlay';
 import WordleNav from './wordle-tools/wordle-nav';
 import GameStats from './wordle-tools/gameStats';
@@ -12,14 +12,14 @@ export default function wordle(WordleProps : { word: string }) {
 	const [showHowTo, setShowHowTo] = useState<boolean>(true);
 	const [showStats, setShowStats] = useState<boolean>(false);
 
-	const { solution, handleInput, history, tries, animate, animateIndex, popUp, keyboard, submitted } = WordleTools(WordleProps);
+	const { solution, handleInput, history, tries, animate, animateIndex, popUp, keyboard, submitted } = UseWordleTools(WordleProps);
 	
 	useEffect(() => {
 		window.addEventListener('keyup', handleInput);
 		return () => {
 			window.removeEventListener('keyup', handleInput)
 		};
-  	}, [handleInput]);
+  	}, [solution]);
 
 	const handleMouseClick = (e: MouseEvent) => {
 		if (
@@ -50,7 +50,14 @@ export default function wordle(WordleProps : { word: string }) {
 		/>
 		<div className='min-w-fit h-[90vh] max-h-[1032px]'>
 			{/* how to play popup */}
-			{showHowTo && !showStats && <div className='flex justify-center'>{HowToPlay(setShowHowTo)}</div>}
+			{showHowTo && !showStats && <div className='flex justify-center'>
+				{
+					<HowToPlay
+						setShowHowTo={setShowHowTo}
+						showHowTo={showHowTo}
+					/>
+				}
+			</div>}
 			{/* game stats popup */}
 			{/* {showStats && !showHowTo && <div className='flex justify-center'>{GameStats(setShowStats)}</div>} */}
 			{/* wordle game grid */}
