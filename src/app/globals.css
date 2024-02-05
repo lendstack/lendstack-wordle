@@ -1,0 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+.dynamic-bg {
+  background: rgb(var(--background-start-rgb));
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+.roller {
+  animation: spin 1s ease forwards;
+}
+
+.popper {
+  animation: pop 0.5s ease forwards;
+}
+
+.keyboardGrid {
+  min-width: 500px;
+  width: 500px;
+  margin: 20px;
+  text-align-last: center;
+  text-align: center;
+}
+
+.keyboardGrid > div {
+  display: inline-block;
+  margin: 3px;
+}
+
+@media (min-width: 500px) {
+  .mobileWidth {
+    width: 100%;
+  }
+}
+
+@media (max-width: 500px) {
+  .mobileWidth {
+    min-height: 1032px;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotateX(0deg);
+    background: rgb(var(--background-start-rgb));
+    color: rgb(var(--foreground-rgb))
+  }
+  45% {
+    transform: rotateX(90deg);
+    background: rgb(var(--background-start-rgb));
+    color: rgb(var(--foreground-rgb))
+  }
+  55% {
+    transform: rotateX(90deg);
+  }
+  100% {
+    transform: rotateX(0deg);
+  }
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

@@ -1,58 +1,44 @@
-# lendstack-wordle
+# Wordle Project
 
-## Requirements:
-Your task is to create a web-based Wordle game using React that adheres to the following specifications:
+This is a Wordle project implemented with Next.js and styled using Tailwind CSS.
 
-### User Interface (UI):
+## Getting Started
 
-Design a clean and intuitive UI for the game that includes:
+To run the project locally, follow these steps:
 
-- Input field for guessing words.
-- Submit button to submit the guess.
-- Display area for previous guesses.
-= Indication of correct letters in correct positions (right letter, right position).
-- Indication of correct letters in the wrong position.
-- Display remaining attempts.
-- End game state UI (upon winning or losing).
+1. Clone the repository:
 
-### State Management:
+```bash
+git clone https://github.com/ahmedelbahri/lendstack-wordle
+```
 
-Implement a robust state management system to handle:
+Navigate to the project directory:
+```bash
+cd wordle-project
+```
 
-- Target word selection (randomly generate a word at the start of the game).
-- Storing user guesses and their results.
-- Tracking remaining attempts.
+Install dependencies:
+```bash
+npm install
+```
 
-### User Interaction:
+Start the development server:
+```bash
+npm run dev
+```
+Open your browser and visit http://localhost:3000 to view the Wordle application.
 
-- Capture user input for word guesses.
-- Validate input (alphabetic characters, word length, etc.).
-- Handle the submission of guesses and update the game state accordingly.
+Project Structure
+The project structure is organized as follows:
 
+src/app/: Contains Next.js pages.
+public/: Includes static assets.
+data/: json files
+Customization
+Feel free to customize the Wordle game and its styles based on your preferences. Explore the code in the src/app/ directory to understand the application logic.
 
-### Game Logic:
-
-- Compare the user's guessed word against the target word.
-- Provide feedback to the user about the correctness of the guessed word.
-- End the game when the correct word is guessed or when the attempts reach zero.
-
-## Code Quality:
-
-- Write clean, readable, and maintainable code.
-- Implement best practices for React development.
-- Ensure error handling for edge cases (invalid input, unexpected behavior).
-
-## Submission Guidelines:
-
-- Fork this [repository](https://github.com/lendstack/lendstack-wordle) and create a new branch named `wordle-[YOUR NAME]`.
-- Provide clear instructions on how to run the application locally.
-- Include a README file explaining your approach, decisions made, and any additional features implemented.
-- Open a PR.
-
-## Evaluation Criteria:
-
-- UI/UX design and functionality.
-- Code quality, structure, and maintainability.
-- State management and logic implementation.
-- Handling of edge cases and error scenarios.
-- Bonus points for additional features or optimizations.
+Technologies Used
+Next.js: React framework for building web applications.
+Tailwind CSS: Utility-first CSS framework.
+License
+This project is licensed under the MIT License.
